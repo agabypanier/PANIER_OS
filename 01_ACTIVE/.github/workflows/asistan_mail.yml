@@ -2,8 +2,8 @@ name: PANIER OS - Asistan Mail Otomatik
 
 on:
   schedule:
-    # Sa ap kouri chak swa a 10 PM (22:00) nan Haiti (ki se 02:00 UTC)
-    - cron: '0 2 * * *'
+    # Sa ap kouri chak swa a 9:30 PM (21:30) nan Haiti (ki se 01:30 UTC)
+    - cron: '30 1 * * *'
   workflow_dispatch: # Sa pèmèt ou kouri l alamen si w vle sou GitHub
 
 jobs:
