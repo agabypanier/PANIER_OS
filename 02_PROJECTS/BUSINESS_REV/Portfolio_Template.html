@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Portfolio - Rev Konstriksyon</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+
+        :root {
+            --primary: #1e3a8a; /* Deep blue */
+            --accent: #f59e0b; /* Amber/Gold */
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background-color: #fff;
+            line-height: 1.6;
+        }
+
+        /* A4 Page Setup for PDF Print */
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        .page {
+            width: 210mm;
+            height: 297mm;
+            padding: 20mm;
+            margin: 0 auto;
+            position: relative;
+            background: white;
+            page-break-after: always;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        @media print {
+            .page {
+                box-shadow: none;
+                margin: 0;
+                width: 100%;
+                height: 100vh;
+            }
+            body { background: white; }
+        }
+
+        /* Header Section */
+        header {
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        h1.logo-text {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h1.logo-text span {
+            color: var(--accent);
+        }
+
+        .contact-info {
+            text-align: right;
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        /* Project Title */
+        .project-title {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .project-subtitle {
+            font-size: 16px;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Specs Grid */
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+            background: var(--bg-light);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .spec-item {
+            text-align: center;
+        }
+
+        .spec-label {
+            font-size: 12px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .spec-value {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        /* Image Placeholder / 3D Render Area */
+        .render-area {
+            width: 100%;
+            height: 400px;
+            background: #e5e7eb;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            border: 2px dashed #d1d5db;
+        }
+
+        /* Description Area */
+        .description {
+            font-size: 14px;
+            color: var(--text-dark);
+            text-align: justify;
+        }
+
+        /* Footer */
+        footer {
+            position: absolute;
+            bottom: 20mm;
+            left: 20mm;
+            right: 20mm;
+            border-top: 1px solid #e5e7eb;
+            padding-top: 15px;
+            font-size: 10px;
+            color: var(--text-light);
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page">
+        <header>
+            <div>
+                <h1 class="logo-text">Rev <span>Konstriksyon</span></h1>
+            </div>
+            <div class="contact-info">
+                <p>Tel: +509 XXXX-XXXX</p>
+                <p>Email: contact@revkonstriksyon.com</p>
+            </div>
+        </header>
+
+        <!-- PROJECT INFO -->
+        <h2 class="project-title">[NON PWOJÈ A LA]</h2>
+        <h3 class="project-subtitle">Modèle Résidentiel Moderne</h3>
+
+        <div class="specs-grid">
+            <div class="spec-item">
+                <span class="spec-label">Surface Approx.</span>
+                <span class="spec-value">120 m²</span>
+            </div>
+            <div class="spec-item">
+                <span class="spec-label">Nb. Chambres</span>
+                <span class="spec-value">2 Chambres</span>
+            </div>
+            <div class="spec-item">
+                <span class="spec-label">Type</span>
+                <span class="spec-value">Maison Plain-Pied (RDC)</span>
+            </div>
+        </div>
+
+        <!-- IMAGE / 3D RENDER -->
+        <div class="render-area">
+            [FOTO PLAN 2D / 3D A VIN LA]
+        </div>
+
+        <!-- DESCRIPTION -->
+        <div class="description">
+            <p><strong>Description:</strong><br>
+            Sa se yon egzanp plan pou yon kay modèn ak 2 chanm. Design sa a fèt espesyalman pou optimize espas ak sikilasyon van, tout pandan li ap ekonomize materyèl konstriksyon. Li gen yon gwo salon, kizin ouvè, ak yon teras devan.</p>
+        </div>
+
+        <footer>
+            <p>Rev Konstriksyon - Plan 2D/3D & Devis</p>
+            <p>www.revkonstriksyon.com (Optional)</p>
+        </footer>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+"REV KONSTRIKSYON",,,
+"MODÈL DEVIS / FACTURE",,,
+,,,
+"Non Kliyan:", "[METE NON KLIYAN AN]",,
+"Dat:", "[METE DAT LA]",,
+"Pwojè:", "[DESKRIPSYON KOUT PWOJÈ A]",,
+,,,
+"Deskripsyon Travay / Atik","Kantite","Pri Inite","Total"
+"Plan 2D (Sifas: ... m2)",1,250,250
+"Vizyèl 3D (Fasad, Salon, elatriye)",1,150,150
+"Devis Detaye Konstriksyon",1,100,100
+"Konsiltasyon",1,0,0
+,,,
+,,"TOTAL:",500
+,,"AVANS (50%):",250
+,,"RÈS POU PEYE:",250
+,,,
+"Nòt: Pri yo an USD (oswa mete HTG). Devis sa valab pou 30 jou.",,,
