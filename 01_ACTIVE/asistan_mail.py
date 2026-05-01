@@ -142,7 +142,7 @@ def main():
         print("ERE: Ou dwe mete yon Modpas Aplikasyon Gmail nan mail_config.json anvan.")
         return
         
-    print("1. Ap chèche imèl ki poko li nan bwat la...")
+    print(f"1. Ap chèche imèl ki poko li pou: {config['EMAIL_ADDRESS']}...")
     imel_yo = li_imel_ki_poko_li(config["EMAIL_ADDRESS"], config["GMAIL_APP_PASSWORD"])
     
     if not imel_yo:
