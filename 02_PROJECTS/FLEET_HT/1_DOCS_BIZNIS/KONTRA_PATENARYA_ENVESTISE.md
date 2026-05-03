@@ -4,8 +4,9 @@
 
 **D'une part, La Société de Gestion (Manadjè a)**
 Non: **Panier Agaby Junior Duret** (pou FleetHT)
-Adrès: Delmas, Pòtoprens, Ayiti
-Nimewo Idantifikasyon: ____________________
+Adrès: Delmas 32, rue Cauvin #20B, Pòtoprens, Ayiti
+NIF / NII: 008-024-730-3 / 1320680140
+Nimewo Telefòn: +509 4284 7749
 *Désigné ci-après comme "Le Gestionnaire".*
 
 **D'autre part, L'Investisseur (Envèstisè a)**
@@ -26,9 +27,9 @@ Fon sa a ap itilize eksklizivman pou achte motosiklèt, asirans legal (OAVCT), a
 ## ATIK 3: DISTRIBISYON PWOFI NET
 Pwofi Net la se rezilta lajan total ki kolekte yo mwens tout chaj fonksyònman ki nesesè pou mentni flòt la (reparasyon, abònman teknolojik, elatriye).
 Jiskaske 2 pati yo deside otreman an ekri, pwofi net la ap distribye an 3 pati dapre Pwotokòl FleetHT a:
-- **Kès Re-envèstisman Flòt la**: 70% nan pwofi net la.
-- **Dividann Envèstisè a**: 20% nan pwofi net la.
-- **Konpansasyon Manadjè a**: 10% nan pwofi net la kòm frè operasyon sou teren an.
+- **Kès Re-envèstisman Flòt la**: ____ % nan pwofi net la.
+- **Dividann Envèstisè a**: ____ % nan pwofi net la.
+- **Konpansasyon Manadjè a**: ____ % nan pwofi net la kòm frè operasyon sou teren an.
 
 ## ATIK 4: OBLIGASYON PATI YO
 **Le Gestionnaire s'engage à:** 

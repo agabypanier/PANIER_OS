@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siyati Elektwonik AGABY</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #f3f4f6; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; padding-top: 50px; }
+        .canvas-container { background: white; border: 2px dashed #94a3b8; border-radius: 10px; margin-bottom: 20px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+        canvas { cursor: crosshair; touch-action: none; }
+    </style>
+</head>
+<body>
+
+    <h1 class="text-2xl font-bold mb-2">Kreye Siyati Ofisyèl Ou</h1>
+    <p class="text-gray-600 mb-8 text-center max-w-md">Trase siyati w nan espas anba a. Lè w fini, klike sou bouton "Sove Siyati a" epi l ap telechaje kòm `siyati_agaby.png` avèk yon fond transparan. Mete l anndan katab `MASTER_ID` ou an.</p>
+
+    <div class="canvas-container relative">
+        <canvas id="sig-pad" width="400" height="200"></canvas>
+    </div>
+
+    <div class="flex gap-4">
+        <button onclick="clearPad()" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-6 rounded-full transition">Repran l ankò</button>
+        <button onclick="saveSignature()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full shadow-lg transition">Sove Siyati a</button>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('sig-pad');
+        const ctx = canvas.getContext('2d');
+        let isDrawing = false;
+
+        // Settings for drawing
+        ctx.strokeStyle = '#000033'; // Dark blue ink color
+        ctx.lineWidth = 3;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+
+        function startDrawing(e) {
+            isDrawing = true;
+            draw(e);
+        }
+
+        function stopDrawing() {
+            isDrawing = false;
+            ctx.beginPath();
+        }
+
+        function draw(e) {
+            if (!isDrawing) return;
+            e.preventDefault();
+
+            let x, y;
+            if (e.type.includes('touch')) {
+                x = e.touches[0].clientX - canvas.getBoundingClientRect().left;
+                y = e.touches[0].clientY - canvas.getBoundingClientRect().top;
+            } else {
+                x = e.clientX - canvas.getBoundingClientRect().left;
+                y = e.clientY - canvas.getBoundingClientRect().top;
+            }
+
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+        }
+
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mouseup', stopDrawing);
+        canvas.addEventListener('mouseout', stopDrawing);
+
+        canvas.addEventListener('touchstart', startDrawing, {passive: false});
+        canvas.addEventListener('touchmove', draw, {passive: false});
+        canvas.addEventListener('touchend', stopDrawing);
+
+        function clearPad() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function saveSignature() {
+            // Trim empty space around the signature (optional, but let's just save the whole canvas for simplicity)
+            const dataURL = canvas.toDataURL("image/png");
+            const link = document.createElement('a');
+            link.download = 'siyati_agaby.png';
+            link.href = dataURL;
+            link.click();
+            
+            alert("Imaj la telechaje! Mete l nan dosye c:\\Users\\0000\\AGABY_2026\\01_ACTIVE\\MASTER_ID\\ la");
+        }
+    </script>
+
+</body>
+</html>

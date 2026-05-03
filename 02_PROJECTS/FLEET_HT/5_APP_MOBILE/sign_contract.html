@@ -50,7 +50,9 @@
             
             <p><strong>D'une part, La Société de Gestion (Manadjè a)</strong><br>
             Non: <strong>Panier Agaby Junior Duret</strong> (pou FleetHT)<br>
-            Adrès: Delmas, Pòtoprens, Ayiti<br>
+            Adrès: Delmas 32, rue Cauvin #20B, Pòtoprens, Ayiti<br>
+            NIF / NII: 008-024-730-3 / 1320680140<br>
+            Nimewo Telefòn: +509 4284 7749<br>
             <em>Désigné ci-après comme "Le Gestionnaire".</em></p>
 
             <p class="mt-6"><strong>D'autre part, L'Investisseur (Envèstisè a)</strong><br>
@@ -71,9 +73,9 @@
             <h2 class="font-bold font-sans text-lg mt-6">ATIK 3: DISTRIBISYON PWOFI NET</h2>
             <p>Pwofi Net la se rezilta lajan total ki kolekte yo mwens tout chaj fonksyònman ki nesesè pou mentni flòt la (reparasyon, abònman teknolojik, elatriye). Jiskaske 2 pati yo deside otreman an ekri, pwofi net la ap distribye an 3 pati dapre Pwotokòl FleetHT a:</p>
             <ul class="list-disc pl-8">
-                <li><strong>Kès Re-envèstisman Flòt la</strong>: 70% nan pwofi net la.</li>
-                <li><strong>Dividann Envèstisè a</strong>: 20% nan pwofi net la.</li>
-                <li><strong>Konpansasyon Manadjè a</strong>: 10% nan pwofi net la kòm frè operasyon sou teren an.</li>
+                <li><strong>Kès Re-envèstisman Flòt la</strong>: <input type="text" id="perc-fleet" class="border-b border-gray-400 focus:outline-none focus:border-blue-500 w-12 bg-transparent text-center no-print print-hide" placeholder="70"><span id="lbl-fleet" class="font-bold hidden"></span> % nan pwofi net la.</li>
+                <li><strong>Dividann Envèstisè a</strong>: <input type="text" id="perc-inv" class="border-b border-gray-400 focus:outline-none focus:border-blue-500 w-12 bg-transparent text-center no-print print-hide" placeholder="20"><span id="lbl-inv" class="font-bold hidden"></span> % nan pwofi net la.</li>
+                <li><strong>Konpansasyon Manadjè a</strong>: <input type="text" id="perc-man" class="border-b border-gray-400 focus:outline-none focus:border-blue-500 w-12 bg-transparent text-center no-print print-hide" placeholder="10"><span id="lbl-man" class="font-bold hidden"></span> % nan pwofi net la kòm frè operasyon sou teren an.</li>
             </ul>
 
             <h2 class="font-bold font-sans text-lg mt-6">ATIK 4: OBLIGASYON PATI YO</h2>
@@ -204,14 +206,22 @@
             const address = document.getElementById('inv-address').value || '_______________________';
             const cin = document.getElementById('inv-cin').value || '_______________________';
             const amount = document.getElementById('inv-amount').value || '__________';
+            
+            const pFleet = document.getElementById('perc-fleet').value || '70';
+            const pInv = document.getElementById('perc-inv').value || '20';
+            const pMan = document.getElementById('perc-man').value || '10';
 
             // Swap inputs to labels
             document.getElementById('lbl-address').innerText = address;
             document.getElementById('lbl-cin').innerText = cin;
             document.getElementById('lbl-amount').innerText = amount;
+            
+            document.getElementById('lbl-fleet').innerText = pFleet;
+            document.getElementById('lbl-inv').innerText = pInv;
+            document.getElementById('lbl-man').innerText = pMan;
 
             document.querySelectorAll('.print-hide').forEach(el => el.classList.add('hidden'));
-            document.querySelectorAll('#lbl-address, #lbl-cin, #lbl-amount').forEach(el => el.classList.remove('hidden'));
+            document.querySelectorAll('#lbl-address, #lbl-cin, #lbl-amount, #lbl-fleet, #lbl-inv, #lbl-man').forEach(el => el.classList.remove('hidden'));
 
             // Swap canvas to image
             const dataUrl = canvas.toDataURL();

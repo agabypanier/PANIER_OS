@@ -1,0 +1,25 @@
+{
+  "personal_info": {
+    "first_name": "Agaby Junior",
+    "last_name": "Panier Duret",
+    "full_name": "Panier Agaby Junior Duret",
+    "title": "System Engineer / Entrepreneur"
+  },
+  "legal_id": {
+    "nif": "008-024-730-3",
+    "nii": "1320680140"
+  },
+  "contact": {
+    "email": "agabypanier@gmail.com",
+    "phone": "+50942847749",
+    "address": {
+      "street": "Delmas 32, rue Cauvin #20B",
+      "city": "Pòtoprens",
+      "country": "Ayiti"
+    }
+  },
+  "assets": {
+    "signature_path": "c:\\Users\\0000\\AGABY_2026\\01_ACTIVE\\MASTER_ID\\siyati_agaby.png",
+    "documents_folder": "c:\\Users\\0000\\AGABY_2026\\01_ACTIVE\\MASTER_ID\\PAPYER_LEGAL"
+  }
+}
