@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Biznis FleetHT - Konplè</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #f59e0b;
+            --text-color: #333333;
+            --bg-color: #f9fafb;
+            --card-bg: #ffffff;
+            --border-color: #e5e7eb;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 50px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        h1, h2, h3, h4 {
+            color: var(--primary-color);
+            margin-top: 1.5em;
+        }
+
+        h1 { font-size: 2.5em; text-align: center; border-bottom: 4px solid var(--primary-color); padding-bottom: 20px; }
+        h2 { border-bottom: 2px solid var(--secondary-color); padding-bottom: 10px; page-break-after: avoid; margin-top: 2.5em; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.95em;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+            page-break-inside: auto;
+        }
+        
+        tr { page-break-inside: avoid; page-break-after: auto; }
+
+        table thead tr {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            text-align: left;
+        }
+
+        table th, table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        table tbody tr:nth-of-type(even) {
+            background-color: #f3f4f6;
+        }
+
+        blockquote {
+            background-color: #fffbeb;
+            border-left: 5px solid var(--secondary-color);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        code {
+            background-color: #f1f5f9;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+
+        pre {
+            background-color: #f1f5f9;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        .chart-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 40px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-sizing: border-box;
+            page-break-inside: avoid;
+        }
+
+        @media print {
+            body { background: white; }
+            .container { box-shadow: none; padding: 0; max-width: 100%; }
+            canvas { max-width: 100%; height: auto !important; }
+            h2 { page-break-before: auto; }
+            h2:nth-of-type(4), h2:nth-of-type(8) { page-break-before: always; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="content">
+<h1>📋 PLAN BIZNIS — FleetHT</h1>
+<h3>Flòt Transpò Moto | Delmas, Pòtoprens, Ayiti</h3>
+<p><strong>Dat:</strong> 1 Me 2026<br><strong>Vèsyon:</strong> 1.0<br><strong>Prepare pa:</strong> AGABY Management  </p>
+<hr>
+<h2>📌 REZIME EGZEKITIF</h2>
+<p><strong>FleetHT</strong> se yon antrepriz transpò ki baze sou modèl <strong>lokasyon-vant (work &amp; pay)</strong>. Nou achte moto nèf epi nou bay chofè yo yon <strong>kontra 12 mwa</strong> — yo peye yon vèsman chak semèn, epi apre 12 mwa, moto a vin pou yo.</p>
+<p><strong>Objektif prensipal:</strong> Kòmanse ak <strong>2 moto</strong> nan Delmas, reinvesti tout pwofi pou agrandi flòt la, epi atire nouvo envestisè lè modèl la pwouve tèt li.</p>
+<table>
+<thead>
+<tr>
+<th>Eleman</th>
+<th>Detay</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Non biznis</strong></td>
+<td>FleetHT</td>
+</tr>
+<tr>
+<td><strong>Lokasyon</strong></td>
+<td>Delmas, Pòtoprens</td>
+</tr>
+<tr>
+<td><strong>Modèl</strong></td>
+<td>Lokasyon-Vant (14 mwa)</td>
+</tr>
+<tr>
+<td><strong>Flòt inisyal</strong></td>
+<td>2 moto</td>
+</tr>
+<tr>
+<td><strong>Envestisè fondatè</strong></td>
+<td>Efikas (USA)</td>
+</tr>
+<tr>
+<td><strong>Jesyon</strong></td>
+<td>Tioby (sou teren Ayiti)</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>1. 🎯 OBJEKTIF</h2>
+<h3>1.1 Objektif Kout Tèm (0–6 mwa)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Achte 2 moto nèf (Bajaj Boxer 150 oswa Haojue)</li>
+<li><input disabled="" type="checkbox"> Chwazi 2 chofè serye, fè background check</li>
+<li><input disabled="" type="checkbox"> Siyen kontra lokasyon-vant ak chak chofè</li>
+<li><input disabled="" type="checkbox"> Immatrikile moto yo legalman (OAVCT / DGI — pwogram &quot;MOTO PAM LEGAL&quot;)</li>
+<li><input disabled="" type="checkbox"> Mete sistèm koleksyon vèsman semennè an plas</li>
+<li><input disabled="" type="checkbox"> Kòmanse kolekte premye revni</li>
+</ul>
+<h3>1.2 Objektif Mwayen Tèm (6–12 mwa)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Reinvesti pwofi pou achte 2 moto anplis (total: 4)</li>
+<li><input disabled="" type="checkbox"> Evalye pèfòmans chofè yo</li>
+<li><input disabled="" type="checkbox"> Prepare rapò finansye pou envestisè a</li>
+<li><input disabled="" type="checkbox"> Optimize wout ak zòn operasyon</li>
+</ul>
+<h3>1.3 Objektif Long Tèm (12–24 mwa)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Agrandi flòt la a 8-10 machin</li>
+<li><input disabled="" type="checkbox"> Entrodwi 3-wou (Bajaj/Piaggio) ak/oswa kamyonèt</li>
+<li><input disabled="" type="checkbox"> Atire 2-3 nouvo envestisè</li>
+<li><input disabled="" type="checkbox"> Mete yon sistèm dijital pou suiv flòt la (GPS + app jesyon)</li>
+</ul>
+<hr>
+<h2>2. 📊 ANALIZ MACHE</h2>
+<h3>2.1 Opòtinite</h3>
+<ul>
+<li><strong>Delmas</strong> se youn nan komin ki pi popile nan Pòtoprens — demand transpò trè wo</li>
+<li>Moto-taxi se mwayen transpò <strong>#1</strong> pou majorite popilasyon an</li>
+<li>Anpil chofè pa gen kapital pou achte moto pa yo — modèl lokasyon-vant rezoud pwoblèm sa a</li>
+<li>Pwogram <strong>&quot;MOTO PAM LEGAL&quot;</strong> (OAVCT, 2025) ankouraje fòmalizasyon sektè a</li>
+</ul>
+<h3>2.2 Avantaj Konpetitif</h3>
+<ul>
+<li><strong>Jesyon pwofesyonèl</strong> — kontra klè, suivi regilye, rapò finansye</li>
+<li><strong>Moto nèf</strong> — mwens reparasyon, plis fyabilite, atire pi bon chofè</li>
+<li><strong>Modèl scalable</strong> — chak sik 12 mwa pwodwi kapital pou nouvo moto</li>
+<li><strong>Transparans</strong> — envestisè wè egzakteman kote lajan yo ye</li>
+</ul>
+<h3>2.3 Konpetisyon</h3>
+<table>
+<thead>
+<tr>
+<th>Konpetitè</th>
+<th>Fòs</th>
+<th>Feblès</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Ti pwopriyetè endividyèl</td>
+<td>Konn zòn nan byen</td>
+<td>Pa gen estrikti, pa gen kontra fòmèl</td>
+</tr>
+<tr>
+<td>Gwo konpayi transpò</td>
+<td>Kapital</td>
+<td>Pa fokis sou moto-taxi</td>
+</tr>
+<tr>
+<td><strong>FleetHT</strong></td>
+<td>Estrikti pwofesyonèl + modèl scalable</td>
+<td>Nouvo sou mache a</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>3. 💰 MODÈL BIZNIS</h2>
+<h3>3.1 Ki jan sa fonksyone</h3>
+<pre><code>ENVESTISÈ (USA)
+    │
+    ▼ Kapital ($)
+FLEETHT (Jesyon AGABY)
+    │
+    ▼ Achte Moto Nèf
+CHOFÈ (Kontra 12 mwa)
+    │
+    ▼ Vèsman Semennè
+FLEETHT (Koleksyon)
+    │
+    ├──▶ Depans operasyonèl
+    ├──▶ Retou envestisè
+    └──▶ Reinvestisman → Nouvo moto → Sik rekòmanse
+</code></pre>
+<h3>3.2 Modèl Lokasyon-Vant</h3>
+<table>
+<thead>
+<tr>
+<th>Eleman</th>
+<th>Detay</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Dire kontra</strong></td>
+<td>14 mwa (~60 semèn)</td>
+</tr>
+<tr>
+<td><strong>Vèsman</strong></td>
+<td>1,000 HTG pa jou, 6 jou/semèn (Lendi–Samdi)</td>
+</tr>
+<tr>
+<td><strong>Peman</strong></td>
+<td>Chak Samdi (6,000 HTG/semèn)</td>
+</tr>
+<tr>
+<td><strong>Responsablite chofè</strong></td>
+<td>Gaz, antretyen kouran, lavaj</td>
+</tr>
+<tr>
+<td><strong>Responsablite FleetHT</strong></td>
+<td>Gwo reparasyon (motè, transmisyon) pandan 3 premye mwa</td>
+</tr>
+<tr>
+<td><strong>Transfè pwopriyete</strong></td>
+<td>Apre dènye vèsman (14 mwa), chofè resevwa papye ofisyèl</td>
+</tr>
+<tr>
+<td><strong>Depo garansi</strong></td>
+<td>10% pri moto a (non-ranbousab si chofè kite anvan tèm)</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>4. 💵 BIDJÈ DETAYE</h2>
+<blockquote>
+<p><strong>Taux de change referans:</strong> 1 USD = 131 HTG (Me 2026)</p>
+<p>ℹ️ <strong>Pou Efikas:</strong> Tout chif nan seksyon sa a an <strong>dola ameriken (USD)</strong> AK <strong>goud ayisyen (HTG)</strong> pou w ka konprann klè. Tout pri yo se estimasyon — n ap verifye pri egzak yo sou teren avan nou achte anyen.</p>
+</blockquote>
+<hr>
+<h3>4.1 🛒 Envèstisman Inisyal — Sa w bezwen mete devan</h3>
+<p>Sa a se tout lajan Efikas bezwen voye <strong>yon sèl fwa</strong> pou kòmanse biznis la ak 2 moto:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Depans</th>
+<th>Eksplikasyon</th>
+<th>Pri USD</th>
+<th>Pri HTG</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td><strong>2x Moto nèf (Bajaj Boxer 150)</strong></td>
+<td>2 moto nèf — Bajaj Boxer 150cc se yon mak solid, fyab, pyès fasil jwenn nan Delmas. Pri $1,200 chak.</td>
+<td>$2,400</td>
+<td>314,400</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Immatrikulation OAVCT/DGI (x2)</strong></td>
+<td>Chak moto bezwen plak ofisyèl + anrejistreman nan leta. San sa, polis ka sezi moto a.</td>
+<td>$150</td>
+<td>19,650</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Asirans OAVCT (x2)</strong></td>
+<td>Asirans obligatwa nan Ayiti — kouvri domaj si moto a frape yon moun. San asirans = ilegal.</td>
+<td>$100</td>
+<td>13,100</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>GPS Tracker (x2)</strong></td>
+<td>Yon ti aparèy kache nan moto a ki pèmèt nou wè kote moto a ye 24/7 sou telefòn nou. Pwoteksyon kont vòl. ~$35 chak + $5/mwa abònman.</td>
+<td>$80</td>
+<td>10,480</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Frè legal (kontra notarye x2)</strong></td>
+<td>Fè yon notè (avoka) ekri kontra ofisyèl ant FleetHT ak chak chofè. Sa pwoteje nou legalman si chofè pa peye oswa disparèt.</td>
+<td>$80</td>
+<td>10,480</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>Fon ijans</strong></td>
+<td>Lajan rezèv pou enprevwa — si yon moto bezwen yon reparasyon ijans nan premye mwa yo.</td>
+<td>$200</td>
+<td>26,200</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>TOTAL ENVÈSTISMAN INISYAL</strong></td>
+<td></td>
+<td><strong>$3,010</strong></td>
+<td><strong>394,310</strong></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>💡 <strong>An rezime pou Efikas:</strong> Ou voye <strong>~$3,010 USD</strong> yon sèl fwa. Ak lajan sa a, Tioby achte 2 moto nèf, mete tout papye yo an règ, enstale GPS pou sekirite, epi gen yon ti fon ijans. Aprè sa, biznis la kòmanse jenere lajan.</p>
+</blockquote>
+<hr>
+<h3>4.2 💰 Revni — Konbyen lajan chofè yo ap peye nou</h3>
+<p>Men ki jan lajan rantre nan FleetHT:</p>
+<p><strong>Chak chofè peye 1,000 goud pa jou, 6 jou pa semèn (Lendi–Samdi). Dimanch lib.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Peryòd</th>
+<th>1 Moto</th>
+<th>2 Moto</th>
+<th>An USD (2 moto)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Pa jou</strong></td>
+<td>1,000 HTG</td>
+<td>2,000 HTG</td>
+<td>~$15.27</td>
+</tr>
+<tr>
+<td><strong>Pa semèn</strong> (6 jou)</td>
+<td>6,000 HTG</td>
+<td>12,000 HTG</td>
+<td>~$91.60</td>
+</tr>
+<tr>
+<td><strong>Pa mwa</strong> (~26 jou)</td>
+<td>26,000 HTG</td>
+<td>52,000 HTG</td>
+<td>~$396.95</td>
+</tr>
+<tr>
+<td><strong>Pa 14 mwa</strong> (kontra konplè)</td>
+<td>364,000 HTG</td>
+<td><strong>728,000 HTG</strong></td>
+<td><strong>~$5,557</strong></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>💡 <strong>An rezime pou Efikas:</strong> Chak mwa, 2 moto yo ap rapòte <strong>~$397 USD</strong>. Sou 14 mwa (dire kontra a), total la se <strong>~$5,557 USD</strong>. Se lajan sa a ki ap kouvri depans yo epi jenere pwofi.</p>
+</blockquote>
+<hr>
+<h3>4.3 📉 Depans Operasyonèl — Sa n ap depanse chak mwa pou jere biznis la</h3>
+<p>Sa yo se depans <strong>regilye</strong> ke Tioby ap fè chak mwa pou jere operasyon yo:</p>
+<table>
+<thead>
+<tr>
+<th>Depans</th>
+<th>Eksplikasyon</th>
+<th>Pa mwa HTG</th>
+<th>Pa mwa USD</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Telefòn/kominikasyon</strong></td>
+<td>Rele chofè yo, entènèt pou tcheke GPS, voye rapò bay Efikas</td>
+<td>1,000</td>
+<td>~$8</td>
+</tr>
+<tr>
+<td><strong>Deplaseman</strong></td>
+<td>Tioby bezwen deplase pou ale kolekte peman, tcheke moto yo, vizite chofè yo</td>
+<td>2,000</td>
+<td>~$15</td>
+</tr>
+<tr>
+<td><strong>Ti reparasyon enprevwa</strong></td>
+<td>Ti pyès ki ka bezwen chanje (bujis, kab, fren) nan premye mwa yo</td>
+<td>2,000</td>
+<td>~$15</td>
+</tr>
+<tr>
+<td><strong>Abònman GPS (x2)</strong></td>
+<td>Frè mansyèl pou sèvis GPS tracker ($5 × 2 moto)</td>
+<td>1,310</td>
+<td>~$10</td>
+</tr>
+<tr>
+<td><strong>Total depans mansyèl</strong></td>
+<td></td>
+<td><strong>6,310 HTG</strong></td>
+<td><strong>~$48</strong></td>
+</tr>
+<tr>
+<td><strong>Total depans sou 14 mwa</strong></td>
+<td></td>
+<td><strong>88,340 HTG</strong></td>
+<td><strong>~$674</strong></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>💡 <strong>An rezime pou Efikas:</strong> Chak mwa, sa koute sèlman <strong>~$48 USD</strong> pou fè biznis la mache. Sou 14 mwa, total depans = <strong>~$674 USD</strong>. Se yon ti kras konpare ak sa n ap kolekte.</p>
+</blockquote>
+<hr>
+<h3>4.4 📊 Pwojeksyon Finansyè — Kisa ki rive ak lajan w apre 14 mwa?</h3>
+<p>Men ki jan lajan an mouvmante etap pa etap:</p>
+<h4>Etap 1: Lajan ki RANTRE (Revni)</h4>
+<pre><code>2 chofè × 1,000 HTG/jou × 6 jou/semèn × 60.6 semèn (14 mwa)
+= 728,000 HTG
+= $5,557 USD
+</code></pre>
+<h4>Etap 2: Lajan ki SÒTI (Depans)</h4>
+<pre><code>Depans operasyonèl (14 mwa)         =  -$674
+Pri 2 moto (yo ale nan men chofè yo) = -$2,400
+Frè demaraj (legal, asirans, GPS)    =  -$310
+                                      ─────────
+TOTAL DEPANS                         = -$3,384
+</code></pre>
+<blockquote>
+<p>⚠️ <strong>Enpòtan pou konprann:</strong> Apre 14 mwa, <strong>moto yo pa pou FleetHT ankò</strong> — yo vin pou chofè yo. Se sa ki fè nou retire pri moto yo ($2,400) nan kalkil la. Se modèl &quot;work &amp; pay&quot; la — chofè peye pou vin pwopriyetè moto a.</p>
+</blockquote>
+<h4>Etap 3: REZILTA FINAL</h4>
+<table>
+<thead>
+<tr>
+<th>Eleman</th>
+<th>HTG</th>
+<th>USD</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>💰 Total lajan ki rantre (revni)</td>
+<td>728,000</td>
+<td>$5,557</td>
+</tr>
+<tr>
+<td>💸 Total lajan ki sòti (depans)</td>
+<td>-428,894</td>
+<td>-$3,384</td>
+</tr>
+<tr>
+<td><strong>✅ VRÈ PWOFI NET</strong></td>
+<td><strong>299,106</strong></td>
+<td><strong>$2,173</strong></td>
+</tr>
+<tr>
+<td>➕ Depo garansi 2 chofè (yo te peye avan)</td>
+<td>+31,440</td>
+<td>+$240</td>
+</tr>
+<tr>
+<td><strong>💵 TOTAL KACH NAN MEN NOU</strong></td>
+<td><strong>327,926</strong></td>
+<td><strong>$2,413</strong></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>🎯 <strong>An rezime pou Efikas:</strong></p>
+<ul>
+<li>Ou mete <strong>$3,010</strong> devan</li>
+<li>Apre 14 mwa, ou gen <strong>$2,413 kach klè nan men</strong></li>
+<li>Sa vle di ou fè <strong>$2,413 pwofi</strong> — prèske <strong>80% retou sou envèstisman w</strong></li>
+<li>Ak $2,413 sa a, nou ka achte <strong>2 nouvo moto</strong> epi kòmanse yon <strong>2yèm sik</strong> ak 4 moto total!</li>
+<li><strong>Ou pa pèdi anyen</strong> — envèstisman orijinal la retounen nan pòch ou + pwofi anplis</li>
+</ul>
+</blockquote>
+<hr>
+<h3>4.5 📈 Pwojeksyon Kwasans — Ki jan biznis la ap grandi</h3>
+<blockquote>
+<p>🔥 <strong>ESTRATEJI KLE: Nou PA AP TANN 14 mwa fini pou achte nouvo moto!</strong>
+Depi nou gen ase kach nan men pou achte yon nouvo moto, nou achte l imedyatman epi nou mete l nan lari ak yon nouvo chofè. Sa fè biznis la grandi pi vit!</p>
+</blockquote>
+<h4>Pri pou 1 nouvo moto konplè (ak tout papye):</h4>
+<table>
+<thead>
+<tr>
+<th>Depans</th>
+<th>Pri USD</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Moto nèf (Bajaj Boxer 150)</td>
+<td>$1,200</td>
+</tr>
+<tr>
+<td>Immatrikulation + Asirans</td>
+<td>$125</td>
+</tr>
+<tr>
+<td>GPS Tracker</td>
+<td>$40</td>
+</tr>
+<tr>
+<td>Frè legal (kontra notarye)</td>
+<td>$40</td>
+</tr>
+<tr>
+<td>Kontribisyon fon ijans</td>
+<td>$100</td>
+</tr>
+<tr>
+<td><strong>Total pou 1 nouvo moto</strong></td>
+<td><strong>$1,505</strong></td>
+</tr>
+</tbody></table>
+<h4>📅 Timeline mwa pa mwa — ki lè flòt la ap grandi:</h4>
+<table>
+<thead>
+<tr>
+<th>Mwa</th>
+<th>Flòt</th>
+<th>Revni nèt/mwa</th>
+<th>Kach akimile</th>
+<th>Aksyon</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Mwa 1</td>
+<td>2 moto</td>
+<td>$349</td>
+<td>$349</td>
+<td>Kolekte peman</td>
+</tr>
+<tr>
+<td>Mwa 2</td>
+<td>2 moto</td>
+<td>$349</td>
+<td>$698</td>
+<td>Kolekte peman</td>
+</tr>
+<tr>
+<td>Mwa 3</td>
+<td>2 moto</td>
+<td>$349</td>
+<td>$1,047</td>
+<td>Kolekte peman</td>
+</tr>
+<tr>
+<td><strong>Mwa 4</strong></td>
+<td>2 → <strong>3 moto</strong> 🆕</td>
+<td>$349</td>
+<td>$1,396</td>
+<td><strong>🛒 ACHTE 3yèm moto! ($1,300)</strong> Rès: $96</td>
+</tr>
+<tr>
+<td>Mwa 5</td>
+<td>3 moto</td>
+<td>$536</td>
+<td>$632</td>
+<td>Kach monte pi vit ak 3 moto!</td>
+</tr>
+<tr>
+<td>Mwa 6</td>
+<td>3 moto</td>
+<td>$536</td>
+<td>$1,168</td>
+<td>Kolekte peman</td>
+</tr>
+<tr>
+<td><strong>Mwa 7</strong></td>
+<td>3 → <strong>4 moto</strong> 🆕</td>
+<td>$536</td>
+<td>$1,704</td>
+<td><strong>🛒 ACHTE 4yèm moto! ($1,300)</strong> Rès: $404</td>
+</tr>
+<tr>
+<td>Mwa 8</td>
+<td>4 moto</td>
+<td>$724</td>
+<td>$1,128</td>
+<td>Kach monte ankò pi vit!</td>
+</tr>
+<tr>
+<td><strong>Mwa 9</strong></td>
+<td>4 → <strong>5 moto</strong> 🆕</td>
+<td>$724</td>
+<td>$1,852</td>
+<td><strong>🛒 ACHTE 5yèm moto! ($1,300)</strong> Rès: $552</td>
+</tr>
+<tr>
+<td>Mwa 10</td>
+<td>5 moto</td>
+<td>$912</td>
+<td>$1,464</td>
+<td>Kolekte peman</td>
+</tr>
+<tr>
+<td><strong>Mwa 11</strong></td>
+<td>5 → <strong>6 moto</strong> 🆕</td>
+<td>$912</td>
+<td>$2,376</td>
+<td><strong>🛒 ACHTE 6yèm moto! ($1,300)</strong> Rès: $1,076</td>
+</tr>
+<tr>
+<td><strong>Mwa 12</strong></td>
+<td>6 → <strong>7 moto</strong> 🆕</td>
+<td>$1,100</td>
+<td>$2,176</td>
+<td><strong>🛒 ACHTE 7yèm moto! ($1,300)</strong> Rès: $876</td>
+</tr>
+<tr>
+<td>Mwa 13</td>
+<td>7 moto</td>
+<td>$1,288</td>
+<td>$2,164</td>
+<td>Kolekte peman</td>
+</tr>
+<tr>
+<td><strong>Mwa 14</strong></td>
+<td>7 → <strong>8-9 moto</strong> 🆕</td>
+<td>$1,288</td>
+<td>$3,452</td>
+<td><strong>🛒 ACHTE 8yèm/9yèm moto!</strong> (2 premye moto transfere bay chofè)</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>🎯 <strong>An rezime pou Efikas:</strong></p>
+<ul>
+<li><strong>Mwa 4:</strong> Ou gen 3 moto nan lari — san ou pa mete 1 kòb anplis!</li>
+<li><strong>Mwa 7:</strong> 4 moto — lajan ap rantre pi vit</li>
+<li><strong>Mwa 14:</strong> Apeprè 7 a 9 moto nan lari! (menm lè 2 premye yo ale nan men chofè yo)</li>
+<li><strong>Tout sa ak yon sèl envèstisman $2,600 USD!</strong></li>
+<li>Sa se pouvwa <strong>reinvestisman agresif</strong> — chak goud travay pou fè plis goud!</li>
+</ul>
+<p>⚠️ <strong>NÒT ENPÒTAN POU ENVÈSTISÈ A (Reyalite Mache a):</strong> </p>
+<ol>
+<li>Pwojeksyon kwasans rapid sa a (rive 7-9 moto nan 14 mwa) baze sou yon <strong>Senaryo Ideyal 100% Reinvestisman</strong>. Sa vle di, se SI nou deside pa rale dividann 20% an ditou pandan premye ane a epi nou mete tout kach la nan achte moto sèlman. Si nou aplike distribisyon 70% reinvestisman an (jan sa prevwa nan kontra a), kwasans lan ap yon tijan pi dousman (apeprè 5-7 moto nan mwa 14), men l ap toujou trè rantab.</li>
+<li>Epitou, kalkil sa yo sipoze <strong>pa gen okenn gwo pwoblèm</strong> (pa gen gwo reta peman plizyè jou, pa gen gwo aksidan ki paralize yon moto pou lontan). Nan reyalite Ayiti a, fòk nou toujou atann nou ak ti reta sa yo, men menm ak 80% pèfòmans pwojeksyon sa a, biznis la rete ekstrèmman solid.</li>
+</ol>
+</blockquote>
+<hr>
+<h2>5. ⚠️ ANALIZ RISK</h2>
+<h3>5.1 Risk Idantifye, Solisyon &amp; Mitigasyon</h3>
+<hr>
+<h4>🔴 RISK #1 — Chofè pa peye vèsman (NIVO: WO)</h4>
+<p><strong>Pwoblèm:</strong> Chofè a rete peye, bay eskiz, oswa peye an reta regilyèman.</p>
+<p><strong>Solisyon konplè:</strong></p>
+<ul>
+<li><strong>Peman CHAK JOU</strong>, pa chak semèn — chofè peye 1,000 HTG chak swa lè l fini travay. Sa pi fasil pou jere olye tann akimile pou Samdi</li>
+<li><strong>Kanè peman fizik</strong> — chak jou chofè siyen + ou siyen. 2 kopi: 1 pou ou, 1 pou li</li>
+<li><strong>Sistèm avètisman 3 etap:</strong><ul>
+<li>⚠️ <strong>Etap 1 (2 jou reta):</strong> Apèl telefòn + avètisman vèbal</li>
+<li>⚠️ <strong>Etap 2 (5 jou reta):</strong> Avètisman ekri fòmèl + kontakte moun de referans li yo</li>
+<li>🛑 <strong>Etap 3 (10 jou reta):</strong> Sispansyon kontra, rekiperasyon moto san delè</li>
+</ul>
+</li>
+<li><strong>Depo garansi (10%)</strong> — pèdi si chofè pa respekte kontra</li>
+<li><strong>Moun de referans obligatwa</strong> — 2 moun solid nan zòn nan ki ka ateste pou chofè a epi ede nou jwenn li si gen pwoblèm</li>
+</ul>
+<hr>
+<h4>🔴 RISK #2 — Vòl moto (NIVO: WO)</h4>
+<p><strong>Pwoblèm:</strong> Moun vòlè moto a nan men chofè a, oswa chofè a li menm konplis.</p>
+<p><strong>Solisyon konplè:</strong></p>
+<ul>
+<li><strong>GPS tracker kache</strong> — enstale nan yon pozisyon sekrè nan moto a (~$35 pa moto + ~$5/mwa abònman). Pèmèt ou lokalize moto a 24/7</li>
+<li><strong>Asirans OAVCT</strong> — kouvri vòl (verifye polis la)</li>
+<li><strong>Kontra klè:</strong> Chofè responsab 100% si moto vole pandan li sou responsablite l. Moun de referans li yo ap ede nan envestigasyon an</li>
+<li><strong>Règ sekirite obligatwa pou chofè:</strong><ul>
+<li>Toujou retire kle lè l kite moto a</li>
+<li>Pa kite moto deyò lannwit — antre l anndan lakay</li>
+<li>Pa prete moto a bay PÈSONN</li>
+</ul>
+</li>
+<li><strong>Rapò imedya</strong> — chofè gen 2 èdtan pou rele FleetHT + fè rapò polis. Si li pa fè rapò vit, li responsab nèt</li>
+</ul>
+<hr>
+<h4>🔴 RISK #3 — Sekirite / Zòn danjere (NIVO: WO)</h4>
+<p><strong>Pwoblèm:</strong> Sèten zòn nan Delmas danjere, bandi ka atake chofè, blokis lari.</p>
+<p><strong>Solisyon konplè:</strong></p>
+<ul>
+<li><strong>Kat zòn apwouve</strong> — defini klèman ki wout/zòn chofè ka travay. Evite zòn cho</li>
+<li><strong>Orè operasyon:</strong> Travay sèlman <strong>6AM–7PM</strong>. Pa gen operasyon lannwit</li>
+<li><strong>Rezo kominikasyon:</strong> Gwoup WhatsApp ant tout chofè FleetHT — yo avèti youn lòt si gen pwoblèm nan yon zòn</li>
+<li><strong>Règ ijans:</strong> Si gen traka nan yon zòn, chofè KITE zòn nan imedyatman, pa eseye travay la</li>
+<li><strong>Fleksibilite:</strong> Si sitiyasyon sekiritè chanje, FleetHT ka chanje zòn operasyon rapidman</li>
+</ul>
+<hr>
+<h4>🟡 RISK #4 — Chofè kite ak moto / disparèt (NIVO: WO)</h4>
+<p><strong>Pwoblèm:</strong> Chofè jis pati ak moto a, pa retounen, pa reponn telefòn.</p>
+<p><strong>Solisyon konplè:</strong></p>
+<ul>
+<li><strong>GPS tracker</strong> — lokalize moto a menm si chofè ale</li>
+<li><strong>Dosye konplè chofè AVAN li resevwa moto:</strong><ul>
+<li>Kopi CIN (kat idantite nasyonal)</li>
+<li>Foto chofè</li>
+<li>Adrès lakay li (verifye an pèsonn)</li>
+<li>Adrès travay/zòn li konn ye</li>
+<li>2 moun de referans trè solid (fanmi dirèk preferab — manman, papa, frè, sè)</li>
+<li>Foto moun referans yo + Kopi CIN yo</li>
+</ul>
+</li>
+<li><strong>Referans responsab</strong> — moun de referans yo jwe yon wòl moral pou dekouraje chofè a vòlè, epi y ap ede Lapolis jwenn li si l disparèt</li>
+<li><strong>Aksyon imedya si disparèt:</strong><ol>
+<li>Tcheke GPS → lokalize moto</li>
+<li>Kontakte moun de referans yo</li>
+<li>Si 48h san repons → rapò polis pou vòl</li>
+<li>Pouswiv legalman (kontra notarye bay dwa sa a)</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h4>🟡 RISK #5 — Aksidan grav (NIVO: MWAYEN)</h4>
+<p><strong>Pwoblèm:</strong> Chofè fè yon aksidan grav — moto kraze, moun blese, oswa chofè li menm blese.</p>
+<p><strong>Solisyon konplè:</strong></p>
+<ul>
+<li><strong>Asirans OAVCT obligatwa</strong> — kouvri domaj bay tyès (lòt moun)</li>
+<li><strong>Nan kontra a:</strong> Chofè responsab 100% pou reparasyon moto apre aksidan</li>
+<li><strong>Si moto reparab:</strong> Chofè peye reparasyon + kontinye kontra a (peman pa kanpe pandan reparasyon)</li>
+<li><strong>Si moto pèt total:</strong> Asirans peye valè moto + chofè a responsab eksedan an</li>
+<li><strong>Fòmasyon sekirite routyè</strong> avan chofè resevwa moto — règ sikilasyon, vitès limite</li>
+</ul>
+<hr>
+<h4>🟡 RISK #6 — Devalwasyon goud (NIVO: MWAYEN)</h4>
+<p><strong>Pwoblèm:</strong> Goud la pèdi valè — 1,000 HTG jodi a ka vo mwens nan 6 mwa. Envestisè a (Efikas) pèdi pouvwa acha.</p>
+<p><strong>Solisyon konplè:</strong></p>
+<ul>
+<li><strong>Klòz ajisteman nan kontra:</strong> Chak 6 mwa, FleetHT ka ajiste vèsman jounalye selon to chanj la<ul>
+<li>Ex: Si dola monte 10%+, vèsman monte proporsyonèlman</li>
+<li>Mete yon plafon: pa plis ke +15% pa ajisteman</li>
+</ul>
+</li>
+<li><strong>Rapò finansye an USD</strong> — tout rapò bay Efikas an dola ameriken, pa an goud</li>
+<li><strong>Reinvesti vit</strong> — pa kite goud dòmi nan kont, konvèti an byen (moto) pi vit posib</li>
+<li><strong>Opsyon:</strong> Kèk peman ka fèt an dola si chofè kapab</li>
+</ul>
+<hr>
+<h4>🟡 RISK #7 — Moto an pàn plizyè jou (NIVO: MWAYEN)</h4>
+<p><strong>Pwoblèm:</strong> Moto a bezwen reparasyon — chofè pa ka travay, donk li pa peye.</p>
+<p><strong>Solisyon konplè:</strong></p>
+<ul>
+<li><strong>Moto nèf</strong> = mwens pàn nan premye ane a</li>
+<li><strong>Antretyen prevantif obligatwa:</strong> Chofè dwe fè chanjman luil chak 2 semèn, tcheke fren/pneu chak mwa</li>
+<li><strong>Règ nan kontra:</strong> Peman pa kanpe si moto an pàn akoz move antretyen pa chofè. Chofè toujou dwe peye</li>
+<li><strong>Si pàn se yon defò fabrikasyon (pandan 3 premye mwa):</strong> FleetHT peye reparasyon + peman kanpe pou jou sa yo sèlman</li>
+<li><strong>Mekanisyen patnè</strong> — etabli relasyon ak 1-2 mekanisyen nan zòn nan pou reparasyon rapid ak bon pri</li>
+<li><strong>Stòk ti pyès debaz</strong> — bujis, fren, kab akseleratè (FleetHT kenbe yon ti stòk)</li>
+</ul>
+<hr>
+<h4>🟡 RISK #8 — Chofè fè aksidan, blese yon moun — responsablite legal tonbe sou FleetHT (NIVO: MWAYEN)</h4>
+<p><strong>Pwoblèm:</strong> Nan lalwa ayisyen, pwopriyetè machin nan ka responsab pou domaj chofè li fè.</p>
+<p><strong>Solisyon konplè:</strong></p>
+<ul>
+<li><strong>Asirans OAVCT</strong> — kouvri domaj bay tyès (moun blese)</li>
+<li><strong>Kontra klè:</strong> Chofè aksepte responsablite sivil ak penal pou tout aksidan li lakoz</li>
+<li><strong>Klòz endemnizasyon:</strong> Chofè a angaje l ranbouse FleetHT pou tout frè legal oswa domaj</li>
+<li><strong>Transfè pwopriyete legal:</strong> Moto anrejistre nan non FleetHT, men kontra a espesifye ke chofè se operatè responsab</li>
+<li><strong>Konsiltasyon ak avoka</strong> — avan lanse, fè yon avoka revize kontra a pou asire pwoteksyon legal maksimòm</li>
+</ul>
+<hr>
+<h4>🟢 RISK #9 — Reparasyon chè enprevwa (NIVO: BA)</h4>
+<p><strong>Pwoblèm:</strong> Yon gwo reparasyon enprevwa (motè, transmisyon) koute chè.</p>
+<p><strong>Solisyon konplè:</strong></p>
+<ul>
+<li><strong>Moto nèf</strong> ak garanti fabrikan (jeneralman 6-12 mwa)</li>
+<li><strong>Fon ijans 10%</strong> nan bidjè ($200) rezève pou egzakteman sa</li>
+<li><strong>Antretyen prevantif</strong> redwi risk sa a anpil</li>
+<li><strong>Mekanisyen patnè</strong> = pri preferansyèl</li>
+</ul>
+<hr>
+<h4>🟢 RISK #10 — Pwoblèm legal / dokiman pa an règ (NIVO: BA)</h4>
+<p><strong>Pwoblèm:</strong> Polis sezi moto paske papye pa bon, oswa pwoblèm ak DGI/OAVCT.</p>
+<p><strong>Solisyon konplè:</strong></p>
+<ul>
+<li><strong>Tout dokiman an règ AVAN moto sòti:</strong> Plak, asirans, imatrikilasyon (pwogram &quot;MOTO PAM LEGAL&quot;)</li>
+<li><strong>Kopi dokiman:</strong> Chofè gen kopi sou li toutan + FleetHT kenbe orijinal yo</li>
+<li><strong>Renouvèlman otomatik:</strong> Mete rapèl pou renouvle asirans + imatrikilasyon avan yo ekspire</li>
+</ul>
+<hr>
+<h4>🟢 RISK #11 — Konfli ant patenarya Efikas &amp; Tioby (NIVO: BA)</h4>
+<p><strong>Pwoblèm:</strong> Dezakò sou desizyon, distribisyon pwofi, oswa direksyon biznis la.</p>
+<p><strong>Solisyon konplè:</strong></p>
+<ul>
+<li><strong>Akò patenarya ekri ak siyen</strong> — tout règ klè depi kòmansman</li>
+<li><strong>Rapò mansyèl obligatwa</strong> — transparans total sou finans, tout chif dokimante</li>
+<li><strong>Règ desizyon:</strong><ul>
+<li>Depans &lt; $200 → Tioby deside sèl</li>
+<li>Depans $200-$500 → Diskite ansanm, Tioby gen vwa final sou teren</li>
+<li>Depans &gt; $500 → Toude dwe dakò</li>
+</ul>
+</li>
+<li><strong>Klòz sòti:</strong> Si youn vle kite, preyavi 60 jou + likide aktif yo ekitableman</li>
+<li><strong>Medyasyon:</strong> Si gen konfli, yon tyès pati (zanmi oswa pwofesyonèl) sèvi kòm medyatè avan aksyon legal</li>
+</ul>
+<hr>
+<h3>5.2 Plan Ijans — Rezime Rapid</h3>
+<table>
+<thead>
+<tr>
+<th>Sitiyasyon</th>
+<th>Aksyon Imedya</th>
+<th>Delè</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Chofè pa peye 2 jou</td>
+<td>Apèl telefòn + avètisman vèbal</td>
+<td>Jou menm</td>
+</tr>
+<tr>
+<td>Chofè pa peye 5 jou</td>
+<td>Avètisman ekri + kontakte referans yo</td>
+<td>Nan 24h</td>
+</tr>
+<tr>
+<td>Chofè pa peye 10 jou</td>
+<td>Sispansyon kontra, rekipere moto</td>
+<td>Nan 24h</td>
+</tr>
+<tr>
+<td>Moto vole</td>
+<td>Tcheke GPS + rapò polis + kontakte referans yo</td>
+<td>Nan 2h</td>
+</tr>
+<tr>
+<td>Chofè disparèt ak moto</td>
+<td>GPS + kontakte referans yo + rapò polis</td>
+<td>Nan 48h</td>
+</tr>
+<tr>
+<td>Aksidan grav</td>
+<td>Rapò polis + reklamasyon asirans + evalye domaj</td>
+<td>Nan 24h</td>
+</tr>
+<tr>
+<td>Aksidan ak blese tyès</td>
+<td>Rapò polis + aktive asirans OAVCT + avoka</td>
+<td>Imedyatman</td>
+</tr>
+<tr>
+<td>Moto an pàn</td>
+<td>Voye kay mekanisyen patnè, chofè kontinye peye</td>
+<td>Nan 24h</td>
+</tr>
+<tr>
+<td>Traka sekiritè nan zòn</td>
+<td>Chofè kite zòn nan + avèti gwoup WhatsApp</td>
+<td>Imedyatman</td>
+</tr>
+<tr>
+<td>Konfli patenarya</td>
+<td>Diskisyon + medyasyon tyès pati</td>
+<td>Nan 7 jou</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>6. 📝 KONTRA CHOFÈ — Eleman Kle</h2>
+<h3>6.1 Enfòmasyon Kontra</h3>
+<p>Chak kontra dwe genyen:</p>
+<ol>
+<li><strong>Idantite 2 pati yo</strong> — Non, adrès, # telefòn, NIF, pyès idantite</li>
+<li><strong>Deskripsyon moto</strong> — Mak, modèl, # seri, koulè, # plak</li>
+<li><strong>Montant total</strong> — Pri total chofè ap peye sou 14 mwa</li>
+<li><strong>Vèsman jounalye</strong> — 1,000 HTG pa jou, 6 jou/semèn (Lendi–Samdi)</li>
+<li><strong>Depo garansi</strong> — 10% pri moto (peye avan chofè resevwa moto)</li>
+<li><strong>Responsablite chofè:</strong><ul>
+<li>Antretyen kouran (luil, pneu, fren)</li>
+<li>Gaz</li>
+<li>Pwòprete moto</li>
+<li>Pa modifye moto san otorizasyon</li>
+<li>Pa kite lòt moun kondwi moto a</li>
+</ul>
+</li>
+<li><strong>Responsablite FleetHT:</strong><ul>
+<li>Gwo reparasyon (motè, transmisyon) pandan 3 premye mwa sèlman</li>
+<li>Sipò teknik / konsèy</li>
+</ul>
+</li>
+<li><strong>Klòz resizyasyon:</strong><ul>
+<li>Chofè ka kite — pèdi depo garansi, retounen moto</li>
+<li>FleetHT ka rezilye si 4 semèn san peye</li>
+</ul>
+</li>
+<li><strong>Transfè pwopriyete</strong> — Sètifika vant ofisyèl apre dènye peman</li>
+<li><strong>2 Temwen</strong> + <strong>Notè</strong> (opsyonèl men rekòmande)</li>
+</ol>
+<h3>6.2 Garanti Chofè</h3>
+<ul>
+<li>2 referans pèsonèl (non, telefòn, adrès)</li>
+<li>Kopi pyès idantite chofè</li>
+<li>Foto chofè</li>
+<li>Peman depo garansi anvan remiz moto</li>
+</ul>
+<hr>
+<h2>7. 📈 SUIVI &amp; RAPÒTAJ</h2>
+<h3>7.1 Suivi Semennè</h3>
+<table>
+<thead>
+<tr>
+<th>Sa pou suiv</th>
+<th>Ki jan</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Vèsman chofè</td>
+<td>Kanè peman fizik + dosye dijital (Excel/app)</td>
+</tr>
+<tr>
+<td>Eta moto</td>
+<td>Enspeksyon vizuèl chak 2 semèn</td>
+</tr>
+<tr>
+<td>Konpòtman chofè</td>
+<td>Vizit sou teren + feedback kliyan</td>
+</tr>
+</tbody></table>
+<h3>7.2 Rapò Mansyèl pou Envestisè</h3>
+<p>Chak mwa, envestisè a resevwa yon rapò ki gen:</p>
+<ul>
+<li>✅ Total vèsman kolekte</li>
+<li>✅ Depans operasyonèl</li>
+<li>✅ Pwofi nèt</li>
+<li>✅ Eta chak moto</li>
+<li>✅ Pèfòmans chak chofè (peye a lè? pwoblèm?)</li>
+<li>✅ Balans kont FleetHT</li>
+<li>✅ Plan pwochen mwa</li>
+</ul>
+<h3>7.3 Rapò Trimèstriyèl</h3>
+<ul>
+<li>Analiz ROI</li>
+<li>Rekòmandasyon pou reinvestisman</li>
+<li>Evalyasyon risk</li>
+<li>Opòtinite ekspansyon</li>
+</ul>
+<hr>
+<h2>8. 🏛️ ESTRIKTI LEGAL</h2>
+<h3>8.1 Fòm Legal</h3>
+<p>Pou kòmanse, FleetHT ka opere kòm <strong>antrepriz endividyèl</strong> sou non manadjè a (AGABY). Lè flòt la agrandi (5+ moto), li rekòmande pou:</p>
+<ul>
+<li>Kreye yon <strong>SARL (Société à Responsabilité Limitée)</strong> oswa ekivalan</li>
+<li>Ouvri yon kont bankè komèsyal</li>
+<li>Anrejistre nan DGI pou patant</li>
+</ul>
+<h3>8.2 Dokiman Legal Nesesè</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Patant komèsyal</li>
+<li><input disabled="" type="checkbox"> NIF (Numéro d&#39;Identification Fiscale)</li>
+<li><input disabled="" type="checkbox"> Kontra notarye pou chak chofè</li>
+<li><input disabled="" type="checkbox"> Immatrikulation chak moto (DGI + OAVCT)</li>
+<li><input disabled="" type="checkbox"> Asirans chak moto (OAVCT)</li>
+<li><input disabled="" type="checkbox"> Plak ofisyèl pou chak moto</li>
+</ul>
+<h3>8.3 Relasyon Envestisè-Manadjè</h3>
+<p>Yon <strong>akò patenarya</strong> ant envestisè a (Efikas) ak manadjè a (AGABY) dwe defini:</p>
+<ul>
+<li>Wòl chak moun</li>
+<li>Ki jan desizyon ap pran (envestisè + manadjè ansanm)</li>
+<li>Distribisyon pwofi (ex: 70% reinvestisman, 20% envestisè, 10% manadjè — negosyab)</li>
+<li>Rapòtaj obligatwa</li>
+<li>Klòz sòti (si youn nan pati yo vle kite)</li>
+</ul>
+<hr>
+<h2>9. 🗓️ KALANDRIYE EGZEKISYON</h2>
+<h3>Faz 1: Preparasyon (Semèn 1-2)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Finalize bidjè ak envestisè</li>
+<li><input disabled="" type="checkbox"> Resevwa transfè fon inisyal</li>
+<li><input disabled="" type="checkbox"> Rechèch pri moto (vizite konsesonè Bajaj/Haojue nan Delmas)</li>
+<li><input disabled="" type="checkbox"> Prepare kontra chofè (fè revize pa yon notè)</li>
+</ul>
+<h3>Faz 2: Akizisyon (Semèn 3-4)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Achte 2 moto nèf</li>
+<li><input disabled="" type="checkbox"> Immatrikile moto yo (DGI + OAVCT)</li>
+<li><input disabled="" type="checkbox"> Pran asirans</li>
+<li><input disabled="" type="checkbox"> Enstale GPS tracker (opsyonèl men rekòmande)</li>
+</ul>
+<h3>Faz 3: Rekritman Chofè (Semèn 4-5)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Pibliye anons pou chofè (bouche a zòrèy + rezo sosyal)</li>
+<li><input disabled="" type="checkbox"> Entèvyou ak verifikasyon referans</li>
+<li><input disabled="" type="checkbox"> Seleksyone 2 chofè</li>
+<li><input disabled="" type="checkbox"> Siyen kontra + kolekte depo garansi</li>
+<li><input disabled="" type="checkbox"> Remèt moto + fòmasyon sou règleman FleetHT</li>
+</ul>
+<h3>Faz 4: Operasyon (Semèn 6+)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Kòmanse koleksyon vèsman semennè</li>
+<li><input disabled="" type="checkbox"> Suivi regilye (enspeksyon + rapò)</li>
+<li><input disabled="" type="checkbox"> Premye rapò mansyèl bay envestisè</li>
+</ul>
+<hr>
+<h2>10. 🤝 OPÒTINITE POU NOUVO ENVESTISÈ</h2>
+<h3>10.1 Ki jan nouvo envestisè ka patisipe</h3>
+<p>Lè FleetHT pwouve modèl la fonksyone (apre 6-12 mwa), nou ka ouvri pou nouvo envestisè:</p>
+<table>
+<thead>
+<tr>
+<th>Pakè</th>
+<th>Envèstisman</th>
+<th>Sa li genyen</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Bronze</strong></td>
+<td>$1,500</td>
+<td>1 moto — retou sou 12 mwa</td>
+</tr>
+<tr>
+<td><strong>Silver</strong></td>
+<td>$3,000</td>
+<td>2 moto — retou sou 12 mwa</td>
+</tr>
+<tr>
+<td><strong>Gold</strong></td>
+<td>$7,500</td>
+<td>5 moto — retou sou 12 mwa + priyorite sou nouvo opòtinite</td>
+</tr>
+</tbody></table>
+<h3>10.2 Sa envestisè a jwenn</h3>
+<ul>
+<li>Rapò mansyèl detaye sou envèstisman li</li>
+<li>Aksè a dashboard FleetHT (lè sistèm dijital la an plas)</li>
+<li>Retou sou envèstisman apre sik 12 mwa chak moto</li>
+<li>Dwa pou reinvesti nan nouvo flòt</li>
+</ul>
+<hr>
+<h2>11. 📞 KONTAK &amp; PWOCHEN ETAP</h2>
+<p><strong>Pou kòmanse, men sa nou bezwen:</strong></p>
+<ol>
+<li>✅ Envestisè a konfime bidjè inisyal (~$2,600 USD pou 2 moto)</li>
+<li>✅ Akò sou distribisyon pwofi (70/20/10 oswa lòt)</li>
+<li>✅ Transfè premye fon</li>
+<li>✅ AGABY kòmanse egzekisyon (achte moto, siyen kontra)</li>
+</ol>
+<hr>
+<blockquote>
+<p><strong>FleetHT — Envesti Entèlijan. Grandi Ansanm. 🚀</strong></p>
+</blockquote>
+<hr>
+<p><em>Dokiman sa a se yon plan preliminè. Chif yo baze sou estimasyon mache Me 2026 epi ka varye. Tout desizyon envèstisman dwe fèt apre verifikasyon pri reyèl sou teren.</em></p>
+
+</div>
+
+<script>
+    // Inject Canvas for charts
+    const budgetHeader = Array.from(document.querySelectorAll('h3')).find(el => el.textContent.includes('4.1'));
+    if(budgetHeader) {
+        const canvasDiv = document.createElement('div');
+        canvasDiv.className = 'chart-container';
+        canvasDiv.innerHTML = '<canvas id="budgetChart"></canvas>';
+        let nextSibling = budgetHeader.nextElementSibling;
+        while(nextSibling && nextSibling.tagName !== 'TABLE') {
+            nextSibling = nextSibling.nextElementSibling;
+        }
+        if(nextSibling) {
+            nextSibling.parentNode.insertBefore(canvasDiv, nextSibling.nextSibling);
+        }
+    }
+
+    const growthHeader = Array.from(document.querySelectorAll('h3')).find(el => el.textContent.includes('4.5'));
+    if(growthHeader) {
+        const canvasDiv = document.createElement('div');
+        canvasDiv.className = 'chart-container';
+        canvasDiv.innerHTML = '<canvas id="growthChart"></canvas>';
+        let nextSibling = growthHeader.nextElementSibling;
+        while(nextSibling && nextSibling.tagName !== 'TABLE') {
+            nextSibling = nextSibling.nextElementSibling;
+        }
+        if(nextSibling) {
+            nextSibling.parentNode.insertBefore(canvasDiv, nextSibling.nextSibling);
+        }
+    }
+
+    // Render Charts
+    setTimeout(() => {
+        if(document.getElementById('budgetChart')) {
+            new Chart(document.getElementById('budgetChart').getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['2x Moto Nèf', 'Imatrikilasyon/Asirans', 'GPS Trackers', 'Fon Ijans'],
+                    datasets: [{
+                        data: [2200, 200, 100, 100],
+                        backgroundColor: ['#1e3a8a', '#f59e0b', '#10b981', '#6b7280'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: { display: true, text: 'Repatisyon Bidjè Inisyal ($2,600 USD)', font: { size: 18 } }
+                    }
+                }
+            });
+        }
+
+        if(document.getElementById('growthChart')) {
+            new Chart(document.getElementById('growthChart').getContext('2d'), {
+                type: 'line',
+                data: {
+                    labels: ['Mwa 1', 'Mwa 2', 'Mwa 3', 'Mwa 4', 'Mwa 5', 'Mwa 6', 'Mwa 7', 'Mwa 8', 'Mwa 9', 'Mwa 10', 'Mwa 11', 'Mwa 12', 'Mwa 13', 'Mwa 14'],
+                    datasets: [{
+                        label: 'Kantite Moto nan lari a',
+                        data: [2, 2, 2, 3, 3, 3, 4, 4, 5, 5, 6, 7, 7, 8],
+                        borderColor: '#f59e0b',
+                        backgroundColor: 'rgba(245, 158, 11, 0.2)',
+                        borderWidth: 3,
+                        tension: 0.3,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: { display: true, text: 'Kwasans Flòt la sou 14 Mwa', font: { size: 16 } }
+                    }
+                }
+            });
+        }
+    }, 500);
+</script>
+</body>
+</html>
