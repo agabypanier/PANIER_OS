@@ -1,0 +1,21 @@
+{
+  "name": "FleetHT Admin",
+  "short_name": "FleetHT",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#F2F2F7",
+  "theme_color": "#ffffff",
+  "description": "Sant Kontwòl pou FleetHT",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3061/3061406.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3061/3061406.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
