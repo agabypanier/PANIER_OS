@@ -13,15 +13,36 @@ st.markdown("Platfòm sa a konekte ak Supabase Cloud. Li pèmèt ou jere tout as
 
 supabase = get_supabase_client()
 
-# Kache mak "Streamlit" la (Meni anlè a ak anba a)
-hide_streamlit_style = """
+# Tèm "Clean Light" (iOS / iPhone Style) ak Kache logo Streamlit
+ios_clean_light_style = """
             <style>
+            /* Kache mak "Streamlit" la */
             #MainMenu {visibility: hidden;}
             footer {visibility: hidden;}
             header {visibility: hidden;}
+            
+            /* Fond Paj la ak Polis Apple la */
+            .stApp {
+                background-color: #F2F2F7;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            }
+            
+            /* Bwat Chif yo (Metrics) tankou Kat (Cards) */
+            [data-testid="stMetric"] {
+                background-color: #FFFFFF;
+                border-radius: 16px;
+                padding: 15px 20px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+                border: 1px solid #E5E5EA;
+            }
+            
+            /* Titre yo pi pwòp */
+            h1, h2, h3 {
+                color: #1C1C1E;
+            }
             </style>
             """
-st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+st.markdown(ios_clean_light_style, unsafe_allow_html=True)
 
 # ==========================================
 # FONKSYON POU RALE DONE
