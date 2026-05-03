@@ -11,7 +11,7 @@ supabase = get_supabase_client()
 
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
-    bot.reply_to(message, "Bonjou Tioby! 👋\n\nMwen se asistan peman FleetHT ou a.\n\nPou anrejistre yon peman: `[Montan] [Non Chofè] [Plak]`\nEgzanp: `1000 Jean Pierre AA-1234`\n\nLòt kòmand ou ka itilize:\n/det - Wè lis moun ki gen dèt\n/rapo - Wè rapò jeneral", parse_mode="Markdown")
+    bot.reply_to(message, "Bonjou Panier Agaby Junior Duret! 👋\n\nMwen se asistan peman FleetHT ou a.\n\nPou anrejistre yon peman: `[Montan] [Non Chofè] [Plak]`\nEgzanp: `1000 Jean Pierre AA-1234`\n\nLòt kòmand ou ka itilize:\n/det - Wè lis moun ki gen dèt\n/rapo - Wè rapò jeneral", parse_mode="Markdown")
 
 @bot.message_handler(commands=['det'])
 def montre_det(message):
@@ -136,7 +136,7 @@ def anrejistre_peman(message):
             "moto_plak": plak,
             "montan_peye_htg": montan,
             "reta_det_htg": reta,
-            "resevwa_pa": "Tioby (Bot)",
+            "resevwa_pa": "Panier Agaby Junior Duret (Bot)",
             "komante": "Rantre pa Telegram"
         }
         supabase.table("peman_fleetht").insert(data).execute()
@@ -146,8 +146,8 @@ def anrejistre_peman(message):
     except Exception as e:
         bot.reply_to(message, f"❌ Gen yon erè ki fèt ak baz de done a: {str(e)}")
 
-print("[INFO] Bot Tioby ap koute mesaj yo e konekte sou Supabase...")
+print("[INFO] Bot Panier Agaby Junior Duret ap koute mesaj yo e konekte sou Supabase...")
 if TOKEN != "METE_TOKEN_OU_LA_A":
     bot.polling()
 else:
-    print("[AVETISMAN] TANPRI CHANJE TOKEN NAN 'tioby_bot.py' ANVAN OU KOMANSE BOT LA!")
+    print("[AVETISMAN] TANPRI CHANJE TOKEN NAN 'agaby_jr_bot.py' ANVAN OU KOMANSE BOT LA!")

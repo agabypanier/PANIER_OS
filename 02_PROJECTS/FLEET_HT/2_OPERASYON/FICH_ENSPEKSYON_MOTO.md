@@ -53,4 +53,4 @@
 **Siyati Chofè a:** _________________________  
 *Mwen konfime ke enspeksyon sa a fèt nan prezans mwen epi mwen dakò ak rezilta yo.*
 
-**Siyati Tioby (Manadjè a):** _________________________
+**Siyati Panier Agaby Junior Duret (Manadjè a):** _________________________

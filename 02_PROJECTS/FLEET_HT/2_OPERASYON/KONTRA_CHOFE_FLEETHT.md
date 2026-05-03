@@ -3,7 +3,7 @@
 **Entre les soussignés:**
 
 **D'une part,**
-**FleetHT (Reprezante pa Tioby)**
+**FleetHT (Reprezante pa Panier Agaby Junior Duret)**
 Adrès: Delmas, Pòtoprens, Ayiti
 Nimewo Telefòn: ____________________
 NIF: ____________________

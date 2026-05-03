@@ -1,7 +1,7 @@
 import os
 from supabase import create_client, Client
 
-# POU EFIKAS OUBYEN AGABY:
+# POU PANIER SCHNIDER OUBYEN AGABY:
 # 1. Al sou supabase.com, kreye yon pwojè
 # 2. Pran URL la ak KEY la nan pati "Project Settings -> API"
 # 3. Ranplase valè anba yo ak vrè valè pa w yo

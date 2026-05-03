@@ -8,7 +8,7 @@ TOKEN = "8640070719:AAFy1f1B5BGBpt9CaAbItZ_ftM3PLexEhOs"
 bot = telebot.TeleBot(TOKEN)
 supabase = get_supabase_client()
 
-# METE CHAT ID TIOBY A LA (Li ka jwenn li si l ekri @userinfobot sou Telegram)
+# METE CHAT ID PANIER AGABY JUNIOR DURET A LA (Li ka jwenn li si l ekri @userinfobot sou Telegram)
 # Nou pral bezwen l nan GitHub Secrets sou non TELEGRAM_CHAT_ID
 CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "METE_CHAT_ID_A_LA")
 
@@ -25,9 +25,9 @@ def voye_alert_maten():
         df_det = df_det[df_det['reta_det_htg'] > 0]
         
         if df_det.empty:
-            mesaj = "🎉 **Bòn Nouvèl Tioby!**\nPa gen okenn chofè ki gen dèt pou kounye a."
+            mesaj = "🎉 **Bòn Nouvèl Panier Agaby Junior Duret!**\nPa gen okenn chofè ki gen dèt pou kounye a."
         else:
-            mesaj = "⚠️ **ALÈT MATEN - LIS MOUN KI DWE:**\nBonjou Tioby, men chofè ou dwe rele jodi a:\n\n"
+            mesaj = "⚠️ **ALÈT MATEN - LIS MOUN KI DWE:**\nBonjou Panier Agaby Junior Duret, men chofè ou dwe rele jodi a:\n\n"
             for index, row in df_det.iterrows():
                 mesaj += f"🔴 {row['non_chofe']}: {int(row['reta_det_htg'])} HTG\n"
             mesaj += "\n*(Mesaj otomatik ki soti sou sistèm FleetHT a)*"
@@ -42,4 +42,4 @@ if __name__ == "__main__":
     if CHAT_ID != "METE_CHAT_ID_A_LA":
         voye_alert_maten()
     else:
-        print("⚠️ Tanpri mete CHAT_ID Tioby a oswa kreye yon variable anviwònman TELEGRAM_CHAT_ID.")
+        print("⚠️ Tanpri mete CHAT_ID Panier Agaby Junior Duret a oswa kreye yon variable anviwònman TELEGRAM_CHAT_ID.")

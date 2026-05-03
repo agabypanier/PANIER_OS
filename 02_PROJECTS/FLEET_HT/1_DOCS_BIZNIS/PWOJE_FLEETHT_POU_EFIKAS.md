@@ -1,8 +1,8 @@
 # 📄 PWOPOZISYON PWOJÈ KONPLÈ — FleetHT
 ### Flòt Transpò Moto-Taxi | Delmas, Pòtoprens, Ayiti
 **Modèl:** Lokasyon-Vant (Work & Pay)
-**Prepare pou:** Efikas (Envèstisè)
-**Prepare pa:** Tioby (Manadjè Operasyon)
+**Prepare pou:** Panier Schnider (Envèstisè)
+**Prepare pa:** Panier Agaby Junior Duret (Manadjè Operasyon)
 **Dat:** Me 2026
 
 ---
@@ -34,8 +34,8 @@ Kòmanse avèk **2 moto nèf**, kolekte fon yo chak jou, epi itilize yon estrate
 
 ### 3.2 Sekirite ak Evalyasyon Chofè
 Piske mande yon "Garant" ki pou siyen pou peye rès lajan an pafwa pa reyalis nan kontèks jounen jodi a, FleetHT itilize yon lòt metòd pwoteksyon ki pi pratik:
-- **Envestigasyon solid:** Chofè a dwe bay **2 Moun de Referans** trè solid (fanmi, zanmi pwòch). Tioby ap verifye moun sa yo fizikman, pou l asire l chofè a pa yon moun k ap moute bwa ak moto a.
-- **Sistèm GPS Kache:** Chak moto ap gen yon aparèy GPS kache ladan l ki konekte sou telefòn Tioby 24/7.
+- **Envestigasyon solid:** Chofè a dwe bay **2 Moun de Referans** trè solid (fanmi, zanmi pwòch). Panier Agaby Junior Duret ap verifye moun sa yo fizikman, pou l asire l chofè a pa yon moun k ap moute bwa ak moto a.
+- **Sistèm GPS Kache:** Chak moto ap gen yon aparèy GPS kache ladan l ki konekte sou telefòn Panier Agaby Junior Duret 24/7.
 - **Antretyen:** Tout ti antretyen kouran ak reparasyon se sou kont chofè a 100%. Sa evite FleetHT gaspiye lajan nan chanje kawotchou, lwil, oswa fren.
 
 ---
@@ -67,7 +67,7 @@ Men kisa 2 moto sa yo ap rapòte FleetHT chak mwa, epi sou 14 mwa kontra a:
 
 **Kalkil Pwofi Nèt:**
 - Total Lajan Rantre: ~$5,500 USD
-- Mwens Depans operasyon Tioby sou 14 mwa (kat telefòn, entènèt pou GPS, deplasman): ~$400 USD
+- Mwens Depans operasyon Panier Agaby Junior Duret sou 14 mwa (kat telefòn, entènèt pou GPS, deplasman): ~$400 USD
 - **Kach ki rete klè:** ~$5,100 USD (Sa vle di envèstisman $2,600 an double nan 14 mwa).
 
 ---
@@ -90,8 +90,8 @@ Ayiti se yon peyi ki gen enprevizib. FleetHT gen solisyon pou yo:
 
 | Risk / Enprevi | Kijan FleetHT jere sa |
 | :--- | :--- |
-| **Chofè a pa vle peye/Fè reta** | Peman an fèt **chak jou**, pa chak semèn. Si chofè a fè 2 jou san l pa peye, Tioby gen GPS pou l lokalize l epi bloke operasyon l. |
-| **Vòl Moto / Brakaj** | GPS la anrejistre kote moto a ye tout tan. Tioby ap resevwa alèt si l soti nan zòn delimitasyon an. |
+| **Chofè a pa vle peye/Fè reta** | Peman an fèt **chak jou**, pa chak semèn. Si chofè a fè 2 jou san l pa peye, Panier Agaby Junior Duret gen GPS pou l lokalize l epi bloke operasyon l. |
+| **Vòl Moto / Brakaj** | GPS la anrejistre kote moto a ye tout tan. Panier Agaby Junior Duret ap resevwa alèt si l soti nan zòn delimitasyon an. |
 | **Pann Mekanik Grav** | Se chofè a ki responsab antretyen yo nèt. Si l an pann, li oblije kontinye peye vèsman an (li konn sa, donk li pap kite moto a an pàn). |
 | **Pwoblèm nan Lari / Blokis** | Lè gen blokis jeneral osinon ensekirite grav kote pèsonn pa ka travay, FleetHT fleksib sou jou sa yo pou fè yo vin "jou friz", chofè a pa penalize. |
 | **Aksidan** | Chofè a asime reparasyon. Asirans OAVCT la ede kouvri domaj sou moun. |
@@ -100,13 +100,13 @@ Ayiti se yon peyi ki gen enprevizib. FleetHT gen solisyon pou yo:
 
 ## 8. ESTRIKTI PATENARYA AK TRANSPARANS FINANSYE
 
-Pou asire biznis la jere pwofesyonèlman, men kòman chak santim ki antre ap separe (apre nou fin rale frè operasyon Tioby ap fè chak mwa yo):
+Pou asire biznis la jere pwofesyonèlman, men kòman chak santim ki antre ap separe (apre nou fin rale frè operasyon Panier Agaby Junior Duret ap fè chak mwa yo):
 
 - **70% nan Pwofi Net la al nan REINVESTISMAN:** Pou pèmèt flòt la grandi a 5-6 moto nan yon ane.
-- **20% nan Pwofi Net la al pou ENVÈSTISÈ A (Efikas):** Sa se lajan kach ki retounen jwenn envestisè a kòm dividann sou efò li.
-- **10% nan Pwofi Net la al pou MANADJÈ A (Tioby):** Kòm bonis anplis pou jefò ak jesyon rigoureuse li fè chak jou sou teren an.
+- **20% nan Pwofi Net la al pou ENVÈSTISÈ A (Panier Schnider):** Sa se lajan kach ki retounen jwenn envestisè a kòm dividann sou efò li.
+- **10% nan Pwofi Net la al pou MANADJÈ A (Panier Agaby Junior Duret):** Kòm bonis anplis pou jefò ak jesyon rigoureuse li fè chak jou sou teren an.
 
-> **Nòt sou Suivi:** Nan fen chak mwa, Tioby ap voye yon **Rapò Finansye ak Operasyonèl** bay Efikas. L ap esplike: Konbyen lajan ki rantre, ki chofè ki serye, ki pwoblèm ki te genyen, ak konbyen kòb ki gen nan kès pou pwochen acha a.
+> **Nòt sou Suivi:** Nan fen chak mwa, Panier Agaby Junior Duret ap voye yon **Rapò Finansye ak Operasyonèl** bay Panier Schnider. L ap esplike: Konbyen lajan ki rantre, ki chofè ki serye, ki pwoblèm ki te genyen, ak konbyen kòb ki gen nan kès pou pwochen acha a.
 
 ---
 
@@ -114,9 +114,9 @@ Pou asire biznis la jere pwofesyonèlman, men kòman chak santim ki antre ap sep
 
 Men etap nou pare pou nou pran la menm:
 
-1. **Semèn 1:** Efikas valide modèl sa a epi transfere bidjè $2,600 la.
-2. **Semèn 1-2:** Tioby jwenn 2 bon chofè, vizite referans yo, epi fè yo peye depo garansi a.
-3. **Semèn 2:** Tioby fin achte 2 moto Bajaj Boxer 150 yo, fè papye DGI/OAVCT, epi li kache GPS yo ladan yo.
+1. **Semèn 1:** Panier Schnider valide modèl sa a epi transfere bidjè $2,600 la.
+2. **Semèn 1-2:** Panier Agaby Junior Duret jwenn 2 bon chofè, vizite referans yo, epi fè yo peye depo garansi a.
+3. **Semèn 2:** Panier Agaby Junior Duret fin achte 2 moto Bajaj Boxer 150 yo, fè papye DGI/OAVCT, epi li kache GPS yo ladan yo.
 4. **Semèn 3:** Moto yo tonbe nan lari, epi premye revni yo kòmanse tonbe nan menm aswè a!
 
 ---

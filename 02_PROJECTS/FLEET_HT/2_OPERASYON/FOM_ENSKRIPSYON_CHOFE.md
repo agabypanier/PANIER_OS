@@ -10,7 +10,7 @@
 - **Ti Non (Surnom):** ____________________________________________
 - **Dat Nesans:** `___/___/______`   **Lye Nesans:** ___________________
 - **Adrès Lakay (Konplè):** _________________________________________________________________
-  *(Tioby oswa yon reprezantan dwe verifye adrès sa a fizikman)*
+  *(Panier Agaby Junior Duret oswa yon reprezantan dwe verifye adrès sa a fizikman)*
 - **Nimewo Telefòn 1:** ____________________  **Nimewo Telefòn 2:** ____________________
 - **Nimewo Kat Idantite (CIN):** __________________________________ *(Tache yon kopi)*
 - **Nimewo Lisans (Si l genyen):** _________________________________ *(Tache yon kopi)*
@@ -63,5 +63,5 @@
 **Siyati Chofè a:** _________________________  
 *Mwen deklare tout enfòmasyon m bay la yo se verite.*
 
-**Siyati Manadjè a (Tioby):** _________________________  
+**Siyati Manadjè a (Panier Agaby Junior Duret):** _________________________  
 *Mwen verifye enfòmasyon sa yo e mwen apwouve/rejte dosye sa a.*

@@ -100,7 +100,7 @@ with tab_finans:
 # ------------------------------------------
 with tab_flot:
     st.header("🧑‍✈️ Foto Enspeksyon Moto Yo")
-    st.markdown("Lè Tioby voye foto sou Bot Telegram nan, yo parèt isit la otomatikman.")
+    st.markdown("Lè Panier Agaby Junior Duret voye foto sou Bot Telegram nan, yo parèt isit la otomatikman.")
     
     if not df_enspeksyon.empty:
         # Afiche foto yo nan yon grid
@@ -151,7 +151,7 @@ with tab_dokiman:
                         <p><strong>Dat Jounen an:</strong> {datetime.now().strftime('%d/%m/%Y')}</p>
                     </div>
                     
-                    <p>Kontra sa a fèt ant <strong>FleetHT (Tioby kòm Manadjè)</strong> ak chofè ki siyen pi ba a.</p>
+                    <p>Kontra sa a fèt ant <strong>FleetHT (Panier Agaby Junior Duret kòm Manadjè)</strong> ak chofè ki siyen pi ba a.</p>
                     
                     <div class="info">
                         <h3>Enfòmasyon Chofè a:</h3>
@@ -179,7 +179,7 @@ with tab_dokiman:
                     <div style="display: flex; justify-content: space-between; margin-top: 50px;">
                         <div>
                             <p>_______________________</p>
-                            <p><strong>Siyati Tioby (Manadjè)</strong></p>
+                            <p><strong>Siyati Panier Agaby Junior Duret (Manadjè)</strong></p>
                         </div>
                         <div>
                             <p>_______________________</p>
@@ -206,7 +206,7 @@ with tab_dokiman:
 # ------------------------------------------
 with tab_ia:
     st.header("🤖 Jeneratè Rapò Pwofesyonèl")
-    st.markdown("Bouton sa a pran tout chif yo epi li ekri yon rapò pwofesyonèl pou ou pou w ka voye bay Efikas.")
+    st.markdown("Bouton sa a pran tout chif yo epi li ekri yon rapò pwofesyonèl pou ou pou w ka voye bay Panier Schnider.")
     
     if st.button("Jere Rapò Mwa a Kounye a"):
         if df_peman.empty:
@@ -222,12 +222,12 @@ with tab_ia:
             rapo = f"""
             ### RAPÒ MANADJÈ FLEETHT
             **Dat:** {dat_jodia}
-            **Prepare pa:** Tioby (Administratè)
-            **Pou:** Efikas (Envèstisè)
+            **Prepare pa:** Panier Agaby Junior Duret (Administratè)
+            **Pou:** Panier Schnider (Envèstisè)
 
             ---
 
-            **Bonjou Efikas,**
+            **Bonjou Panier Schnider,**
 
             Men brèf rapò operasyonèl ak finansye pou flòt moto a jiska dat {dat_jodia}:
 
@@ -244,7 +244,7 @@ with tab_ia:
             Nou kontinye kenbe foto enspeksyon yo sou sistèm Cloud la. Moto yo ap fonksyone nòmalman. Sistèm bot la ap pèmèt mwen asire m pa gen okenn pèt.
 
             Mèsi pou konfyans ou,
-            *Tioby*
+            *Panier Agaby Junior Duret*
             """
             
             st.success("Rapò a pwodui avèk siksè!")

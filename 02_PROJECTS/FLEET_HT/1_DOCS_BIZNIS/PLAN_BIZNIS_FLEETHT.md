@@ -18,8 +18,8 @@
 | **Lokasyon** | Delmas, Pòtoprens |
 | **Modèl** | Lokasyon-Vant (14 mwa) |
 | **Flòt inisyal** | 2 moto |
-| **Envestisè fondatè** | Efikas (USA) |
-| **Jesyon** | Tioby (sou teren Ayiti) |
+| **Envestisè fondatè** | Panier Schnider (USA) |
+| **Jesyon** | Panier Agaby Junior Duret (sou teren Ayiti) |
 
 ---
 
@@ -109,13 +109,13 @@ FLEETHT (Koleksyon)
 
 > **Taux de change referans:** 1 USD = 131 HTG (Me 2026)
 > 
-> ℹ️ **Pou Efikas:** Tout chif nan seksyon sa a an **dola ameriken (USD)** AK **goud ayisyen (HTG)** pou w ka konprann klè. Tout pri yo se estimasyon — n ap verifye pri egzak yo sou teren avan nou achte anyen.
+> ℹ️ **Pou Panier Schnider:** Tout chif nan seksyon sa a an **dola ameriken (USD)** AK **goud ayisyen (HTG)** pou w ka konprann klè. Tout pri yo se estimasyon — n ap verifye pri egzak yo sou teren avan nou achte anyen.
 
 ---
 
 ### 4.1 🛒 Envèstisman Inisyal — Sa w bezwen mete devan
 
-Sa a se tout lajan Efikas bezwen voye **yon sèl fwa** pou kòmanse biznis la ak 2 moto:
+Sa a se tout lajan Panier Schnider bezwen voye **yon sèl fwa** pou kòmanse biznis la ak 2 moto:
 
 | # | Depans | Eksplikasyon | Pri USD | Pri HTG |
 |---|---|---|---|---|
@@ -127,7 +127,7 @@ Sa a se tout lajan Efikas bezwen voye **yon sèl fwa** pou kòmanse biznis la ak
 | 6 | **Fon ijans** | Lajan rezèv pou enprevwa — si yon moto bezwen yon reparasyon ijans nan premye mwa yo. | $200 | 26,200 |
 | | **TOTAL ENVÈSTISMAN INISYAL** | | **$3,010** | **394,310** |
 
-> 💡 **An rezime pou Efikas:** Ou voye **~$3,010 USD** yon sèl fwa. Ak lajan sa a, Tioby achte 2 moto nèf, mete tout papye yo an règ, enstale GPS pou sekirite, epi gen yon ti fon ijans. Aprè sa, biznis la kòmanse jenere lajan.
+> 💡 **An rezime pou Panier Schnider:** Ou voye **~$3,010 USD** yon sèl fwa. Ak lajan sa a, Panier Agaby Junior Duret achte 2 moto nèf, mete tout papye yo an règ, enstale GPS pou sekirite, epi gen yon ti fon ijans. Aprè sa, biznis la kòmanse jenere lajan.
 
 ---
 
@@ -144,24 +144,24 @@ Men ki jan lajan rantre nan FleetHT:
 | **Pa mwa** (~26 jou) | 26,000 HTG | 52,000 HTG | ~$396.95 |
 | **Pa 14 mwa** (kontra konplè) | 364,000 HTG | **728,000 HTG** | **~$5,557** |
 
-> 💡 **An rezime pou Efikas:** Chak mwa, 2 moto yo ap rapòte **~$397 USD**. Sou 14 mwa (dire kontra a), total la se **~$5,557 USD**. Se lajan sa a ki ap kouvri depans yo epi jenere pwofi.
+> 💡 **An rezime pou Panier Schnider:** Chak mwa, 2 moto yo ap rapòte **~$397 USD**. Sou 14 mwa (dire kontra a), total la se **~$5,557 USD**. Se lajan sa a ki ap kouvri depans yo epi jenere pwofi.
 
 ---
 
 ### 4.3 📉 Depans Operasyonèl — Sa n ap depanse chak mwa pou jere biznis la
 
-Sa yo se depans **regilye** ke Tioby ap fè chak mwa pou jere operasyon yo:
+Sa yo se depans **regilye** ke Panier Agaby Junior Duret ap fè chak mwa pou jere operasyon yo:
 
 | Depans | Eksplikasyon | Pa mwa HTG | Pa mwa USD |
 |---|---|---|---|
-| **Telefòn/kominikasyon** | Rele chofè yo, entènèt pou tcheke GPS, voye rapò bay Efikas | 1,000 | ~$8 |
-| **Deplaseman** | Tioby bezwen deplase pou ale kolekte peman, tcheke moto yo, vizite chofè yo | 2,000 | ~$15 |
+| **Telefòn/kominikasyon** | Rele chofè yo, entènèt pou tcheke GPS, voye rapò bay Panier Schnider | 1,000 | ~$8 |
+| **Deplaseman** | Panier Agaby Junior Duret bezwen deplase pou ale kolekte peman, tcheke moto yo, vizite chofè yo | 2,000 | ~$15 |
 | **Ti reparasyon enprevwa** | Ti pyès ki ka bezwen chanje (bujis, kab, fren) nan premye mwa yo | 2,000 | ~$15 |
 | **Abònman GPS (x2)** | Frè mansyèl pou sèvis GPS tracker ($5 × 2 moto) | 1,310 | ~$10 |
 | **Total depans mansyèl** | | **6,310 HTG** | **~$48** |
 | **Total depans sou 14 mwa** | | **88,340 HTG** | **~$674** |
 
-> 💡 **An rezime pou Efikas:** Chak mwa, sa koute sèlman **~$48 USD** pou fè biznis la mache. Sou 14 mwa, total depans = **~$674 USD**. Se yon ti kras konpare ak sa n ap kolekte.
+> 💡 **An rezime pou Panier Schnider:** Chak mwa, sa koute sèlman **~$48 USD** pou fè biznis la mache. Sou 14 mwa, total depans = **~$674 USD**. Se yon ti kras konpare ak sa n ap kolekte.
 
 ---
 
@@ -197,7 +197,7 @@ TOTAL DEPANS                         = -$3,384
 | ➕ Depo garansi 2 chofè (yo te peye avan) | +31,440 | +$240 |
 | **💵 TOTAL KACH NAN MEN NOU** | **327,926** | **$2,413** |
 
-> 🎯 **An rezime pou Efikas:**
+> 🎯 **An rezime pou Panier Schnider:**
 > - Ou mete **$3,010** devan
 > - Apre 14 mwa, ou gen **$2,413 kach klè nan men**
 > - Sa vle di ou fè **$2,413 pwofi** — prèske **80% retou sou envèstisman w**
@@ -241,7 +241,7 @@ TOTAL DEPANS                         = -$3,384
 | Mwa 13 | 7 moto | $1,288 | $2,164 | Kolekte peman |
 | **Mwa 14** | 7 → **8-9 moto** 🆕 | $1,288 | $3,452 | **🛒 ACHTE 8yèm/9yèm moto!** (2 premye moto transfere bay chofè) |
 
-> 🎯 **An rezime pou Efikas:**
+> 🎯 **An rezime pou Panier Schnider:**
 > - **Mwa 4:** Ou gen 3 moto nan lari — san ou pa mete 1 kòb anplis!
 > - **Mwa 7:** 4 moto — lajan ap rantre pi vit
 > - **Mwa 14:** Apeprè 7 a 9 moto nan lari! (menm lè 2 premye yo ale nan men chofè yo)
@@ -336,13 +336,13 @@ TOTAL DEPANS                         = -$3,384
 ---
 
 #### 🟡 RISK #6 — Devalwasyon goud (NIVO: MWAYEN)
-**Pwoblèm:** Goud la pèdi valè — 1,000 HTG jodi a ka vo mwens nan 6 mwa. Envestisè a (Efikas) pèdi pouvwa acha.
+**Pwoblèm:** Goud la pèdi valè — 1,000 HTG jodi a ka vo mwens nan 6 mwa. Envestisè a (Panier Schnider) pèdi pouvwa acha.
 
 **Solisyon konplè:**
 - **Klòz ajisteman nan kontra:** Chak 6 mwa, FleetHT ka ajiste vèsman jounalye selon to chanj la
   - Ex: Si dola monte 10%+, vèsman monte proporsyonèlman
   - Mete yon plafon: pa plis ke +15% pa ajisteman
-- **Rapò finansye an USD** — tout rapò bay Efikas an dola ameriken, pa an goud
+- **Rapò finansye an USD** — tout rapò bay Panier Schnider an dola ameriken, pa an goud
 - **Reinvesti vit** — pa kite goud dòmi nan kont, konvèti an byen (moto) pi vit posib
 - **Opsyon:** Kèk peman ka fèt an dola si chofè kapab
 
@@ -394,15 +394,15 @@ TOTAL DEPANS                         = -$3,384
 
 ---
 
-#### 🟢 RISK #11 — Konfli ant patenarya Efikas & Tioby (NIVO: BA)
+#### 🟢 RISK #11 — Konfli ant patenarya Panier Schnider & Panier Agaby Junior Duret (NIVO: BA)
 **Pwoblèm:** Dezakò sou desizyon, distribisyon pwofi, oswa direksyon biznis la.
 
 **Solisyon konplè:**
 - **Akò patenarya ekri ak siyen** — tout règ klè depi kòmansman
 - **Rapò mansyèl obligatwa** — transparans total sou finans, tout chif dokimante
 - **Règ desizyon:**
-  - Depans < $200 → Tioby deside sèl
-  - Depans $200-$500 → Diskite ansanm, Tioby gen vwa final sou teren
+  - Depans < $200 → Panier Agaby Junior Duret deside sèl
+  - Depans $200-$500 → Diskite ansanm, Panier Agaby Junior Duret gen vwa final sou teren
   - Depans > $500 → Toude dwe dakò
 - **Klòz sòti:** Si youn vle kite, preyavi 60 jou + likide aktif yo ekitableman
 - **Medyasyon:** Si gen konfli, yon tyès pati (zanmi oswa pwofesyonèl) sèvi kòm medyatè avan aksyon legal
@@ -504,7 +504,7 @@ Pou kòmanse, FleetHT ka opere kòm **antrepriz endividyèl** sou non manadjè a
 - [ ] Plak ofisyèl pou chak moto
 
 ### 8.3 Relasyon Envestisè-Manadjè
-Yon **akò patenarya** ant envestisè a (Efikas) ak manadjè a (AGABY) dwe defini:
+Yon **akò patenarya** ant envestisè a (Panier Schnider) ak manadjè a (AGABY) dwe defini:
 - Wòl chak moun
 - Ki jan desizyon ap pran (envestisè + manadjè ansanm)
 - Distribisyon pwofi (ex: 70% reinvestisman, 20% envestisè, 10% manadjè — negosyab)

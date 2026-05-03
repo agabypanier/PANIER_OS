@@ -3,14 +3,14 @@
 **Entre les soussignés:**
 
 **D'une part, (Manadjè / Operatè)**
-Non: **Tioby (Pou FleetHT)**
+Non: **Panier Agaby Junior Duret (Pou FleetHT)**
 Adrès: Delmas, Pòtoprens, Ayiti
 Nimewo Telefòn: ____________________
 CIN / NIF: ____________________
 *Ki ap rele "Manadjè a" nan rès kontra sa a.*
 
 **D'autre part, (Envèstisè)**
-Non: **Efikas** (oswa non lòt envèstisè)
+Non: **Panier Schnider** (oswa non lòt envèstisè)
 Adrès: __________________________________________________
 Nimewo Telefòn: ____________________
 CIN / Paspò: ____________________
@@ -34,14 +34,14 @@ Pwofi Net la se tout lajan ki rete apre nou fin retire depans operasyonèl yo (r
 Chak mwa (oswa nan fen chak sik), Pwofi Net la ap divize konsa:
 - **____% pou REINVESTISMAN:** Lajan sa a rete nan kès FleetHT pou rasanble pou achte lòt moto epi fè flòt la grandi. *(Rekòmandasyon: 70%)*
 - **____% pou ENVÈSTISÈ A:** Sa se dividann (benefis) ki al jwenn Envèstisè a kòm retou sou lajan l lan. *(Rekòmandasyon: 20%)*
-- **____% pou MANADJÈ A (Tioby):** Sa se konpansasyon pou travay di sou teren an (koleksyon chak jou, jere chofè, rezoud pwoblèm). *(Rekòmandasyon: 10%)*
+- **____% pou MANADJÈ A (Panier Agaby Junior Duret):** Sa se konpansasyon pou travay di sou teren an (koleksyon chak jou, jere chofè, rezoud pwoblèm). *(Rekòmandasyon: 10%)*
 
 *(Nòt: Pousantaj sa yo ka ajiste si tou 2 pati yo dakò epi siyen yon anèks).*
 
 ---
 
 ## ATIK 4: WÒL AK RESPONSABLITE
-### 4.1 Responsablite Manadjè a (Tioby):
+### 4.1 Responsablite Manadjè a (Panier Agaby Junior Duret):
 - Asire ke tout moto achte yo legal (plak, asirans).
 - Fè entèvyou, chwazi chofè serye epi fè yo siyen kontra legal.
 - Kolekte vèsman jounalye yo nan men chofè yo.
@@ -82,7 +82,7 @@ Si Envèstisè a vle sispann patenarya a epi retire kapital li:
 **Dat:** _________________
 
 **Pou FleetHT (Manadjè / Operatè):**
-Non: Tioby
+Non: Panier Agaby Junior Duret
 Siyati: ______________________
 
 

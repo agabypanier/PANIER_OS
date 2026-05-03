@@ -1,7 +1,7 @@
 # 🏍️ FleetHT
 ## Flòt Transpò Moto-Taxi | Delmas, Ayiti
 **Modèl: Lokasyon-Vant (Work & Pay)**
-**Prezantasyon pou Envèstisè (Efikas)**
+**Prezantasyon pou Envèstisè (Panier Schnider)**
 
 ---
 
@@ -89,7 +89,7 @@ Chak mwa, w ap resevwa yon rapò klè. Men ki jan pwofi ki rete yo ap separe:
 
 - **70% pou Reinvestisman:** Lajan sa a rete nan kès FleetHT pou rasanble kòb pou pwochen moto yo.
 - **20% pou Envèstisè a:** Sa se dividann pa w k ap rantre regilyèman kòm retou.
-- **10% pou Manadjè a (Tioby):** Pou kouvri jesyon, koleksyon chak jou, ak tout lojistik sou teren an.
+- **10% pou Manadjè a (Panier Agaby Junior Duret):** Pou kouvri jesyon, koleksyon chak jou, ak tout lojistik sou teren an.
 
 ---
 
@@ -98,8 +98,8 @@ Chak mwa, w ap resevwa yon rapò klè. Men ki jan pwofi ki rete yo ap separe:
 FleetHT se yon modèl senp, ki adapte ak reyalite Ayiti a, ki elimine pwoblèm ki pa nesesè yo, epi ki fokis sou **kwasans**.
 
 **Kisa ki rete pou n kòmanse?**
-1. Efikas valide bidjè ajiste sa a ($2,600).
+1. Panier Schnider valide bidjè ajiste sa a ($2,600).
 2. Transfè fon inisyal la.
-3. Tioby kòmanse acha yo (Moto + GPS) epi kòmanse siyen ak premye chofè yo.
+3. Panier Agaby Junior Duret kòmanse acha yo (Moto + GPS) epi kòmanse siyen ak premye chofè yo.
 
 **FleetHT — Nou kreye valè ansanm. 🚀**
