@@ -13,6 +13,16 @@ st.markdown("Platfòm sa a konekte ak Supabase Cloud. Li pèmèt ou jere tout as
 
 supabase = get_supabase_client()
 
+# Kache mak "Streamlit" la (Meni anlè a ak anba a)
+hide_streamlit_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            header {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
 # ==========================================
 # FONKSYON POU RALE DONE
 # ==========================================
