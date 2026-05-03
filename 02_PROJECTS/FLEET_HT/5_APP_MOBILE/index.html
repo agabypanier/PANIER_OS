@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Meta tags pou iPhone (PWA) -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="FleetHT">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/3061/3061406.png">
+    
+    <title>FleetHT Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #F2F2F7; /* iOS background color */
+            margin: 0;
+            padding: 0;
+            user-select: none; /* Empeche kopye text pa erè */
+            -webkit-user-select: none;
+        }
+
+        .ios-card {
+            background-color: #FFFFFF;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        /* Bottom Navigation Bar */
+        .tab-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-top: 1px solid #E5E5EA;
+            display: flex;
+            justify-content: space-around;
+            padding-bottom: env(safe-area-inset-bottom);
+            z-index: 50;
+        }
+
+        .tab-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            color: #8E8E93;
+            font-size: 11px;
+            text-decoration: none;
+            width: 25%;
+        }
+
+        .tab-item.active {
+            color: #007AFF; /* Apple Blue */
+        }
+
+        .tab-item ion-icon {
+            font-size: 24px;
+            margin-bottom: 2px;
+        }
+
+        /* Content Area */
+        .content-area {
+            padding: 60px 20px 80px 20px; /* Pou evite kouvri anba nav bar la ak header la */
+        }
+
+        /* Top Header */
+        .ios-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 15px;
+            padding-top: max(15px, env(safe-area-inset-top));
+            text-align: center;
+            font-weight: 600;
+            font-size: 17px;
+            border-bottom: 1px solid #E5E5EA;
+            z-index: 50;
+        }
+
+        .page-content { display: none; }
+        .page-content.active { display: block; }
+        
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #8E8E93;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="ios-header" id="page-title">FleetHT Finans</div>
+
+    <!-- Main Content -->
+    <div class="content-area">
+        
+        <!-- Tab 1: Finans -->
+        <div id="tab-finans" class="page-content active">
+            <h1 class="text-3xl font-bold mb-6 mt-4">Apèsi jodi a</h1>
+            
+            <div id="loading-finans" class="loading">
+                <ion-icon name="sync-outline" class="animate-spin text-2xl"></ion-icon>
+                <p>Mizajou...</p>
+            </div>
+
+            <div id="finans-data" style="display: none;">
+                <div class="ios-card">
+                    <h3 class="text-gray-500 text-sm font-semibold uppercase tracking-wider mb-1">Total Rantre (HTG)</h3>
+                    <p class="text-4xl font-bold text-gray-900" id="val-total-peye">0.00</p>
+                </div>
+
+                <div class="ios-card">
+                    <h3 class="text-gray-500 text-sm font-semibold uppercase tracking-wider mb-1">Dèt nan Lari a</h3>
+                    <p class="text-3xl font-bold text-red-500" id="val-total-det">0.00</p>
+                </div>
+
+                <div class="ios-card flex justify-between items-center">
+                    <div>
+                        <h3 class="text-gray-500 text-sm font-semibold uppercase tracking-wider mb-1">Chofè Aktif</h3>
+                        <p class="text-2xl font-bold text-gray-900" id="val-chofe">0</p>
+                    </div>
+                    <ion-icon name="people-circle-outline" class="text-5xl text-blue-500"></ion-icon>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 2: Flòt -->
+        <div id="tab-flot" class="page-content">
+            <h1 class="text-3xl font-bold mb-6 mt-4">Enspeksyon Moto</h1>
+            <p class="text-gray-500 mb-4">Galri foto moto yo te voye sou Telegram nan.</p>
+            
+            <div id="loading-flot" class="loading">
+                <ion-icon name="sync-outline" class="animate-spin text-2xl"></ion-icon>
+                <p>Mizajou...</p>
+            </div>
+            
+            <div id="flot-data" style="display: none;" class="space-y-4">
+                <!-- Foto ap antre la otomatikman -->
+            </div>
+        </div>
+
+        <!-- Tab 3: Kontra -->
+        <div id="tab-dokiman" class="page-content">
+            <h1 class="text-3xl font-bold mb-6 mt-4">Paj Dokiman</h1>
+            <div class="ios-card text-center py-10">
+                <ion-icon name="document-text" class="text-6xl text-blue-500 mb-2"></ion-icon>
+                <h2 class="text-xl font-bold mb-2">Kontra Patenarya</h2>
+                <p class="text-gray-500 mb-4">Telechaje vèsyon PDF ofisyèl la pou siyen ak Efikas.</p>
+                <a href="../1_DOCS_BIZNIS/KONTRA_PATENARYA_PRO.html" target="_blank" class="bg-blue-500 text-white font-bold py-3 px-6 rounded-full w-full block">Ouvri Kontra a</a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <div class="tab-bar">
+        <a href="#" class="tab-item active" onclick="switchTab('finans', 'FleetHT Finans', this)">
+            <ion-icon name="wallet"></ion-icon>
+            Finans
+        </a>
+        <a href="#" class="tab-item" onclick="switchTab('flot', 'Jesyon Flòt', this)">
+            <ion-icon name="bicycle"></ion-icon>
+            Flòt
+        </a>
+        <a href="#" class="tab-item" onclick="switchTab('dokiman', 'Dokiman', this)">
+            <ion-icon name="folder"></ion-icon>
+            Dokiman
+        </a>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
