@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Siyati Kontra Elektwonik - FleetHT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-color: #f3f4f6;
+        }
+        .doc-container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .signature-pad {
+            border: 1px dashed #cbd5e1;
+            background-color: #f8fafc;
+            border-radius: 4px;
+            cursor: crosshair;
+            touch-action: none;
+        }
+        @media print {
+            body { background: white; }
+            .doc-container { box-shadow: none; margin: 0; padding: 0; }
+            .no-print { display: none !important; }
+        }
+        .legal-text {
+            line-height: 1.6;
+            text-align: justify;
+        }
+    </style>
+</head>
+<body class="text-gray-900 pb-20">
+
+    <div class="doc-container" id="contract-doc">
+        
+        <div class="text-center mb-10 border-b-2 border-gray-900 pb-4">
+            <h1 class="text-2xl font-bold uppercase tracking-widest font-sans">Kontra Patenarya ak Envèstisman</h1>
+            <p class="text-sm font-sans text-gray-500 mt-2">Dossier N°: FHT-2026-001</p>
+        </div>
+
+        <div class="legal-text space-y-4">
+            <p class="font-bold">ENTRE LES SOUSSIGNÉS:</p>
+            
+            <p><strong>D'une part, La Société de Gestion (Manadjè a)</strong><br>
+            Non: <strong>Panier Agaby Junior Duret</strong> (pou FleetHT)<br>
+            Adrès: Delmas, Pòtoprens, Ayiti<br>
+            <em>Désigné ci-après comme "Le Gestionnaire".</em></p>
+
+            <p class="mt-6"><strong>D'autre part, L'Investisseur (Envèstisè a)</strong><br>
+            Non: <strong>Panier Schnider</strong><br>
+            Adrès: <input type="text" id="inv-address" class="border-b border-gray-400 focus:outline-none focus:border-blue-500 w-64 bg-transparent no-print print-hide" placeholder="Tape adrès ou la..."><span id="lbl-address" class="font-bold hidden"></span><br>
+            Nimewo Paspò / CIN: <input type="text" id="inv-cin" class="border-b border-gray-400 focus:outline-none focus:border-blue-500 w-64 bg-transparent no-print print-hide" placeholder="Tape paspò w la..."><span id="lbl-cin" class="font-bold hidden"></span><br>
+            <em>Désigné ci-après comme "L'Investisseur".</em></p>
+
+            <hr class="my-8 border-gray-300">
+
+            <h2 class="font-bold font-sans text-lg mt-6">ATIK 1: OBJE KONTRA A</h2>
+            <p>Kontra sa a gen pou objè defini tèm ak kondisyon kote Envèstisè a ap pote yon kòb pou finanse acha motosiklèt pou entegre flòt FleetHT a. Manadjè a angaje li kòm operatè prensipal an Ayiti, responsab pou achte materyèl, asire antretyen, rekrite chofè ak jere peman jounalye yo.</p>
+
+            <h2 class="font-bold font-sans text-lg mt-6">ATIK 2: MONTAN ENVÈSTISMAN AK ALOKASYON FON</h2>
+            <p>Envèstisè a dakò peye yon kapital inisyal ki fikse a: <strong>$ <input type="text" id="inv-amount" class="border-b border-gray-400 focus:outline-none focus:border-blue-500 w-32 bg-transparent text-center no-print print-hide" placeholder="1000"><span id="lbl-amount" class="font-bold hidden"></span> USD</strong>.</p>
+            <p>Fon sa a ap itilize eksklizivman pou achte motosiklèt, asirans legal (OAVCT), anrejistreman DGI, ak sistèm swivi sekirite (GPS). Dat transfè fon yo konsidere kòm dat antre an vigè kontra sa a.</p>
+
+            <h2 class="font-bold font-sans text-lg mt-6">ATIK 3: DISTRIBISYON PWOFI NET</h2>
+            <p>Pwofi Net la se rezilta lajan total ki kolekte yo mwens tout chaj fonksyònman ki nesesè pou mentni flòt la (reparasyon, abònman teknolojik, elatriye). Jiskaske 2 pati yo deside otreman an ekri, pwofi net la ap distribye an 3 pati dapre Pwotokòl FleetHT a:</p>
+            <ul class="list-disc pl-8">
+                <li><strong>Kès Re-envèstisman Flòt la</strong>: 70% nan pwofi net la.</li>
+                <li><strong>Dividann Envèstisè a</strong>: 20% nan pwofi net la.</li>
+                <li><strong>Konpansasyon Manadjè a</strong>: 10% nan pwofi net la kòm frè operasyon sou teren an.</li>
+            </ul>
+
+            <h2 class="font-bold font-sans text-lg mt-6">ATIK 4: OBLIGASYON PATI YO</h2>
+            <p><strong>Le Gestionnaire s'engage à:</strong> Asire konfòmite legal chak motosiklèt. Rekrite chofè selon kritè sekirite strik epi siyen kontra lokasyon avèk yo. Kolekte peman yo asidiman. Pwodui yon rapò finansye ofisyèl pou Envèstisè a chak fen mwa.</p>
+            <p><strong>L'Investisseur s'engage à:</strong> Dekese fon yo nan delè ki fikse yo. Rekonèt souverènte Manadjè a nan pran desizyon operasyonèl sou teren an. Konprann nati lajan envèsti a nan yon mache lokal ki enplike risk ekstèn.</p>
+
+            <h2 class="font-bold font-sans text-lg mt-6">ATIK 5: GOUVÈNANS FINANSYÈ</h2>
+            <p>Manadjè a otorize fè tout depans ijans ki evalye anba limyè desizyon responsab, jiska yon plafon ki etabli nan pwosedi entèn yo. Nenpòt gwo entèvansyon estriktirèl ap mande yon konsiltasyon ak apwobasyon tou 2 pati yo.</p>
+
+            <h2 class="font-bold font-sans text-lg mt-6">ATIK 6: KLÒZ RISK AK RESPONSABLITE PATAJE</h2>
+            <p>Nan evantyolite fòs majè, vòl, oswa dega materyèl majè ki depase kouvèti asirans lan, pèt kapital la se yon risk asime pa biznis la. Manadjè a pa angaje okenn responsablite finansye sou byen pèsonèl li pou pèt operasyonèl endepandan de volonte l. Tout twou finansye ap absòbe pa kès biznis la anvan distribisyon pwofi yo fèt.</p>
+
+            <h2 class="font-bold font-sans text-lg mt-6">ATIK 7: TÈMINASYON AK RETRÈ KAPITAL</h2>
+            <p>Nan ka kote Envèstisè a dezire rale kò l nan patenarya a, li oblije emèt yon notifikasyon ekri ak yon pre-avi swasant (60) jou. Piske fon yo imobilize an byenfè materyèl ki sou kontra ak tyè pati (chofè yo), lajan an ap ranbouse swa pa retni tout pwofi kap vini yo jiskaske sòm inisyal la konplete, oswa pa vant aktif (motosiklèt) yo aprè fen sik kontra lokasyon aktyèl yo.</p>
+        </div>
+
+        <div class="mt-16">
+            <p class="font-bold text-center mb-10">SIYEN EPI AKSEPTE: Fait de bonne foi, pour valoir ce que de droit.</p>
+            
+            <div class="flex justify-between items-end">
+                <!-- Manadjè -->
+                <div class="w-2/5 text-center">
+                    <p class="mb-4 text-sm text-gray-500 font-sans">Siyati Manadjè a</p>
+                    <div class="border-b border-black h-16 flex items-end justify-center pb-2">
+                        <!-- Simulated pre-signature -->
+                        <span class="font-bold italic text-2xl text-blue-900" style="font-family: cursive;">P. Agaby Jr D.</span>
+                    </div>
+                    <p class="mt-2 font-bold font-sans">Panier Agaby Junior Duret</p>
+                    <p class="text-xs font-sans text-gray-500">FleetHT</p>
+                </div>
+
+                <!-- Envèstisè -->
+                <div class="w-2/5 text-center">
+                    <p class="mb-2 text-sm text-gray-500 font-sans no-print">Siyati Envèstisè a (Trase anba a)</p>
+                    <p class="mb-2 text-sm text-gray-500 font-sans hidden print-only" id="print-sig-title">Siyati Envèstisè a</p>
+                    
+                    <div class="relative no-print" id="pad-container">
+                        <canvas id="sig-canvas" width="300" height="100" class="signature-pad w-full"></canvas>
+                        <button onclick="clearPad()" class="absolute top-1 right-1 text-xs bg-gray-200 px-2 py-1 rounded text-gray-600 hover:bg-gray-300">Efase</button>
+                    </div>
+                    
+                    <div class="border-b border-black h-24 hidden flex items-end justify-center" id="final-signature">
+                        <img id="sig-image" class="max-h-20" src="" alt="">
+                    </div>
+                    
+                    <p class="mt-2 font-bold font-sans">Panier Schnider</p>
+                    <p class="text-xs font-sans text-gray-500">Envèstisè</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Action Button for Saving -->
+    <div class="fixed bottom-6 right-6 no-print" id="action-bar">
+        <button onclick="finalizeContract()" class="bg-blue-600 hover:bg-blue-700 text-white font-sans font-bold py-4 px-8 rounded-full shadow-xl flex items-center gap-2 transition transform hover:scale-105">
+            <ion-icon name="lock-closed" class="text-xl"></ion-icon>
+            Soumèt ak Sove (PDF)
+        </button>
+    </div>
+
+    <script>
+        // Set up the canvas for drawing the signature
+        const canvas = document.getElementById('sig-canvas');
+        const ctx = canvas.getContext('2d');
+        let isDrawing = false;
+
+        // Resize canvas to fit the container visually
+        function resizeCanvas() {
+            const ratio =  Math.max(window.devicePixelRatio || 1, 1);
+            canvas.width = canvas.offsetWidth * ratio;
+            canvas.height = canvas.offsetHeight * ratio;
+            ctx.scale(ratio, ratio);
+        }
+        window.addEventListener("resize", resizeCanvas);
+        resizeCanvas();
+
+        ctx.strokeStyle = '#000000';
+        ctx.lineWidth = 2;
+        ctx.lineCap = 'round';
+
+        function startPosition(e) {
+            isDrawing = true;
+            draw(e);
+        }
+
+        function endPosition() {
+            isDrawing = false;
+            ctx.beginPath();
+        }
+
+        function draw(e) {
+            if (!isDrawing) return;
+            e.preventDefault(); // prevent scrolling when signing on mobile
+            
+            let clientX, clientY;
+            if (e.type.includes('touch')) {
+                clientX = e.touches[0].clientX;
+                clientY = e.touches[0].clientY;
+            } else {
+                clientX = e.clientX;
+                clientY = e.clientY;
+            }
+
+            const rect = canvas.getBoundingClientRect();
+            const x = clientX - rect.left;
+            const y = clientY - rect.top;
+
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+        }
+
+        canvas.addEventListener('mousedown', startPosition);
+        canvas.addEventListener('mouseup', endPosition);
+        canvas.addEventListener('mousemove', draw);
+        
+        canvas.addEventListener('touchstart', startPosition, {passive: false});
+        canvas.addEventListener('touchend', endPosition);
+        canvas.addEventListener('touchmove', draw, {passive: false});
+
+        function clearPad() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function finalizeContract() {
+            // Get values
+            const address = document.getElementById('inv-address').value || '_______________________';
+            const cin = document.getElementById('inv-cin').value || '_______________________';
+            const amount = document.getElementById('inv-amount').value || '__________';
+
+            // Swap inputs to labels
+            document.getElementById('lbl-address').innerText = address;
+            document.getElementById('lbl-cin').innerText = cin;
+            document.getElementById('lbl-amount').innerText = amount;
+
+            document.querySelectorAll('.print-hide').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('#lbl-address, #lbl-cin, #lbl-amount').forEach(el => el.classList.remove('hidden'));
+
+            // Swap canvas to image
+            const dataUrl = canvas.toDataURL();
+            document.getElementById('sig-image').src = dataUrl;
+            document.getElementById('pad-container').classList.add('hidden');
+            document.getElementById('final-signature').classList.remove('hidden');
+            document.getElementById('final-signature').classList.add('flex');
+            document.getElementById('print-sig-title').classList.remove('hidden');
+
+            // Hide action bar
+            document.getElementById('action-bar').style.display = 'none';
+
+            // Wait a moment for DOM to update, then print
+            setTimeout(() => {
+                window.print();
+                
+                // Show a success message after print dialog closes
+                alert("Kontra a sove avèk siksè! Ou ka fèmen paj la kounye a.");
+            }, 500);
+        }
+    </script>
+</body>
+</html>
