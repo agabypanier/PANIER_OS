@@ -1,0 +1,28 @@
+name: FleetHT Alert Maten
+on:
+  schedule:
+    - cron: '0 12 * * *' # Chak jou a midi UTC (anviwon 8:00 AM an Ayiti)
+  workflow_dispatch: # Pèmèt nou kouri l manyèlman si n vle
+
+jobs:
+  run-alert:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+        
+      - name: Enstale Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+          
+      - name: Enstale Libreri yo
+        run: |
+          pip install pyTelegramBotAPI pandas supabase
+          
+      - name: Kouri Script Alèt La
+        env:
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          cd 02_PROJECTS/FLEET_HT
+          python alert_maten.py

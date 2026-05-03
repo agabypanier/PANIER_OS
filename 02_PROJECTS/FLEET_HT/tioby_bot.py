@@ -60,6 +60,55 @@ def montre_rapo(message):
     except Exception as e:
         bot.reply_to(message, f"❌ Erè baz de done: {str(e)}")
 
+@bot.message_handler(content_types=['photo'])
+def resevwa_foto(message):
+    try:
+        bot.reply_to(message, "⏳ N ap voye foto a sou Cloud la, yon ti pasyans...")
+        # Pran foto a (pi gwo kalite a)
+        photo = message.photo[-1]
+        file_info = bot.get_file(photo.file_id)
+        downloaded_file = bot.download_file(file_info.file_path)
+        
+        caption = message.caption if message.caption else ""
+        plak = caption.replace("Foto", "").replace("foto", "").strip().upper()
+        if not plak:
+            plak = "PLAK_ENKONI"
+            
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        filename = f"{plak}_{timestamp}.jpg"
+        
+        # Sove l tanporèman sou disk la
+        temp_path = f"temp_{filename}"
+        with open(temp_path, 'wb') as new_file:
+            new_file.write(downloaded_file)
+            
+        # Pouse l nan Supabase Storage (Bucket "enspeksyon")
+        supabase.storage.from_("enspeksyon").upload(
+            file=temp_path,
+            path=filename,
+            file_options={"content-type": "image/jpeg"}
+        )
+        
+        # Pran lyen piblik la
+        url = supabase.storage.from_("enspeksyon").get_public_url(filename)
+        
+        # Efase fichye tanporè a
+        if os.path.exists(temp_path):
+            os.remove(temp_path)
+            
+        # Sove URL la nan Baz de Done a
+        data = {
+            "plak": plak,
+            "foto_url": url,
+            "not_enspeksyon": "Enspeksyon via Telegram"
+        }
+        supabase.table("enspeksyon_fleetht").insert(data).execute()
+        
+        bot.reply_to(message, f"📸 **Siksè!** Foto a anrejistre sou Cloud la.\n\n**Plak:** {plak}\n🔗 [Klike isit la pou w wè foto a]({url})", parse_mode="Markdown")
+        
+    except Exception as e:
+        bot.reply_to(message, f"❌ Erè lè n ap sove foto a. Èske w te kreye 'bucket' ki rele 'enspeksyon' an sou Supabase? Detay erè a: {str(e)}")
+
 @bot.message_handler(func=lambda message: True)
 def anrejistre_peman(message):
     teks = message.text.strip().split()

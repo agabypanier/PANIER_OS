@@ -21,3 +21,27 @@ CREATE POLICY "Pèmèt bot la mete done"
 ON public.peman_fleetht FOR ALL 
 USING (true)
 WITH CHECK (true);
+
+-- ==========================================
+-- TAB POU ENSPEKSYON MOTO
+-- ==========================================
+CREATE TABLE public.enspeksyon_fleetht (
+    id SERIAL PRIMARY KEY,
+    dat_kreye TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc', now()),
+    plak TEXT NOT NULL,
+    foto_url TEXT NOT NULL,
+    not_enspeksyon TEXT
+);
+
+ALTER TABLE public.enspeksyon_fleetht ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Pèmèt bot la mete enspeksyon" 
+ON public.enspeksyon_fleetht FOR ALL 
+USING (true)
+WITH CHECK (true);
+
+-- ==========================================
+-- POU STORAGE (DEPO FOTO YO): 
+-- Tanpri ale nan meni "Storage" nan Supabase la (a goch ekran an), 
+-- Klike sou "New Bucket", epi rele l "enspeksyon".
+-- Asire w ou TCHEKE opsyon "Public bucket" a pou Efikas ka wè foto yo fasil sou entènèt!
