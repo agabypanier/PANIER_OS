@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head><title>DINEPA Reset</title></head>
+<body style="background:#111;color:#fff;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0">
+<div style="text-align:center">
+<h1>🔄 Reset done yo...</h1>
+<p id="msg">Ap efase vye done...</p>
+<script>
+  localStorage.removeItem('dinepa_millet_db');
+  document.getElementById('msg').textContent = '✅ Done efase! Ap chaje paj prensipal la...';
+  setTimeout(function() {
+    window.location.href = 'index.html?v=' + Date.now();
+  }, 1500);
+</script>
+</div>
+</body>
+</html>

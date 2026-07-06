@@ -1,0 +1,20 @@
+{
+  "name": "BÒDWO — Swiv Kliyan Teren",
+  "short_name": "BÒDWO",
+  "description": "PWA pou swivi bòdwo, rekouvreman, ak doleyans sou teren — CTE Agence Pétion-Ville, Millet/Métivier",
+  "start_url": "./bodwo.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0b0c0d",
+  "theme_color": "#e8a33d",
+  "orientation": "portrait",
+  "categories": ["utilities", "productivity"],
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

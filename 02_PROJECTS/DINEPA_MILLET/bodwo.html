@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>BÒDWO — Swiv Kliyan & Rekouvreman</title>
+<!-- iOS PWA Support -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="BÒDWO">
+<link rel="apple-touch-icon" href="icon.svg">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="manifest" href="manifest.json">
+<style>
+  :root{
+    --bg:#0b0c0d;
+    --panel:#151618;
+    --panel2:#1e2023;
+    --line:rgba(255,255,255,0.08);
+    --ink:#ece9e2;
+    --dim:#8a8d91;
+    --accent:#e8a33d;
+    --accent-ink:#211505;
+    --millet:#4fb8a6;
+    --metivier:#5b8def;
+    --danger:#d9635f;
+    --ok:#6fbf73;
+    --shadow:rgba(0,0,0,0.4);
+    --glass:rgba(21,22,24,0.85);
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html,body{margin:0;padding:0;height:100%;background:var(--bg);color:var(--ink);
+    font-family:'IBM Plex Mono',monospace;overscroll-behavior:none;}
+  
+  #app{display:flex;flex-direction:column;height:100vh;max-width:520px;margin:0 auto;
+    border-left:1px solid var(--line);border-right:1px solid var(--line);position:relative;background:var(--bg);}
+
+  header{padding:16px 16px 12px;border-bottom:1px solid var(--line);background:var(--panel);
+    flex-shrink:0;}
+  header .title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;
+    letter-spacing:0.5px;display:flex;align-items:center;gap:8px;}
+  header .title .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);
+    box-shadow:0 0 8px var(--accent);}
+  header .sub{color:var(--dim);font-size:12px;margin-top:4px;}
+  .stats{display:flex;gap:6px;margin-top:12px;}
+  .stat{flex:1;background:var(--panel2);border:1px solid var(--line);border-radius:8px;
+    padding:8px 6px;text-align:center;}
+  .stat .n{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;}
+  .stat .l{font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;}
+
+  nav{display:flex;border-bottom:1px solid var(--line);background:var(--panel);flex-shrink:0;}
+  nav button{flex:1;background:none;border:none;color:var(--dim);font-family:'Space Grotesk',sans-serif;
+    font-weight:600;font-size:13px;padding:12px 0;border-bottom:2px solid transparent;transition:all 0.2s;}
+  nav button.active{color:var(--accent);border-bottom-color:var(--accent);background:rgba(232,163,61,0.03);}
+
+  main{flex:1;overflow-y:auto;position:relative;display:flex;flex-direction:column;}
+  .tab{display:none;height:100%;flex-direction:column;flex:1;}
+  .tab.active{display:flex;}
+
+  .searchbar{padding:12px 16px;border-bottom:1px solid var(--line);background:var(--bg);
+    position:sticky;top:0;z-index:5;display:flex;flex-direction:column;gap:8px;}
+  .search-wrap{position:relative;}
+  .searchbar input{width:100%;background:var(--panel2);border:1px solid var(--line);
+    color:var(--ink);border-radius:8px;padding:10px 12px;font-family:'IBM Plex Mono',monospace;
+    font-size:14px;transition:all 0.2s;}
+  .searchbar input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 6px rgba(232,163,61,0.2);}
+  
+  .filters{display:flex;gap:6px;padding:0 16px 12px;border-bottom:1px solid var(--line);
+    background:var(--bg);overflow-x:auto;scrollbar-width:none;}
+  .filters::-webkit-scrollbar{display:none;}
+  .chip{padding:6px 12px;border-radius:999px;border:1px solid var(--line);font-size:11px;
+    color:var(--dim);background:var(--panel2);white-space:nowrap;cursor:pointer;transition:all 0.15s;}
+  .chip.active{color:var(--bg);border-color:transparent;font-weight:600;}
+  .chip[data-f="all"].active{background:var(--ink);color:var(--bg);}
+  .chip[data-f="Millet"].active{background:var(--millet);color:var(--bg);}
+  .chip[data-f="Métivier"].active{background:var(--metivier);color:var(--bg);}
+  .chip[data-f="done"].active{background:var(--ok);color:var(--bg);}
+  .chip[data-f="pending"].active{background:var(--accent);color:var(--accent-ink);}
+
+  .ctrl-row{display:flex;align-items:center;justify-content:between;gap:8px;padding:8px 16px;
+    background:var(--bg);border-bottom:1px solid var(--line);flex-wrap:wrap;}
+  .ctrl-row select{flex:1;background:var(--panel2);border:1px solid var(--line);
+    color:var(--ink);border-radius:8px;padding:8px 10px;font-family:'IBM Plex Mono',monospace;
+    font-size:12px;}
+  .ctrl-row select:focus{outline:none;border-color:var(--accent);}
+  
+  .toggle-btn{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--dim);
+    cursor:pointer;background:var(--panel2);padding:8px 10px;border-radius:8px;border:1px solid var(--line);
+    white-space:nowrap;user-select:none;}
+  .toggle-btn input{margin:0;accent-color:var(--accent);width:14px;height:14px;}
+
+  .list{flex:1;overflow-y:auto;padding:8px 12px 90px;}
+  .empty{padding:60px 20px;text-align:center;color:var(--dim);font-size:13px;line-height:1.6;}
+
+  .row{display:flex;align-items:center;gap:10px;padding:12px 10px;border-bottom:1px solid var(--line);
+    cursor:pointer;transition:background 0.2s;}
+  .row:active{background:rgba(255,255,255,0.03);}
+  .row .badge{width:6px;height:38px;border-radius:3px;flex-shrink:0;}
+  .badge.Millet{background:var(--millet);}
+  .badge.Métivier{background:var(--metivier);}
+  .row .info{flex:1;min-width:0;}
+  .row .name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14px;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .row .meta{font-size:11px;color:var(--dim);margin-top:2px;display:flex;gap:6px;align-items:center;
+    overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+  .row .meta span{background:rgba(255,255,255,0.06);padding:1px 4px;border-radius:3px;font-size:10px;}
+  .row .right-side{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+  .row .icons{display:flex;gap:4px;font-size:12px;color:var(--dim);}
+  .row .icons span{opacity:0.25;}
+  .row .icons span.active{opacity:1;}
+  .row .status{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+  .status.done{background:var(--ok);box-shadow:0 0 6px var(--ok);}
+  .status.pending{background:var(--dim);opacity:0.3;}
+
+  .fab{position:absolute;bottom:20px;right:20px;width:52px;height:52px;border-radius:50%;
+    background:var(--accent);color:var(--accent-ink);border:none;font-size:26px;font-weight:700;
+    box-shadow:0 4px 16px var(--shadow);z-index:6;display:flex;align-items:center;justify-content:center;}
+  .fab:active{transform:scale(0.95);}
+
+  #map{flex:1;width:100%;height:100%;}
+  .maplegend{position:absolute;bottom:16px;left:16px;background:var(--glass);backdrop-filter:blur(8px);
+    border:1px solid var(--line);border-radius:8px;padding:8px 12px;font-size:11px;z-index:400;
+    display:flex;flex-direction:column;gap:6px;box-shadow:0 4px 12px var(--shadow);}
+  .maplegend span{display:flex;align-items:center;gap:6px;}
+  .maplegend i{width:8px;height:8px;border-radius:50%;display:inline-block;}
+
+  form.addform{padding:20px 16px;overflow-y:auto;flex:1;}
+  .field{margin-bottom:16px;}
+  .field label{display:block;font-size:11px;color:var(--dim);text-transform:uppercase;
+    letter-spacing:0.5px;margin-bottom:6px;}
+  .field input, .field select, .field textarea{width:100%;background:var(--panel2);
+    border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:10px 12px;
+    font-family:'IBM Plex Mono',monospace;font-size:14px;}
+  .field textarea{min-height:90px;resize:vertical;}
+  .field input:focus, .field select:focus, .field textarea:focus{outline:none;border-color:var(--accent);}
+  
+  .segrow{display:flex;gap:8px;}
+  .segrow button{flex:1;padding:10px;border-radius:8px;border:1px solid var(--line);
+    background:var(--panel2);color:var(--dim);font-family:'Space Grotesk',sans-serif;font-weight:600;
+    font-size:13px;cursor:pointer;}
+  .segrow button.sel{border-color:var(--accent);color:var(--accent);background:rgba(232,163,61,0.08);}
+  
+  .btn{width:100%;padding:13px;border-radius:8px;border:none;font-family:'Space Grotesk',sans-serif;
+    font-weight:700;font-size:14px;letter-spacing:0.3px;cursor:pointer;display:flex;align-items:center;
+    justify-content:center;gap:6px;transition:all 0.2s;}
+  .btn:active{transform:scale(0.98);}
+  .btn.primary{background:var(--accent);color:var(--accent-ink);}
+  .btn.ghost{background:none;border:1px solid var(--line);color:var(--ink);margin-top:10px;}
+  .btn.danger-outline{background:none;border:1px solid var(--danger);color:var(--danger);margin-top:10px;}
+  .hint{font-size:11px;color:var(--dim);margin-top:16px;line-height:1.6;border-top:1px solid var(--line);
+    padding-top:16px;}
+
+  /* Overlay & Bottom Sheet */
+  .overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:100;display:none;
+    align-items:flex-end;}
+  .overlay.show{display:flex;}
+  .sheet{background:var(--panel);border-top:1px solid var(--line);border-radius:16px 16px 0 0;
+    width:100%;max-width:520px;margin:0 auto;padding:20px 18px 28px;max-height:90vh;overflow-y:auto;
+    box-shadow:0 -8px 24px var(--shadow);position:relative;animation:slideUp 0.3s cubic-bezier(0.1,0.9,0.2,1);}
+  @keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+  
+  .sheet-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px;}
+  .sheet-head .name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;}
+  .sheet-head .x{background:none;border:none;color:var(--dim);font-size:20px;padding:4px;cursor:pointer;}
+  .sheet .sector-tag{display:inline-block;font-size:10px;padding:3px 8px;border-radius:999px;
+    margin-top:6px;text-transform:uppercase;letter-spacing:0.5px;font-weight:600;}
+  .sector-tag.Millet{background:rgba(79,184,166,0.15);color:var(--millet);}
+  .sector-tag.Métivier{background:rgba(91,141,239,0.15);color:var(--metivier);}
+  
+  .sheet-details{margin-top:14px;border-top:1px solid var(--line);padding-top:14px;display:flex;flex-direction:column;gap:10px;}
+  .detail-row{display:flex;justify-content:space-between;font-size:12px;}
+  .detail-row .label{color:var(--dim);}
+  .detail-row .val{font-weight:500;text-align:right;}
+  
+  .stamp{width:100%;margin-top:18px;padding:16px;border-radius:12px;border:2px dashed rgba(232,163,61,0.5);
+    background:rgba(232,163,61,0.06);color:var(--accent);font-family:'Space Grotesk',sans-serif;
+    font-weight:700;font-size:15px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;gap:8px;}
+  .stamp:active{transform:scale(0.97);}
+  .stamp.done{border-style:solid;border-color:var(--ok);color:var(--ok);background:rgba(111,191,115,0.06);}
+  .geostatus{font-size:11px;text-align:center;margin-top:8px;color:var(--dim);min-height:14px;}
+  .rowbtns{display:flex;gap:8px;margin-top:10px;}
+  .rowbtns .btn{margin-top:0;font-size:12px;padding:10px;}
+
+  /* Audio Recorder UI */
+  .audio-panel{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:12px;margin-top:14px;}
+  .audio-header{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--dim);text-transform:uppercase;margin-bottom:8px;}
+  .audio-controls{display:flex;align-items:center;gap:10px;}
+  .record-btn{width:40px;height:40px;border-radius:50%;border:none;background:var(--danger);color:white;font-size:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+  .record-btn.recording{animation:pulse 1.2s infinite;background:#ff4d4d;}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(217,99,95,0.7)}70%{box-shadow:0 0 0 10px rgba(217,99,95,0)}100%{box-shadow:0 0 0 0 rgba(217,99,95,0)}}
+  
+  .audio-timer{font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--danger);font-weight:600;display:none;}
+  .audio-timer.show{display:inline;}
+  
+  /* Custom Player */
+  .custom-player{display:flex;align-items:center;gap:8px;background:var(--panel);border:1px solid var(--line);padding:8px 10px;border-radius:8px;flex:1;}
+  .player-play-btn{background:none;border:none;color:var(--accent);font-size:16px;cursor:pointer;padding:0 4px;}
+  .player-timeline{flex:1;height:4px;background:rgba(255,255,255,0.15);border-radius:2px;position:relative;cursor:pointer;}
+  .player-progress{height:100%;background:var(--accent);width:0%;border-radius:2px;}
+  .player-time{font-size:10px;color:var(--dim);min-width:30px;}
+
+  /* Report Tab UI */
+  .report-tab{padding:16px;overflow-y:auto;flex:1;}
+  .report-card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:14px;box-shadow:0 4px 12px var(--shadow);}
+  .report-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;color:var(--accent);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+  .report-item{padding:8px 0;border-bottom:1px solid var(--line);font-size:12px;display:flex;justify-content:space-between;align-items:flex-start;}
+  .report-item:last-child{border-bottom:none;}
+  .report-item .name{font-weight:600;margin-bottom:2px;}
+  .report-item .time{color:var(--dim);font-size:10px;}
+  .report-item .tag{font-size:10px;padding:2px 6px;border-radius:4px;font-weight:600;text-transform:uppercase;}
+  .tag.doleyans{background:rgba(217,99,95,0.15);color:var(--danger);}
+  .tag.swivi{background:rgba(91,141,239,0.15);color:var(--metivier);}
+  .tag.randevou{background:rgba(232,163,61,0.15);color:var(--accent);}
+
+  #toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--panel2);
+    border:1px solid var(--line);color:var(--ink);padding:10px 18px;border-radius:999px;font-size:12px;
+    z-index:200;opacity:0;transition:opacity 0.25s;pointer-events:none;box-shadow:0 4px 12px var(--shadow);text-align:center;min-width:200px;}
+  #toast.show{opacity:1;}
+</style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <div class="title"><span class="dot"></span>BÒDWO & REKOUVREMAN</div>
+    <div class="sub">Millet · Métivier — CTE Agence Pétion-Ville</div>
+    <div class="stats">
+      <div class="stat"><div class="n" id="statTotal">0</div><div class="l">Kliyan</div></div>
+      <div class="stat"><div class="n" id="statDone">0</div><div class="l">Bòdwo Bay</div></div>
+      <div class="stat"><div class="n" id="statPending">0</div><div class="l">Rete</div></div>
+      <div class="stat" style="border-color:rgba(217,99,95,0.25);"><div class="n" id="statDettes" style="color:var(--danger)">0</div><div class="l">Doleyans</div></div>
+    </div>
+  </header>
+
+  <nav>
+    <button class="tabbtn active" data-tab="list">LIS</button>
+    <button class="tabbtn" data-tab="map">KAT</button>
+    <button class="tabbtn" data-tab="report">RAPÒ</button>
+    <button class="tabbtn" data-tab="add">ADMIN</button>
+  </nav>
+
+  <main>
+    <!-- TAB: LIST -->
+    <div class="tab active" id="tab-list">
+      <div class="searchbar">
+        <div class="search-wrap">
+          <input id="search" placeholder="Chèche non, kòd, adrès..." autocomplete="off">
+        </div>
+      </div>
+      
+      <div class="filters">
+        <div class="chip active" data-f="all">Tout Zòn</div>
+        <div class="chip" data-f="Millet">Millet</div>
+        <div class="chip" data-f="Métivier">Métivier</div>
+        <div class="chip" data-f="done">Fèt (Bòdwo Bay)</div>
+        <div class="chip" data-f="pending">Rete</div>
+      </div>
+      
+      <div class="ctrl-row">
+        <select id="blockFilter">
+          <option value="all">Tout blòk</option>
+        </select>
+        <label class="toggle-btn">
+          <input type="checkbox" id="hideDoneCheckbox">
+          <span>Kache sa ki fèt</span>
+        </label>
+      </div>
+      
+      <div class="list" id="list"></div>
+      <button class="fab" onclick="switchTab('add')">+</button>
+    </div>
+
+    <!-- TAB: MAP -->
+    <div class="tab" id="tab-map" style="position:relative;">
+      <div id="map"></div>
+      <div class="maplegend">
+        <span><i style="background:var(--millet)"></i>Millet</span>
+        <span><i style="background:var(--metivier)"></i>Métivier</span>
+        <span><i style="background:var(--ok);border:1px solid #fff;"></i>Bòdwo Bay (Fèt)</span>
+        <span><i style="border:2px dashed var(--dim);background:transparent;"></i>Rete (An atant)</span>
+      </div>
+    </div>
+
+    <!-- TAB: REPORT -->
+    <div class="tab report-tab" id="tab-report">
+      <button class="btn primary" id="copyReportBtn">📋 Kopye Rapò Swivi Jounen an</button>
+      
+      <div class="report-card" style="margin-top:14px;">
+        <div class="report-title">📊 Rezime mwa sa</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;text-align:center;">
+          <div style="background:var(--panel2);padding:10px;border-radius:8px;">
+            <div style="font-size:20px;font-weight:700;color:var(--ok);" id="repDoneCount">0</div>
+            <div style="font-size:10px;color:var(--dim);margin-top:4px;">BÒDWO LIVRE</div>
+          </div>
+          <div style="background:var(--panel2);padding:10px;border-radius:8px;">
+            <div style="font-size:20px;font-weight:700;color:var(--accent);" id="repPendingCount">0</div>
+            <div style="font-size:10px;color:var(--dim);margin-top:4px;">BÒDWO KI RETE</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="report-card">
+        <div class="report-title" style="color:var(--ok)">✓ Bòdwo bay jodi a (<span id="repTodayCount">0</span>)</div>
+        <div id="repTodayDeliveries">
+          <div class="empty" style="padding:16px;">Poko gen bòdwo ki bay jodi a.</div>
+        </div>
+      </div>
+
+      <div class="report-card">
+        <div class="report-title" style="color:var(--danger)">⚠️ Doleyans anrejistre (<span id="repDoleancesCount">0</span>)</div>
+        <div id="repComplaints">
+          <div class="empty" style="padding:16px;">Pa gen doleyans yo pote mwa sa a.</div>
+        </div>
+      </div>
+
+      <div class="report-card">
+        <div class="report-title" style="color:var(--metivier)">📅 Swivi & Randevou (<span id="repFollowupsCount">0</span>)</div>
+        <div id="repFollowups">
+          <div class="empty" style="padding:16px;">Pa gen randevou oswa swivi pou mwa sa.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: ADMIN / ADD -->
+    <div class="tab" id="tab-add">
+      <form class="addform" id="addForm">
+        <div class="field">
+          <label>Non kliyan *</label>
+          <input id="f-non" required placeholder="Ex: Jistin Pyè">
+        </div>
+        <div class="field">
+          <label>Sektè</label>
+          <div class="segrow">
+            <button type="button" class="sel" data-sect="Millet">Millet</button>
+            <button type="button" data-sect="Métivier">Métivier</button>
+          </div>
+        </div>
+        <div class="field">
+          <label>Kòd Kliyan (PDL) (opsyonèl)</label>
+          <input id="f-kod" placeholder="Ex: 504006000100">
+        </div>
+        <div class="field">
+          <label>Nimewo Telefòn (opsyonèl)</label>
+          <input id="f-tel" placeholder="Ex: 38230006">
+        </div>
+        <div class="field">
+          <label>Solde Antyè / Dèt (HTG) (opsyonèl)</label>
+          <input type="number" id="f-solde" placeholder="Ex: 8500" value="0">
+        </div>
+        <div class="field">
+          <label>Adrès / Repè kay (opsyonèl)</label>
+          <input id="f-note" placeholder="Ex: Kay wouj bò lekòl la">
+        </div>
+        <button type="submit" class="btn primary">Ajoute Kliyan</button>
+
+        <div class="hint" style="margin-top:22px;">
+          <b style="color:var(--ink);">Enpòte done achiv DINEPA</b><br>
+          Kole done ki soti nan yon fichye Excel (PDL / Non / Prenon / Adrès / Telefòn / Solde) isit la.
+        </div>
+        <div class="field">
+          <label>Sektè pou done sa yo</label>
+          <div class="segrow">
+            <button type="button" class="sel" data-sectimport="Millet">Millet</button>
+            <button type="button" data-sectimport="Métivier">Métivier</button>
+          </div>
+        </div>
+        <div class="field">
+          <label>Kole done (PDL [tab] Non [tab] Prenon [tab] Adrès...)</label>
+          <textarea id="f-import" placeholder="504006000100&#9;DEBROSSE&#9;URBAIN&#9;4 RUE BOSSIER&#9;38230006&#9;8500"></textarea>
+        </div>
+        <button type="button" class="btn ghost" id="importBtn">Enpòte Tablo a</button>
+
+        <div style="margin-top:24px;border-top:1px solid var(--line);padding-top:20px;">
+          <button type="button" class="btn danger-outline" id="resetMonthBtn">Kòmanse Nouvo Mwa (konsève kote GPS & nòt)</button>
+          <button type="button" class="btn danger-outline" id="clearAllDbBtn" style="border-color:#ff4d4d;color:#ff4d4d;margin-top:12px;">Reset Tout Aplikasyon an (Siprime Tout Done)</button>
+        </div>
+      </form>
+    </div>
+  </main>
+</div>
+
+<!-- CLIENT DETAIL SHEET -->
+<div class="overlay" id="overlay">
+  <div class="sheet" id="sheet"></div>
+</div>
+
+<div id="toast"></div>
+
+<script src="data.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+// ─── INDEXEDDB ENGINE ────────────────────────────────────────────────────────
+const DB_NAME = "BodwoDB";
+const DB_VERSION = 1;
+let db = null;
+
+function initDb() {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open(DB_NAME, DB_VERSION);
+    request.onerror = (e) => reject("Pa kapab louvri IndexedDB");
+    request.onsuccess = (e) => {
+      db = e.target.result;
+      resolve(db);
+    };
+    request.onupgradeneeded = (e) => {
+      const dbInstance = e.target.result;
+      // Kliyan
+      if (!dbInstance.objectStoreNames.contains("clients")) {
+        dbInstance.createObjectStore("clients", { keyPath: "id" });
+      }
+      // Nòt vokal (blob / base64 odyo)
+      if (!dbInstance.objectStoreNames.contains("voiceNotes")) {
+        dbInstance.createObjectStore("voiceNotes", { keyPath: "id" });
+      }
+    };
+  });
+}
+
+function dbGetAllClients() {
+  return new Promise((resolve) => {
+    const tx = db.transaction("clients", "readonly");
+    const store = tx.objectStore("clients");
+    const req = store.getAll();
+    req.onsuccess = () => resolve(req.result || []);
+    req.onerror = () => resolve([]);
+  });
+}
+
+function dbSaveClients(clientsArray) {
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction("clients", "readwrite");
+    const store = tx.objectStore("clients");
+    clientsArray.forEach(c => store.put(c));
+    tx.oncomplete = () => resolve();
+    tx.onerror = () => reject("Erè sovgad kliyan yo");
+  });
+}
+
+function dbSaveClient(client) {
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction("clients", "readwrite");
+    const store = tx.objectStore("clients");
+    store.put(client);
+    tx.oncomplete = () => resolve();
+    tx.onerror = () => reject("Erè sovgad kliyan");
+  });
+}
+
+function dbDeleteClient(id) {
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(["clients", "voiceNotes"], "readwrite");
+    tx.objectStore("clients").delete(id);
+    tx.objectStore("voiceNotes").delete(id);
+    tx.oncomplete = () => resolve();
+    tx.onerror = () => reject("Erè sipresyon kliyan");
+  });
+}
+
+function dbGetVoiceNote(clientId) {
+  return new Promise((resolve) => {
+    const tx = db.transaction("voiceNotes", "readonly");
+    const store = tx.objectStore("voiceNotes");
+    const req = store.get(clientId);
+    req.onsuccess = () => resolve(req.result ? req.result.audio : null);
+    req.onerror = () => resolve(null);
+  });
+}
+
+function dbSaveVoiceNote(clientId, base64Audio) {
+  return new Promise((resolve) => {
+    const tx = db.transaction("voiceNotes", "readwrite");
+    const store = tx.objectStore("voiceNotes");
+    store.put({ id: clientId, audio: base64Audio, date: new Date().toISOString() });
+    tx.oncomplete = () => resolve(true);
+    tx.onerror = () => resolve(false);
+  });
+}
+
+function dbDeleteVoiceNote(clientId) {
+  return new Promise((resolve) => {
+    const tx = db.transaction("voiceNotes", "readwrite");
+    const store = tx.objectStore("voiceNotes");
+    store.delete(clientId);
+    tx.oncomplete = () => resolve(true);
+  });
+}
+
+function dbClearAll() {
+  return new Promise((resolve) => {
+    const tx = db.transaction(["clients", "voiceNotes"], "readwrite");
+    tx.objectStore("clients").clear();
+    tx.objectStore("voiceNotes").clear();
+    tx.oncomplete = () => resolve(true);
+  });
+}
+
+// ─── STATE & VARIABLES ────────────────────────────────────────────────────────
+let clients = [];
+let map = null;
+let markersLayer = null;
+let addSector = 'Millet';
+let importSector = 'Millet';
+let currentFilter = 'all';
+let currentBlock = 'all';
+let activeClientId = null;
+
+// Audio Recording State
+let mediaRecorder = null;
+let audioChunks = [];
+let recordTimerInterval = null;
+let recordSeconds = 0;
+
+// ─── UTILS ───────────────────────────────────────────────────────────────────
+function uid() { return 'c' + Date.now() + Math.random().toString(36).slice(2, 7); }
+
+function sameMonth(iso) {
+  if (!iso) return false;
+  const d = new Date(iso), n = new Date();
+  return d.getMonth() === n.getMonth() && d.getFullYear() === n.getFullYear();
+}
+
+function sameDay(iso) {
+  if (!iso) return false;
+  const d = new Date(iso), n = new Date();
+  return d.getDate() === n.getDate() && d.getMonth() === n.getMonth() && d.getFullYear() === n.getFullYear();
+}
+
+function formatPrice(val) {
+  if (!val || isNaN(Number(val))) return '0';
+  return Number(val).toLocaleString('en-US') + ' HTG';
+}
+
+function blokOf(kod) {
+  if (!kod || kod.length < 6) return '';
+  return kod.substring(3, 6); // standard block digits (e.g. 504006 -> 006)
+}
+
+function getSecteurBlock(kod) {
+  if (!kod || kod.length < 6) return '—';
+  // E.g. 504006000100 -> Sektè 504, Blòk 006
+  const sect = kod.substring(0, 3);
+  const blok = kod.substring(3, 6);
+  return `${sect}-${blok}`;
+}
+
+// ─── PWA SERVICE WORKER REGISTRATION ──────────────────────────────────────────
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js')
+      .then(reg => console.log('Service Worker anrejistre kòrèkteman ✓', reg.scope))
+      .catch(err => console.log('Erè Service Worker', err));
+  });
+}
+
+// ─── LOADING & INGESTION ──────────────────────────────────────────────────────
+async function loadClients() {
+  await initDb();
+  clients = await dbGetAllClients();
+  
+  if (clients.length === 0 && typeof DINEPA_ARCHIVE_2019 !== 'undefined' && DINEPA_ARCHIVE_2019.length > 0) {
+    // Premye chajman: chaje achiv 2019 la otomatikman
+    const parsed = DINEPA_ARCHIVE_2019.map((s, idx) => {
+      const fullSect = s.pdl && s.pdl.startsWith('124') ? 'Métivier' : 'Millet';
+      return {
+        id: 'arch-' + idx,
+        non: `${s.nom} ${s.prenom}`.trim().toUpperCase(),
+        sektè: fullSect,
+        kòd: s.pdl || null,
+        nòt: s.adresse || '',
+        telephone: s.telephone || '',
+        solde_ant: parseFloat(s.solde_ant) || 0,
+        statut: s.statut || 'actif',
+        doleances: s.doleances || '',
+        swivi: s.notes || '',
+        randevou: '',
+        lat: null,
+        lng: null,
+        dènyeBòdwo: null
+      };
+    });
+    clients = parsed;
+    await dbSaveClients(clients);
+    toast(`${clients.length} kliyan achiv 2019 chaje nèt ✓`);
+  }
+  
+  populateBlockFilter();
+  render();
+}
+
+// ─── TOASTS ──────────────────────────────────────────────────────────────────
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+// ─── FILTERS & RENDER ────────────────────────────────────────────────────────
+function getFilteredClients() {
+  const q = document.getElementById('search').value.trim().toLowerCase();
+  const hideDone = document.getElementById('hideDoneCheckbox').checked;
+  
+  let items = clients;
+  
+  // Search text
+  if (q) {
+    items = items.filter(c => 
+      c.non.toLowerCase().includes(q) || 
+      (c.kòd && c.kòd.includes(q)) || 
+      (c.nòt && c.nòt.toLowerCase().includes(q))
+    );
+  }
+  
+  // Filter chips
+  if (currentFilter === 'Millet' || currentFilter === 'Métivier') {
+    items = items.filter(c => c.sektè === currentFilter);
+  } else if (currentFilter === 'done') {
+    items = items.filter(c => sameMonth(c.dènyeBòdwo));
+  } else if (currentFilter === 'pending') {
+    items = items.filter(c => !sameMonth(c.dènyeBòdwo));
+  }
+  
+  // Block selector
+  if (currentBlock !== 'all') {
+    items = items.filter(c => getSecteurBlock(c.kòd) === currentBlock);
+  }
+  
+  // Hide Done Toggle
+  if (hideDone) {
+    items = items.filter(c => !sameMonth(c.dènyeBòdwo));
+  }
+  
+  return items;
+}
+
+function populateBlockFilter() {
+  const sel = document.getElementById('blockFilter');
+  const prev = sel.value;
+  const blocks = Array.from(new Set(clients.map(c => getSecteurBlock(c.kòd)).filter(b => b !== '—' && b !== ''))).sort();
+  
+  sel.innerHTML = '<option value="all">Tout blòk</option>' +
+    blocks.map(b => {
+      const count = clients.filter(c => getSecteurBlock(c.kòd) === b).length;
+      return `<option value="${b}">Blòk ${b} (${count})</option>`;
+    }).join('');
+    
+  if (blocks.includes(prev)) {
+    sel.value = prev;
+    currentBlock = prev;
+  } else {
+    sel.value = 'all';
+    currentBlock = 'all';
+  }
+}
+
+// Listeners
+document.getElementById('blockFilter').addEventListener('change', e => {
+  currentBlock = e.target.value;
+  render();
+  if (map && currentBlock !== 'all') {
+    // Zoom map onto selected block
+    const blockClients = getFilteredClients().filter(c => c.lat != null);
+    if (blockClients.length > 0) {
+      const bounds = blockClients.map(c => [c.lat, c.lng]);
+      map.fitBounds(bounds, { padding: [40, 40], maxZoom: 16 });
+    }
+  }
+});
+
+document.getElementById('hideDoneCheckbox').addEventListener('change', render);
+document.getElementById('search').addEventListener('input', render);
+
+function render() {
+  const items = getFilteredClients();
+  
+  // Sort: blocks first, then names
+  items.sort((a, b) => {
+    const ka = a.kòd || '';
+    const kb = b.kòd || '';
+    if (ka !== kb) return ka.localeCompare(kb);
+    return a.non.localeCompare(b.non);
+  });
+
+  const list = document.getElementById('list');
+  if (items.length === 0) {
+    list.innerHTML = `<div class="empty">${clients.length === 0 ? 'Poko gen kliyan. Ale nan ADMIN pou chaje done.' : 'Pa gen kliyan ki matche filtè yo.'}</div>`;
+  } else {
+    let lastBlock = null;
+    list.innerHTML = items.map(c => {
+      const done = sameMonth(c.dènyeBòdwo);
+      const hasGeo = c.lat != null;
+      const hasVoice = false; // Check asynchronously later or display status
+      const hasDoleance = c.doleances && c.doleances.trim() !== '';
+      
+      let blockHeader = '';
+      const b = getSecteurBlock(c.kòd);
+      if (b !== lastBlock && b !== '—') {
+        lastBlock = b;
+        blockHeader = `<div style="padding:14px 6px 4px;color:var(--accent);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid rgba(232,163,61,0.15)">🏢 BLÒK ${b}</div>`;
+      }
+      
+      return `${blockHeader}
+      <div class="row" onclick="openSheet('${c.id}')">
+        <div class="badge ${c.sektè}"></div>
+        <div class="info">
+          <div class="name">${escapeHtml(c.non)}</div>
+          <div class="meta">
+            <span>${c.sektè}</span>
+            ${c.kòd ? '· <b>' + escapeHtml(c.kòd) + '</b>' : ''}
+            ${c.solde_ant > 0 ? `· <span style="color:var(--danger)">${formatPrice(c.solde_ant)}</span>` : ''}
+            ${c.nòt ? '· ' + escapeHtml(c.nòt.slice(0,25)) : ''}
+          </div>
+        </div>
+        <div class="right-side">
+          <div class="icons">
+            <span class="${hasGeo?'active':''}">📍</span>
+            <span class="${hasDoleance?'active':''}" style="color:var(--danger)">⚠️</span>
+            <span class="${c.telephone?'active':''}">📞</span>
+          </div>
+          <div class="status ${done?'done':'pending'}"></div>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  // Dashboard Stats update
+  document.getElementById('statTotal').textContent = clients.length;
+  const doneCount = clients.filter(c => sameMonth(c.dènyeBòdwo)).length;
+  document.getElementById('statDone').textContent = doneCount;
+  document.getElementById('statPending').textContent = clients.length - doneCount;
+  document.getElementById('statDettes').textContent = clients.filter(c => c.doleances && c.doleances.trim() !== '').length;
+
+  // Report statistics
+  document.getElementById('repDoneCount').textContent = doneCount;
+  document.getElementById('repPendingCount').textContent = clients.length - doneCount;
+}
+
+function escapeHtml(s){
+  if(!s) return '';
+  return s.replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+
+// ─── TAB NAVIGATION ──────────────────────────────────────────────────────────
+function switchTab(name) {
+  document.querySelectorAll('.tabbtn').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.id === 'tab-' + name));
+  
+  if (name === 'map') {
+    setTimeout(() => {
+      if (!map) {
+        initMap();
+      }
+      map.invalidateSize();
+      renderMap();
+    }, 50);
+  } else if (name === 'report') {
+    renderReport();
+  }
+}
+document.querySelectorAll('.tabbtn').forEach(b => b.onclick = () => switchTab(b.dataset.tab));
+
+// ─── FILTER CHIPS ────────────────────────────────────────────────────────────
+document.querySelectorAll('.chip[data-f]').forEach(c => {
+  c.onclick = () => {
+    document.querySelectorAll('.chip[data-f]').forEach(x => x.classList.remove('active'));
+    c.classList.add('active');
+    currentFilter = c.dataset.f;
+    render();
+  };
+});
+
+// ─── CLIENT DETAIL SHEET (DETAILS, AUDIO, FOLLOW-UP) ─────────────────────────
+async function openSheet(id) {
+  activeClientId = id;
+  const c = clients.find(x => x.id === id);
+  if (!c) return;
+
+  const done = sameMonth(c.dènyeBòdwo);
+  const geoText = c.lat != null ? `Kote sovgade ✓ (${c.lat.toFixed(5)}, ${c.lng.toFixed(5)})` : 'Pa gen kote sovgade';
+  const lastDateText = c.dènyeBòdwo ? new Date(c.dènyeBòdwo).toLocaleString('fr-HT') : 'Poko janm livre';
+  
+  let audioHtml = `
+    <div class="audio-panel">
+      <div class="audio-header">
+        <span>🎙️ Nòt Vokal rapid</span>
+        <span class="audio-timer" id="recordTimer">00:00</span>
+      </div>
+      <div class="audio-controls">
+        <button type="button" class="record-btn" id="recordBtn" title="Anrejistre vwa">🎤</button>
+        <div id="audioPlayerContainer" style="flex:1; display:flex;">
+          <span style="font-size:11px;color:var(--dim);align-self:center;">Poko gen nòt vokal</span>
+        </div>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('sheet').innerHTML = `
+    <div class="sheet-head">
+      <div>
+        <div class="name">${escapeHtml(c.non)}</div>
+        <span class="sector-tag ${c.sektè}">${c.sektè}</span>
+      </div>
+      <button class="x" onclick="closeSheet()">✕</button>
+    </div>
+    
+    <div class="sheet-details">
+      <div class="detail-row">
+        <span class="label">Kòd Kliyan (PDL):</span>
+        <span class="val"><b>${c.kòd || 'SANS-CODE'}</b></span>
+      </div>
+      <div class="detail-row">
+        <span class="label">Adrès / Repè kay:</span>
+        <span class="val">${escapeHtml(c.nòt || 'Pa gen detay')}</span>
+      </div>
+      <div class="detail-row">
+        <span class="label">Dèt Antyè (HTG):</span>
+        <span class="val" style="color:var(--danger);font-weight:700;">${formatPrice(c.solde_ant)}</span>
+      </div>
+      <div class="detail-row">
+        <span class="label">Telefòn:</span>
+        <span class="val">
+          ${c.telephone ? `
+            <a href="tel:${c.telephone}" style="text-decoration:none;background:var(--panel2);padding:4px 8px;border-radius:4px;color:var(--ink);margin-right:6px;">📞 Rele</a>
+            <a href="https://wa.me/${c.telephone.replace(/[^0-9]/g,'')}" target="_blank" style="text-decoration:none;background:#25D366;padding:4px 8px;border-radius:4px;color:#fff;">💬 WhatsApp</a>
+          ` : 'Pa bay'}
+        </span>
+      </div>
+      <div class="detail-row">
+        <span class="label">Dènye livrezon:</span>
+        <span class="val">${lastDateText}</span>
+      </div>
+      <div class="detail-row">
+        <span class="label">GPS:</span>
+        <span class="val">${geoText}</span>
+      </div>
+    </div>
+
+    <!-- AUDIO RECORDER PANEL -->
+    ${audioHtml}
+
+    <!-- COMPLAINTS, FOLLOW-UPS & STATUS -->
+    <div style="margin-top:14px;border-top:1px solid var(--line);padding-top:14px;">
+      <div class="field">
+        <label>Estati Rekouvreman</label>
+        <select id="sheetStatut">
+          <option value="actif" ${c.statut==='actif'?'selected':''}>Aktif (Kliyan Regilye)</option>
+          <option value="dette" ${c.statut==='dette'?'selected':''}>An dèt (En Dette)</option>
+          <option value="convoque" ${c.statut==='convoque'?'selected':''}>Konvoke (Convoqué)</option>
+          <option value="ferme" ${c.statut==='ferme'?'selected':''}>Koupe (Fermé)</option>
+          <option value="nouveau" ${c.statut==='nouveau'?'selected':''}>Nouvo Abòne</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Doleyans Kliyan (Plent: pa gen dlo, elatriye)</label>
+        <textarea id="sheetDoleances" placeholder="Ekri plent kliyan an si genyen...">${escapeHtml(c.doleances || '')}</textarea>
+      </div>
+
+      <div class="field">
+        <label>Swivi Rekouvreman & Done/Aksyon</label>
+        <textarea id="sheetSwivi" placeholder="Peman pasyèl, aranjman det, elatriye...">${escapeHtml(c.swivi || '')}</textarea>
+      </div>
+
+      <div class="field">
+        <label>Dat Randevou Peman / Swivi</label>
+        <input type="date" id="sheetRandevou" value="${c.randevou || ''}">
+      </div>
+
+      <button type="button" class="btn primary" id="saveFollowupBtn" style="padding:10px;">💾 Sove Enfòmasyon Rekouvreman</button>
+    </div>
+
+    <!-- BILL STAMP BUTTON -->
+    <button class="stamp ${done?'done':''}" id="stampBtn" style="margin-top:18px;">
+      ${done ? '✓ BÒDWO LIVRE MWA SA' : '⬤ LIVRE BÒDWO KOUNYE A'}
+    </button>
+    <div class="geostatus" id="geostatus"></div>
+
+    <!-- UNDO / RESET / DANGER ACTIONS -->
+    <div class="rowbtns">
+      ${done ? `<button class="btn danger-outline" id="undoBtn">Anile Bòdwo (Erè)</button>` : ''}
+      <button class="btn ghost" id="recaptureBtn">${c.lat!=null ? 'Aktyalize kote GPS' : 'Kaptire kote GPS'}</button>
+    </div>
+    <div class="rowbtns" style="margin-top:6px;">
+      ${c.lat!=null ? `<button class="btn ghost" id="openMapBtn">🗺️ Google Maps</button>` : ''}
+      <button class="btn danger-outline" id="delBtn" style="border-color:var(--danger);color:var(--danger);">Siprime Kliyan</button>
+    </div>
+  `;
+  
+  document.getElementById('overlay').classList.add('show');
+  
+  // Wire listeners
+  document.getElementById('stampBtn').onclick = () => stampDelivery(c.id);
+  document.getElementById('recaptureBtn').onclick = () => recaptureLocation(c.id);
+  document.getElementById('saveFollowupBtn').onclick = () => saveFollowupData(c.id);
+  document.getElementById('delBtn').onclick = () => deleteClient(c.id);
+  
+  const ub = document.getElementById('undoBtn');
+  if (ub) ub.onclick = () => undoDelivery(c.id);
+  
+  const om = document.getElementById('openMapBtn');
+  if (om) om.onclick = () => window.open(`https://www.google.com/maps?q=${c.lat},${c.lng}`, '_blank');
+  
+  // Audio configuration
+  setupAudioRecorder(c.id);
+  loadVoiceNotePlayer(c.id);
+}
+
+function closeSheet() {
+  document.getElementById('overlay').classList.remove('show');
+  activeClientId = null;
+  // Stop recording if recording
+  if (mediaRecorder && mediaRecorder.state === "recording") {
+    mediaRecorder.stop();
+  }
+}
+
+// Click outside sheet close
+document.getElementById('overlay').addEventListener('click', e => {
+  if (e.target.id === 'overlay') closeSheet();
+});
+
+// ─── SAVE FOLLOW-UP DATA ─────────────────────────────────────────────────────
+async function saveFollowupData(id) {
+  const c = clients.find(x => x.id === id);
+  if (!c) return;
+  
+  c.statut = document.getElementById('sheetStatut').value;
+  c.doleances = document.getElementById('sheetDoleances').value.trim();
+  c.swivi = document.getElementById('sheetSwivi').value.trim();
+  c.randevou = document.getElementById('sheetRandevou').value;
+  
+  await dbSaveClient(c);
+  render();
+  toast("Swivi sove ak siksè ✓");
+}
+
+// ─── RECORD VOICE NOTE ────────────────────────────────────────────────────────
+async function setupAudioRecorder(clientId) {
+  const recBtn = document.getElementById('recordBtn');
+  const timer = document.getElementById('recordTimer');
+  
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+    recBtn.style.opacity = '0.3';
+    recBtn.disabled = true;
+    return;
+  }
+  
+  recBtn.onclick = async () => {
+    if (mediaRecorder && mediaRecorder.state === "recording") {
+      // Stop recording
+      mediaRecorder.stop();
+      return;
+    }
+    
+    // Start recording
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      mediaRecorder = new MediaRecorder(stream);
+      audioChunks = [];
+      
+      mediaRecorder.ondataavailable = e => {
+        audioChunks.push(e.data);
+      };
+      
+      mediaRecorder.onstop = async () => {
+        // Save audio to IndexedDB
+        const audioBlob = new Blob(audioChunks, { type: 'audio/mp3' });
+        
+        // Convert to base64
+        const reader = new FileReader();
+        reader.readAsDataURL(audioBlob);
+        reader.onloadend = async () => {
+          const base64Data = reader.result;
+          await dbSaveVoiceNote(clientId, base64Data);
+          loadVoiceNotePlayer(clientId);
+          toast("Nòt vokal sovgade ✓");
+        };
+        
+        // Stop all track uses
+        stream.getTracks().forEach(t => t.stop());
+        
+        // Reset button
+        recBtn.classList.remove('recording');
+        recBtn.textContent = '🎤';
+        timer.classList.remove('show');
+        clearInterval(recordTimerInterval);
+      };
+      
+      mediaRecorder.start();
+      
+      // Update UI for recording state
+      recBtn.classList.add('recording');
+      recBtn.textContent = '⏹️';
+      timer.classList.add('show');
+      
+      recordSeconds = 0;
+      timer.textContent = "00:00";
+      recordTimerInterval = setInterval(() => {
+        recordSeconds++;
+        const mins = String(Math.floor(recordSeconds / 60)).padStart(2, '0');
+        const secs = String(recordSeconds % 60).padStart(2, '0');
+        timer.textContent = `${mins}:${secs}`;
+      }, 1000);
+      
+    } catch (err) {
+      console.error("Mikwo pa aksesib", err);
+      toast("Echèk aksè mikwo");
+    }
+  };
+}
+
+async function loadVoiceNotePlayer(clientId) {
+  const container = document.getElementById('audioPlayerContainer');
+  const base64Audio = await dbGetVoiceNote(clientId);
+  
+  if (!base64Audio) {
+    container.innerHTML = `<span style="font-size:11px;color:var(--dim);align-self:center;">Poko gen nòt vokal</span>`;
+    return;
+  }
+  
+  container.innerHTML = `
+    <div class="custom-player">
+      <button class="player-play-btn" id="p-play">▶</button>
+      <div class="player-timeline" id="p-timeline">
+        <div class="player-progress" id="p-progress"></div>
+      </div>
+      <span class="player-time" id="p-time">0:00</span>
+      <button type="button" class="btn-icon" id="p-delete" style="background:none;border:none;color:var(--danger);cursor:pointer;font-size:14px;padding:0 6px;">🗑️</button>
+    </div>
+  `;
+  
+  const audio = new Audio(base64Audio);
+  const playBtn = document.getElementById('p-play');
+  const progress = document.getElementById('p-progress');
+  const timeline = document.getElementById('p-timeline');
+  const pTime = document.getElementById('p-time');
+  const deleteBtn = document.getElementById('p-delete');
+  
+  playBtn.onclick = () => {
+    if (audio.paused) {
+      audio.play();
+      playBtn.textContent = '⏸';
+    } else {
+      audio.pause();
+      playBtn.textContent = '▶';
+    }
+  };
+  
+  audio.ontimeupdate = () => {
+    const pct = (audio.currentTime / audio.duration) * 100;
+    progress.style.width = `${pct}%`;
+    const curMins = Math.floor(audio.currentTime / 60);
+    const curSecs = String(Math.floor(audio.currentTime % 60)).padStart(2, '0');
+    pTime.textContent = `${curMins}:${curSecs}`;
+  };
+  
+  audio.onended = () => {
+    playBtn.textContent = '▶';
+    progress.style.width = '0%';
+    pTime.textContent = '0:00';
+  };
+  
+  timeline.onclick = (e) => {
+    const rect = timeline.getBoundingClientRect();
+    const pos = (e.clientX - rect.left) / rect.width;
+    audio.currentTime = pos * audio.duration;
+  };
+  
+  deleteBtn.onclick = async () => {
+    if (confirm("Siprime nòt vokal sa a?")) {
+      audio.pause();
+      await dbDeleteVoiceNote(clientId);
+      loadVoiceNotePlayer(clientId);
+      toast("Nòt vokal efase ✓");
+    }
+  };
+}
+
+// ─── HIGH ACCURACY GPS ENGINE ────────────────────────────────────────────────
+function getAccurateLocation(onSuccess, onError, onProgress) {
+  if (!navigator.geolocation) {
+    onError({ code: 0, message: "Geolokalizasyon pa sipòte" });
+    return;
+  }
+
+  let bestPosition = null;
+  let watchId = null;
+  let timeoutId = null;
+  const targetAccuracy = 20; // 20m target precision
+  const maxWaitTime = 10000; // 10 seconds max lock time
+
+  const clearWatch = () => {
+    if (watchId !== null) navigator.geolocation.clearWatch(watchId);
+    if (timeoutId !== null) clearTimeout(timeoutId);
+  };
+
+  const handleSuccess = (pos) => {
+    const accuracy = pos.coords.accuracy;
+    onProgress && onProgress(accuracy);
+
+    if (!bestPosition || accuracy < bestPosition.coords.accuracy) {
+      bestPosition = pos;
+    }
+
+    // Target accuracy reached, finalize early
+    if (accuracy <= targetAccuracy) {
+      clearWatch();
+      onSuccess(bestPosition);
+    }
+  };
+
+  const handleError = (err) => {
+    if (bestPosition) {
+      clearWatch();
+      onSuccess(bestPosition);
+    } else {
+      clearWatch();
+      onError(err);
+    }
+  };
+
+  watchId = navigator.geolocation.watchPosition(handleSuccess, handleError, {
+    enableHighAccuracy: true,
+    maximumAge: 0,
+    timeout: maxWaitTime
+  });
+
+  timeoutId = setTimeout(() => {
+    clearWatch();
+    if (bestPosition) {
+      onSuccess(bestPosition);
+    } else {
+      onError({ code: 3, message: "Depase limit tan san lock GPS" });
+    }
+  }, maxWaitTime);
+}
+
+// ─── BILL STAMP DELIVERY + GPS CAPTURE ────────────────────────────────────────
+async function stampDelivery(id) {
+  const c = clients.find(x => x.id === id);
+  if (!c) return;
+  const gs = document.getElementById('geostatus');
+
+  const finish = async (lat, lng, msg) => {
+    c.dènyeBòdwo = new Date().toISOString();
+    if (lat != null) {
+      c.lat = lat;
+      c.lng = lng;
+    }
+    await dbSaveClient(c);
+    render();
+    openSheet(id);
+    toast(msg);
+  };
+
+  if (c.lat != null) {
+    // Si kote a sove deja, jis mete livrezon fèt san re-pran GPS
+    await finish(null, null, "Bòdwo make kòm fèt ✓");
+    return;
+  }
+
+  gs.textContent = "📡 K ap estabilize GPS... Rete tann...";
+  getAccurateLocation(
+    async (pos) => {
+      gs.textContent = "";
+      await finish(pos.coords.latitude, pos.coords.longitude, `Bòdwo livre + GPS sove (Presizyon: ${Math.round(pos.coords.accuracy)}m) ✓`);
+    },
+    async (err) => {
+      gs.textContent = "";
+      await finish(null, null, "Livre (GPS pa t ka jwenn)");
+    },
+    (acc) => {
+      gs.textContent = `📡 GPS k ap kalkile... Presizyon: ${Math.round(acc)}m...`;
+    }
+  );
+}
+
+// ─── RECAPTURE GPS LOCATION ──────────────────────────────────────────────────
+function recaptureLocation(id) {
+  const c = clients.find(x => x.id === id);
+  if (!c) return;
+  const gs = document.getElementById('geostatus');
+  
+  gs.textContent = "📡 K ap chèche koòdone GPS presi...";
+  getAccurateLocation(
+    async (pos) => {
+      gs.textContent = "";
+      c.lat = pos.coords.latitude;
+      c.lng = pos.coords.longitude;
+      await dbSaveClient(c);
+      render();
+      openSheet(id);
+      toast(`GPS aktyalize (Presizyon: ${Math.round(pos.coords.accuracy)}m) ✓`);
+    },
+    err => {
+      gs.textContent = "";
+      toast("GPS pa reponn oswa pran twòp tan");
+    },
+    (acc) => {
+      gs.textContent = `📡 GPS k ap kalkile... Presizyon: ${Math.round(acc)}m...`;
+    }
+  );
+}
+
+// ─── UNDO BILL DELIVERY (MISTAKE FIX) ────────────────────────────────────────
+async function undoDelivery(id) {
+  const c = clients.find(x => x.id === id);
+  if (!c) return;
+  
+  let deleteGeo = false;
+  if (c.lat != null) {
+    deleteGeo = confirm("Anile livrezon sa a?\n\nPeze OK si w vle anile epi efase pozisyon GPS sa a tou (si se te premye fwa li te kaptire e li pa bon).");
+  } else {
+    if (!confirm("Anile bòdwo sa a?")) return;
+  }
+  
+  c.dènyeBòdwo = null;
+  if (deleteGeo) {
+    c.lat = null;
+    c.lng = null;
+  }
+  
+  await dbSaveClient(c);
+  render();
+  openSheet(id);
+  toast("Livrezon bòdwo anile ✓");
+}
+
+// ─── DELETE CLIENT ───────────────────────────────────────────────────────────
+async function deleteClient(id) {
+  if (!confirm("Èske w vle siprime kliyan sa a nèt nan sistèm nan?")) return;
+  clients = clients.filter(c => c.id !== id);
+  await dbDeleteClient(id);
+  closeSheet();
+  render();
+  toast("Kliyan siprime nèt");
+}
+
+// ─── MANUAL ADD CLIENT ───────────────────────────────────────────────────────
+// Sector toggle add
+document.querySelectorAll('[data-sect]').forEach(b => {
+  b.onclick = () => {
+    document.querySelectorAll('[data-sect]').forEach(x => x.classList.remove('sel'));
+    b.classList.add('sel');
+    addSector = b.dataset.sect;
+  };
+});
+
+document.getElementById('addForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const non = document.getElementById('f-non').value.trim().toUpperCase();
+  const kod = document.getElementById('f-kod').value.trim();
+  const tel = document.getElementById('f-tel').value.trim();
+  const solde = parseFloat(document.getElementById('f-solde').value) || 0;
+  const note = document.getElementById('f-note').value.trim();
+  
+  if (!non) return;
+  
+  const nc = {
+    id: uid(),
+    non,
+    sektè: addSector,
+    kòd: kod || null,
+    telephone: tel || '',
+    solde_ant: solde,
+    nòt: note || '',
+    statut: solde > 0 ? 'dette' : 'actif',
+    doleances: '',
+    swivi: '',
+    randevou: '',
+    lat: null,
+    lng: null,
+    dènyeBòdwo: null
+  };
+  
+  clients.push(nc);
+  await dbSaveClient(nc);
+  populateBlockFilter();
+  render();
+  
+  document.getElementById('f-non').value = '';
+  document.getElementById('f-kod').value = '';
+  document.getElementById('f-tel').value = '';
+  document.getElementById('f-solde').value = '0';
+  document.getElementById('f-note').value = '';
+  
+  toast("Kliyan ajoute kòrèkteman ✓");
+  switchTab('list');
+});
+
+// ─── ARCHIVE EXCEL/TAB IMPORT ────────────────────────────────────────────────
+document.querySelectorAll('[data-sectimport]').forEach(b => {
+  b.onclick = () => {
+    document.querySelectorAll('[data-sectimport]').forEach(x => x.classList.remove('sel'));
+    b.classList.add('sel');
+    importSector = b.dataset.sectimport;
+  };
+});
+
+document.getElementById('importBtn').onclick = async () => {
+  const raw = document.getElementById('f-import').value;
+  const lines = raw.split('\n').map(l => l.trim()).filter(Boolean);
+  
+  if (lines.length === 0) {
+    toast("Kole done yo anvan!");
+    return;
+  }
+  
+  let added = 0;
+  let skipped = 0;
+  
+  for (const line of lines) {
+    const parts = line.split('\t').map(p => p.trim());
+    if (parts.length < 2) {
+      skipped++;
+      continue;
+    }
+    
+    // Format: PDL [tab] Nom [tab] Prénom (opsyonèl) [tab] Adrès (opsyonèl) [tab] Telefòn [tab] Solde
+    const kod = parts[0];
+    const nom = parts[1] || '';
+    const prenom = parts[2] || '';
+    const note = parts[3] || '';
+    const tel = parts[4] || '';
+    const solde = parseFloat(parts[5]) || 0;
+    
+    const non = `${nom} ${prenom}`.trim().toUpperCase();
+    if (!non) {
+      skipped++;
+      continue;
+    }
+    
+    const nc = {
+      id: uid(),
+      non,
+      sektè: importSector,
+      kòd: kod || null,
+      telephone: tel || '',
+      solde_ant: solde,
+      nòt: note || '',
+      statut: solde > 0 ? 'dette' : 'actif',
+      doleances: '',
+      swivi: '',
+      randevou: '',
+      lat: null,
+      lng: null,
+      dènyeBòdwo: null
+    };
+    
+    clients.push(nc);
+    await dbSaveClient(nc);
+    added++;
+  }
+  
+  document.getElementById('f-import').value = '';
+  populateBlockFilter();
+  render();
+  toast(`${added} kliyan enpòte${skipped > 0 ? ` (${skipped} erè)` : ''} ✓`);
+  switchTab('list');
+};
+
+// ─── ADMIN RESETS ────────────────────────────────────────────────────────────
+document.getElementById('resetMonthBtn').onclick = async () => {
+  if (!confirm("Atansyon! Sa pral efase estati livrezon ('Fèt') pou tout kliyan pou nouvo mwa a kòmanse.\n\nTout koòdone GPS, telefòn, doleyans ak nòt yo AP KONSERVE. Kontinye?")) return;
+  
+  clients.forEach(c => {
+    c.dènyeBòdwo = null;
+  });
+  await dbSaveClients(clients);
+  render();
+  toast("Nouvo mwa kòmanse! Tout livrezon anile ✓");
+  switchTab('list');
+};
+
+document.getElementById('clearAllDbBtn').onclick = async () => {
+  if (!confirm("AVÈTISMAN KRITIK!\n\nSa pral siprime TOUT done nan aplikasyon an nèt (Kliyan, GPS, Nòt vokal, Doleyans). Tout bagay pral efase pou tout tan. Kontinye?")) return;
+  
+  await dbClearAll();
+  clients = [];
+  render();
+  toast("Tout done efase nèt!");
+  location.reload();
+};
+
+// ─── LEAFLET MAP INTEGRATION ──────────────────────────────────────────────────
+function initMap() {
+  map = L.map('map', { zoomControl: true }).setView([18.5392, -72.2852], 13);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap'
+  }).addTo(map);
+  markersLayer = L.layerGroup().addTo(map);
+}
+
+function renderMap() {
+  if (!map || !markersLayer) return;
+  markersLayer.clearLayers();
+  
+  const withGeo = getFilteredClients().filter(c => c.lat != null);
+  if (withGeo.length === 0) return;
+  
+  const bounds = [];
+  withGeo.forEach(c => {
+    const done = sameMonth(c.dènyeBòdwo);
+    const color = c.sektè === 'Millet' ? '#4fb8a6' : '#5b8def';
+    
+    // Custom premium circle marker style
+    const m = L.circleMarker([c.lat, c.lng], {
+      radius: done ? 9 : 7,
+      fillColor: done ? '#6fbf73' : color,
+      color: done ? '#ffffff' : color,
+      weight: done ? 2 : 1.5,
+      fillOpacity: done ? 0.95 : 0.15,
+      dashArray: done ? null : "3, 4"
+    }).addTo(markersLayer);
+    
+    const popupContent = `
+      <div style="font-family:sans-serif;color:#111;min-width:140px;font-size:12px;">
+        <h4 style="margin:0 0 6px 0;font-size:13px;font-family:'Space Grotesk',sans-serif;">${escapeHtml(c.non)}</h4>
+        <span style="font-size:10px;background:#eee;padding:2px 5px;border-radius:3px;text-transform:uppercase;">${c.sektè}</span>
+        <div style="margin-top:8px;">
+          <b>Kod:</b> ${c.kòd || '—'}<br>
+          <b>Dèt:</b> ${formatPrice(c.solde_ant)}<br>
+          <b>Estati:</b> ${done ? '<span style="color:green;font-weight:bold;">Fèt ✓</span>' : '<span style="color:orange;">Rete</span>'}<br>
+          ${c.doleances ? `<b style="color:red;">Pleyan:</b> ${escapeHtml(c.doleances.slice(0,30))}<br>` : ''}
+        </div>
+        <button onclick="openSheet('${c.id}')" style="width:100%;margin-top:10px;background:#e8a33d;border:none;color:#fff;padding:6px;border-radius:4px;cursor:pointer;font-weight:bold;font-size:11px;">Detay & Swivi</button>
+      </div>
+    `;
+    
+    m.bindPopup(popupContent);
+    bounds.push([c.lat, c.lng]);
+  });
+  
+  if (bounds.length > 0) {
+    map.fitBounds(bounds, { padding: [30, 30], maxZoom: 16 });
+  }
+}
+
+// ─── REPORTS GENERATOR ────────────────────────────────────────────────────────
+function renderReport() {
+  const todayDeliveries = clients.filter(c => sameMonth(c.dènyeBòdwo) && sameDay(c.dènyeBòdwo));
+  const complaints = clients.filter(c => c.doleances && c.doleances.trim() !== '');
+  const followups = clients.filter(c => (c.swivi && c.swivi.trim() !== '') || c.randevou);
+  
+  // Today's deliver count
+  document.getElementById('repTodayCount').textContent = todayDeliveries.length;
+  document.getElementById('repDoleancesCount').textContent = complaints.length;
+  document.getElementById('repFollowupsCount').textContent = followups.length;
+  
+  // Deliveries list
+  const delDiv = document.getElementById('repTodayDeliveries');
+  if (todayDeliveries.length === 0) {
+    delDiv.innerHTML = `<div class="empty" style="padding:16px;">Poko gen bòdwo ki bay jodi a.</div>`;
+  } else {
+    delDiv.innerHTML = todayDeliveries.map(c => {
+      const time = new Date(c.dènyeBòdwo).toLocaleTimeString('fr-HT', { hour: '2-digit', minute: '2-digit' });
+      return `
+        <div class="report-item">
+          <div>
+            <div class="name">${escapeHtml(c.non)}</div>
+            <div class="time">${c.sektè} · PDL: ${c.kòd || '—'}</div>
+          </div>
+          <div style="text-align:right;">
+            <span class="tag" style="background:rgba(111,191,115,0.15);color:var(--ok);">LIVRE</span>
+            <div class="time">${time}</div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+  
+  // Complaints list
+  const compDiv = document.getElementById('repComplaints');
+  if (complaints.length === 0) {
+    compDiv.innerHTML = `<div class="empty" style="padding:16px;">Pa gen doleyans yo pote mwa sa a.</div>`;
+  } else {
+    compDiv.innerHTML = complaints.map(c => `
+      <div class="report-item">
+        <div style="flex:1;">
+          <div class="name">${escapeHtml(c.non)} (${c.sektè})</div>
+          <div style="color:var(--danger);font-size:11px;margin-top:2px;"><b>Plent:</b> ${escapeHtml(c.doleances)}</div>
+        </div>
+        <span class="tag doleyans">DOLEYANS</span>
+      </div>
+    `).join('');
+  }
+  
+  // Followups list
+  const fDiv = document.getElementById('repFollowups');
+  if (followups.length === 0) {
+    fDiv.innerHTML = `<div class="empty" style="padding:16px;">Pa gen randevou oswa swivi pou mwa sa.</div>`;
+  } else {
+    fDiv.innerHTML = followups.map(c => {
+      const rdvText = c.randevou ? `Randevou: ${new Date(c.randevou).toLocaleDateString('fr-HT')}` : 'Pa gen dat';
+      return `
+        <div class="report-item">
+          <div style="flex:1;">
+            <div class="name">${escapeHtml(c.non)} (${c.sektè})</div>
+            ${c.swivi ? `<div style="color:var(--dim);font-size:11px;margin-top:2px;"><b>Swivi:</b> ${escapeHtml(c.swivi)}</div>` : ''}
+            <div style="color:var(--accent);font-size:10px;margin-top:2px;">📅 ${rdvText}</div>
+          </div>
+          <span class="tag swivi">SWIVI</span>
+        </div>
+      `;
+    }).join('');
+  }
+}
+
+// Copy report text to clipboard
+document.getElementById('copyReportBtn').onclick = () => {
+  const doneCount = clients.filter(c => sameMonth(c.dènyeBòdwo)).length;
+  const todayDeliveries = clients.filter(c => sameMonth(c.dènyeBòdwo) && sameDay(c.dènyeBòdwo));
+  const complaints = clients.filter(c => c.doleances && c.doleances.trim() !== '');
+  const followups = clients.filter(c => (c.swivi && c.swivi.trim() !== '') || c.randevou);
+  
+  let t = `📋 *RAPÒ REKOUVREMAN & BÒDWO* 💧\n`;
+  t += `Dat: ${new Date().toLocaleDateString('fr-HT')}\n`;
+  t += `-------------------------------------------\n\n`;
+  
+  t += `📊 *REZIME LIVREZON MWA SA:*\n`;
+  t += `- Total Bòdwo Livre: ${doneCount}\n`;
+  t += `- Bòdwo ki rete: ${clients.length - doneCount}\n\n`;
+  
+  t += `🚚 *BÒDWO BAY JODI A (${todayDeliveries.length}):*\n`;
+  if (todayDeliveries.length === 0) {
+    t += `- Pa gen bòdwo bay jodi a.\n`;
+  } else {
+    todayDeliveries.forEach(c => {
+      t += `- ${c.non} (${c.sektè} - PDL: ${c.kòd || '—'})\n`;
+    });
+  }
+  t += `\n`;
+  
+  t += `⚠️ *DOLEYANS CLIENTÈL ANREJISTRE (${complaints.length}):*\n`;
+  if (complaints.length === 0) {
+    t += `- Pa gen doleyans.\n`;
+  } else {
+    complaints.forEach(c => {
+      t += `- *${c.non}* : ${c.doleances}\n`;
+    });
+  }
+  t += `\n`;
+  
+  t += `📅 *AKSYON SWIVI & RANDEVOU PÈMAN (${followups.length}):*\n`;
+  if (followups.length === 0) {
+    t += `- Pa gen swivi.\n`;
+  } else {
+    followups.forEach(c => {
+      const r = c.randevou ? `(Randevou dat: ${c.randevou})` : '';
+      t += `- *${c.non}* : ${c.swivi || 'Peman pasyèl/swivi'} ${r}\n`;
+    });
+  }
+  
+  navigator.clipboard.writeText(t).then(() => {
+    toast("Rapò kopye nan klavye w! Koulye a ou ka kole l sou WhatsApp.");
+  }).catch(() => {
+    toast("Erè kopye rapò");
+  });
+};
+
+// ─── STARTUP ──────────────────────────────────────────────────────────────────
+loadClients();
+</script>
+</body>
+</html>

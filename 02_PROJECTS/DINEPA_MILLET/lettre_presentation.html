@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DINEPA · Lèt Prezantasyon Ajan</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    @page {
+      size: letter;
+      margin: 0;
+    }
+
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      background: #f0f0f0;
+      color: #1a1a2e;
+    }
+
+    .page {
+      width: 8.5in;
+      min-height: 5.5in;
+      max-height: 5.5in;
+      margin: 0 auto;
+      background: white;
+      padding: 0.5in 0.6in;
+      position: relative;
+      overflow: hidden;
+      page-break-after: always;
+      border-bottom: 2px dashed #ccc;
+    }
+
+    .page:last-child {
+      border-bottom: none;
+    }
+
+    @media print {
+      body { background: white; }
+      .page {
+        margin: 0;
+        border: none;
+        box-shadow: none;
+      }
+      .no-print { display: none !important; }
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 3px solid #0077b6;
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-icon {
+      font-size: 28px;
+      background: linear-gradient(135deg, #0077b6, #00b4d8);
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-main {
+      font-size: 18px;
+      font-weight: 800;
+      color: #0077b6;
+      letter-spacing: 2px;
+    }
+
+    .logo-sub {
+      font-size: 8px;
+      color: #555;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    .header-right {
+      text-align: right;
+      font-size: 7.5px;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    /* Title */
+    .title-section {
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .title-section h1 {
+      font-size: 14px;
+      font-weight: 800;
+      color: #0077b6;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 2px;
+    }
+
+    .title-section .subtitle {
+      font-size: 9px;
+      color: #666;
+      font-style: italic;
+    }
+
+    /* Body */
+    .body-text {
+      font-size: 10px;
+      line-height: 1.65;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .body-text p {
+      margin-bottom: 8px;
+    }
+
+    .highlight-box {
+      background: linear-gradient(135deg, #e8f4f8, #d1ecf1);
+      border-left: 4px solid #0077b6;
+      padding: 8px 12px;
+      border-radius: 0 6px 6px 0;
+      margin: 10px 0;
+      font-size: 9.5px;
+    }
+
+    .highlight-box strong {
+      color: #0077b6;
+    }
+
+    .contact-box {
+      background: linear-gradient(135deg, #0077b6, #00b4d8);
+      color: white;
+      padding: 10px 16px;
+      border-radius: 8px;
+      text-align: center;
+      margin: 10px 0;
+    }
+
+    .contact-box .phone {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      margin: 4px 0;
+    }
+
+    .contact-box .phone-label {
+      font-size: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.9;
+    }
+
+    .services-list {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 8px 0;
+      justify-content: center;
+    }
+
+    .service-chip {
+      background: #f0f7ff;
+      border: 1px solid #cce5ff;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 8px;
+      font-weight: 600;
+      color: #0077b6;
+    }
+
+    /* PDL blank */
+    .pdl-line {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin: 8px 0;
+      font-size: 9px;
+    }
+
+    .pdl-line label {
+      font-weight: 600;
+      color: #555;
+    }
+
+    .pdl-blank {
+      border-bottom: 1.5px solid #0077b6;
+      flex: 1;
+      min-width: 120px;
+      height: 16px;
+      font-family: 'Courier New', monospace;
+      font-weight: 700;
+      font-size: 11px;
+      color: #0077b6;
+      padding-left: 4px;
+    }
+
+    /* Footer */
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 8px;
+      padding-top: 6px;
+      border-top: 1px solid #e0e0e0;
+      font-size: 7px;
+      color: #999;
+    }
+
+    .stamp {
+      width: 55px;
+      height: 55px;
+      border: 2px solid #0077b6;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 7px;
+      font-weight: 700;
+      color: #0077b6;
+      text-align: center;
+      line-height: 1.2;
+      opacity: 0.6;
+    }
+
+    /* Print button */
+    .print-controls {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .print-controls button {
+      background: linear-gradient(135deg, #0077b6, #00b4d8);
+      color: white;
+      border: none;
+      padding: 12px 32px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 0 8px;
+    }
+
+    .print-controls button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,119,182,0.3);
+    }
+
+    .print-controls button.secondary {
+      background: #555;
+    }
+
+    .print-controls p {
+      margin-top: 10px;
+      font-size: 12px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="no-print print-controls">
+    <button onclick="window.print()">🖨️ Enprime Lèt yo</button>
+    <button class="secondary" onclick="generateAll()">📄 Jenere pou Tout Kliyan (Pa Zòn)</button>
+    <p>Chak paj gen 2 lèt (hafl-page). Koupe nan mitan an apre enprime.</p>
+  </div>
+
+  <!-- LETTER 1 - template -->
+  <div class="page" id="letterTemplate">
+    <div class="header">
+      <div class="header-left">
+        <div class="logo-icon">💧</div>
+        <div class="logo-text">
+          <span class="logo-main">DINEPA</span>
+          <span class="logo-sub">OREPA OUEST · Agence Pétion-Ville</span>
+        </div>
+      </div>
+      <div class="header-right">
+        Sektè Millet · MILL1<br>
+        86 Rue Grégoire, Pétion-Ville<br>
+        Dat: ___________________
+      </div>
+    </div>
+
+    <div class="title-section">
+      <h1>📢 Avi Enpòtan</h1>
+      <subtitle class="subtitle">Mesaj pèsonèl pou abone sektè Millet</subtitle>
+    </div>
+
+    <div class="pdl-line">
+      <label>PDL (N° Kont ou) :</label>
+      <div class="pdl-blank"></div>
+      <label>Non :</label>
+      <div class="pdl-blank"></div>
+    </div>
+
+    <div class="body-text">
+      <p>Bonjou,</p>
+
+      <p>Non mwen se <strong>_______________</strong>, mwen se <strong>nouvo ajan pèsonèl</strong> ou nan DINEPA pou zòn Millet. Mwen pase lakay ou jodi a men mwen pa t jwenn ou.</p>
+
+      <p>Mwen ekri w lèt sa a pou m prezante tèt mwen e pou m fè w konnen ou ka kontakte m <strong>dirèkteman</strong> pou:</p>
+    </div>
+
+    <div class="services-list">
+      <span class="service-chip">💧 Pwoblèm dlo</span>
+      <span class="service-chip">📋 Kesyon sou fakti</span>
+      <span class="service-chip">📝 Pote doleyans</span>
+      <span class="service-chip">🔧 Demann reparasyon</span>
+      <span class="service-chip">💳 Aranjisman pèman</span>
+    </div>
+
+    <div class="highlight-box">
+      <strong>⚠️ Enpòtan:</strong> Si w pa resevwa dlo, oubyen si w gen nenpòt pwoblèm ak sèvis la, <strong>kontakte m dirèkteman</strong>. M la pou ede w e pou asire w ke DINEPA konnen sitiyasyon w.
+    </div>
+
+    <div class="contact-box">
+      <div class="phone-label">Rele m oswa ekri m sou WhatsApp</div>
+      <div class="phone">📞 (509) ____-____</div>
+      <div class="phone-label">Disponib lendi - vandredi, 8h - 5h</div>
+    </div>
+
+    <div class="body-text" style="font-size:8.5px; text-align:center; color:#666;">
+      Tanpri prezante <strong>nimewo PDL</strong> ou (ki sou lèt sa a) lè w rele m pou m ka ede w pi vit.<br>
+      Mèsi pou kolaborasyon ou. Ansanm nou ka amelyore sèvis dlo nan katye a! 🤝
+    </div>
+
+    <div class="footer">
+      <div>
+        DINEPA · Direction Nationale de l'Eau Potable et de l'Assainissement<br>
+        Sektè Millet · Agence Territoriale de Pétion-Ville · OREPA OUEST
+      </div>
+      <div class="stamp">OREPA<br>OUEST</div>
+    </div>
+  </div>
+
+  <!-- LETTER 2 (copy for second half of page) -->
+  <div class="page">
+    <div class="header">
+      <div class="header-left">
+        <div class="logo-icon">💧</div>
+        <div class="logo-text">
+          <span class="logo-main">DINEPA</span>
+          <span class="logo-sub">OREPA OUEST · Agence Pétion-Ville</span>
+        </div>
+      </div>
+      <div class="header-right">
+        Sektè Millet · MILL1<br>
+        86 Rue Grégoire, Pétion-Ville<br>
+        Dat: ___________________
+      </div>
+    </div>
+
+    <div class="title-section">
+      <h1>📢 Avi Enpòtan</h1>
+      <subtitle class="subtitle">Mesaj pèsonèl pou abone sektè Millet</subtitle>
+    </div>
+
+    <div class="pdl-line">
+      <label>PDL (N° Kont ou) :</label>
+      <div class="pdl-blank"></div>
+      <label>Non :</label>
+      <div class="pdl-blank"></div>
+    </div>
+
+    <div class="body-text">
+      <p>Bonjou,</p>
+
+      <p>Non mwen se <strong>_______________</strong>, mwen se <strong>nouvo ajan pèsonèl</strong> ou nan DINEPA pou zòn Millet. Mwen pase lakay ou jodi a men mwen pa t jwenn ou.</p>
+
+      <p>Mwen ekri w lèt sa a pou m prezante tèt mwen e pou m fè w konnen ou ka kontakte m <strong>dirèkteman</strong> pou:</p>
+    </div>
+
+    <div class="services-list">
+      <span class="service-chip">💧 Pwoblèm dlo</span>
+      <span class="service-chip">📋 Kesyon sou fakti</span>
+      <span class="service-chip">📝 Pote doleyans</span>
+      <span class="service-chip">🔧 Demann reparasyon</span>
+      <span class="service-chip">💳 Aranjisman pèman</span>
+    </div>
+
+    <div class="highlight-box">
+      <strong>⚠️ Enpòtan:</strong> Si w pa resevwa dlo, oubyen si w gen nenpòt pwoblèm ak sèvis la, <strong>kontakte m dirèkteman</strong>. M la pou ede w e pou asire w ke DINEPA konnen sitiyasyon w.
+    </div>
+
+    <div class="contact-box">
+      <div class="phone-label">Rele m oswa ekri m sou WhatsApp</div>
+      <div class="phone">📞 (509) ____-____</div>
+      <div class="phone-label">Disponib lendi - vandredi, 8h - 5h</div>
+    </div>
+
+    <div class="body-text" style="font-size:8.5px; text-align:center; color:#666;">
+      Tanpri prezante <strong>nimewo PDL</strong> ou (ki sou lèt sa a) lè w rele m pou m ka ede w pi vit.<br>
+      Mèsi pou kolaborasyon ou. Ansanm nou ka amelyore sèvis dlo nan katye a! 🤝
+    </div>
+
+    <div class="footer">
+      <div>
+        DINEPA · Direction Nationale de l'Eau Potable et de l'Assainissement<br>
+        Sektè Millet · Agence Territoriale de Pétion-Ville · OREPA OUEST
+      </div>
+      <div class="stamp">OREPA<br>OUEST</div>
+    </div>
+  </div>
+
+</body>
+</html>

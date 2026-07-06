@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DINEPA · Système Recouvrement Millet</title>
+  <meta name="description" content="Système de gestion du recouvrement des abonnés DINEPA - Secteur Millet, Agence Pétion-Ville">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">
+        <div class="logo-icon">💧</div>
+        <div class="logo-text">
+          <span class="logo-main">DINEPA</span>
+          <span class="logo-sub">Recouvrement</span>
+        </div>
+      </div>
+      <button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()">☰</button>
+    </div>
+
+    <div class="agent-card">
+      <div class="agent-avatar">AG</div>
+      <div class="agent-info">
+        <span class="agent-name">Ajan Rekouvreман</span>
+        <span class="agent-sector">Secteur Millet · OREPA OUEST</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-item active" onclick="showView('dashboard', this)">
+        <span class="nav-icon">📊</span>
+        <span class="nav-label">Dashboard</span>
+      </a>
+      <a href="#" class="nav-item" onclick="showView('abonnes', this)">
+        <span class="nav-icon">👥</span>
+        <span class="nav-label">Abonnés</span>
+        <span class="nav-badge" id="badge-abonnes">0</span>
+      </a>
+      <a href="#" class="nav-item" onclick="showView('convocations', this)">
+        <span class="nav-icon">📋</span>
+        <span class="nav-label">Convocations</span>
+        <span class="nav-badge danger" id="badge-conv">0</span>
+      </a>
+      <a href="#" class="nav-item" onclick="showView('map', this)">
+        <span class="nav-icon">🗺️</span>
+        <span class="nav-label">Carte Millet</span>
+      </a>
+      <a href="#" class="nav-item" onclick="showView('import', this)">
+        <span class="nav-icon">📥</span>
+        <span class="nav-label">Importer Archive</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <span class="version-tag">v1.0 · Mai 2026</span>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main" id="main">
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <h1 class="page-title" id="pageTitle">Dashboard</h1>
+        <span class="page-subtitle">Secteur Millet · Archive 2019</span>
+      </div>
+      <div class="topbar-right">
+        <div class="search-wrap">
+          <input type="text" id="globalSearch" placeholder="Chercher PDL, nom, adresse..." oninput="globalSearch(this.value)">
+          <span class="search-icon">🔍</span>
+        </div>
+        <button class="btn btn-primary" onclick="showView('import', document.querySelector('.nav-item:nth-child(5)'))">
+          + Ajouter
+        </button>
+      </div>
+    </header>
+
+    <!-- ============ VIEW: DASHBOARD ============ -->
+    <div class="view active" id="view-dashboard">
+      <!-- KPI CARDS -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-icon blue">👥</div>
+          <div class="kpi-data">
+            <span class="kpi-value" id="kpi-total">0</span>
+            <span class="kpi-label">Total Abonnés</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon green">✅</div>
+          <div class="kpi-data">
+            <span class="kpi-value" id="kpi-actif">0</span>
+            <span class="kpi-label">Actifs</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon red">⚠️</div>
+          <div class="kpi-data">
+            <span class="kpi-value" id="kpi-dette">0</span>
+            <span class="kpi-label">En Dette</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon orange">📋</div>
+          <div class="kpi-data">
+            <span class="kpi-value" id="kpi-conv">0</span>
+            <span class="kpi-label">Convocations</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon purple">🚫</div>
+          <div class="kpi-data">
+            <span class="kpi-value" id="kpi-ferme">0</span>
+            <span class="kpi-label">Fermés</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon teal">💰</div>
+          <div class="kpi-data">
+            <span class="kpi-value" id="kpi-recouvre">0 HTG</span>
+            <span class="kpi-label">Récupéré Aujourd'hui</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RECENT ACTIVITY + QUICK ACTIONS -->
+      <div class="dashboard-grid">
+        <div class="card">
+          <div class="card-header">
+            <h3>Activité Récente</h3>
+            <span class="card-badge">Aujourd'hui</span>
+          </div>
+          <div class="activity-list" id="activityList">
+            <div class="empty-state">
+              <span>📭</span>
+              <p>Aucune activité récente.<br>Commencez par importer l'archive 2019.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3>Actions Rapides</h3>
+          </div>
+          <div class="quick-actions">
+            <button class="quick-btn" onclick="showConvocationModal()">
+              <span>📋</span>
+              <span>Créer Convocation</span>
+            </button>
+            <button class="quick-btn" onclick="showView('import', document.querySelector('.nav-item:nth-child(5)'))">
+              <span>📥</span>
+              <span>Importer Données</span>
+            </button>
+            <button class="quick-btn" onclick="exportData()">
+              <span>📤</span>
+              <span>Exporter Liste</span>
+            </button>
+            <button class="quick-btn" onclick="showView('map', document.querySelector('.nav-item:nth-child(4)'))">
+              <span>🗺️</span>
+              <span>Voir Carte</span>
+            </button>
+            <button class="quick-btn" onclick="resetAndLoad()" style="border:2px solid #f59e0b">
+              <span>🔄</span>
+              <span>Reset & Charger Archive 2019</span>
+            </button>
+          </div>
+
+          <div class="card-header" style="margin-top:1.5rem">
+            <h3>Distribution Statut</h3>
+          </div>
+          <div class="chart-bars" id="chartBars">
+            <div class="bar-item">
+              <div class="bar-label">Actif</div>
+              <div class="bar-track"><div class="bar-fill green" id="bar-actif" style="width:0%"></div></div>
+              <div class="bar-pct" id="pct-actif">0%</div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-label">En Dette</div>
+              <div class="bar-track"><div class="bar-fill red" id="bar-dette" style="width:0%"></div></div>
+              <div class="bar-pct" id="pct-dette">0%</div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-label">Convoqué</div>
+              <div class="bar-track"><div class="bar-fill orange" id="bar-conv" style="width:0%"></div></div>
+              <div class="bar-pct" id="pct-conv">0%</div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-label">Fermé</div>
+              <div class="bar-track"><div class="bar-fill purple" id="bar-ferme" style="width:0%"></div></div>
+              <div class="bar-pct" id="pct-ferme">0%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ VIEW: ABONNES ============ -->
+    <div class="view" id="view-abonnes">
+      <div class="toolbar">
+        <div class="filter-group">
+          <select id="filterZone" onchange="updateBlocFilter(); filterAbonnes()">
+            <option value="">Toutes les Zones</option>
+          </select>
+          <select id="filterBloc" onchange="filterAbonnes()">
+            <option value="">Tous les Blocs</option>
+          </select>
+          <input type="text" id="searchAbonne" placeholder="Chèche PDL, non, telefòn..." oninput="filterAbonnes()">
+        </div>
+        <div class="toolbar-right">
+          <span id="resultCount" class="result-count">0 résultats</span>
+          <button class="btn btn-outline" onclick="exportData()">📤 Exporter CSV</button>
+          <button class="btn btn-primary" onclick="showAddModal()">+ Nouvel Abonné</button>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table class="data-table" id="abonnesTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th onclick="sortTable('pdl')">Zòn ↕</th>
+              <th>Blòk</th>
+              <th onclick="sortTable('pdl')">PDL ↕</th>
+              <th onclick="sortTable('nom')">Non / Prenon ↕</th>
+              <th>Adrès</th>
+              <th>Telefòn</th>
+              <th onclick="sortTable('statut')">Estati ↕</th>
+              <th>Solde</th>
+              <th>Remak</th>
+              <th>Doléans</th>
+              <th>Aksyon</th>
+            </tr>
+          </thead>
+          <tbody id="abonnesBody">
+            <tr><td colspan="12" class="empty-row">
+              <div class="empty-state">
+                <span>📭</span>
+                <p>Aucun abonné. Importez l'archive 2019 pour commencer.</p>
+              </div>
+            </td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ============ VIEW: CONVOCATIONS ============ -->
+    <div class="view" id="view-convocations">
+      <div class="toolbar">
+        <div class="filter-group">
+          <select id="filterConvStatut" onchange="filterConvocations()">
+            <option value="">Toutes</option>
+            <option value="pending">En attente</option>
+            <option value="done">Régularisé</option>
+            <option value="ignore">Ignoré</option>
+          </select>
+        </div>
+        <div class="toolbar-right">
+          <button class="btn btn-primary" onclick="showConvocationModal()">📋 Nouvelle Convocation</button>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table class="data-table" id="convTable">
+          <thead>
+            <tr>
+              <th>N° Convocation</th>
+              <th>PDL</th>
+              <th>Non</th>
+              <th>Adresse</th>
+              <th>Montant Dû</th>
+              <th>Date Émise</th>
+              <th>Statut</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="convBody">
+            <tr><td colspan="8" class="empty-row">
+              <div class="empty-state"><span>📋</span><p>Aucune convocation émise.</p></div>
+            </td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ============ VIEW: MAP ============ -->
+    <div class="view" id="view-map">
+      <div class="map-container">
+        <div class="map-header">
+          <h2>🗺️ Carte Secteur Millet</h2>
+          <p>Visualisation de la zone de couverture — Agence Pétion-Ville · OREPA OUEST</p>
+        </div>
+        <div class="map-legend">
+          <div class="legend-item"><span class="legend-dot green"></span> Actif</div>
+          <div class="legend-item"><span class="legend-dot red"></span> En Dette</div>
+          <div class="legend-item"><span class="legend-dot orange"></span> Convoqué</div>
+          <div class="legend-item"><span class="legend-dot gray"></span> Fermé</div>
+        </div>
+        <!-- OpenStreetMap iframe for Millet, Pétion-Ville area -->
+        <div class="map-iframe-wrap">
+          <iframe
+            id="mapFrame"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-72.3250%2C18.5050%2C-72.2900%2C18.5280&layer=mapnik&marker=18.5150,-72.3080"
+            style="border:0;width:100%;height:100%;"
+            allowfullscreen=""
+            loading="lazy"
+            title="Carte Millet Pétion-Ville">
+          </iframe>
+        </div>
+        <div class="map-overlay-pins" id="mapPins">
+          <!-- Dynamic pins will appear here based on data -->
+        </div>
+        <div class="map-info">
+          <p>💡 <strong>Rues principales du secteur Millet :</strong> Rue Chavannes · Rue Berthe · Rue Villatte · Rte Peguy Ville · Rue Oswald Durand · Rue Metellus · Rue Louverture · Rue Qualo · Rle Toucine</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ VIEW: IMPORT ============ -->
+    <div class="view" id="view-import">
+      <div class="import-container">
+        <h2>📥 Importer l'Archive 2019</h2>
+        <p class="import-desc">Collez les données du journal de facturation 2019 (format CSV ou texte tabulé) ou entrez les abonnés manuellement.</p>
+
+        <div class="import-grid">
+          <!-- CSV IMPORT -->
+          <div class="card">
+            <div class="card-header"><h3>📄 Import CSV / Texte</h3></div>
+            <p>Format attendu (colonnes séparées par virgule ou tabulation) :</p>
+            <code class="format-example">localisation,pdl,nom,prenom,adresse,solde_ant,statut</code>
+            <p>Exemple :</p>
+            <code class="format-example">504014,53200303319,DUPONT,Jean,81 Rue Chavannes,15000,actif</code>
+            <textarea id="csvInput" placeholder="Collez vos données CSV ici...
+localisation,pdl,nom,prenom,adresse,solde_ant,statut
+504001,53200303001,PIERRE,Marie,12 Rue Chavannes,8500,actif
+504002,53200303002,JEAN,Luc,45 Rte Peguy Ville,22000,dette
+504003,53200303003,DUVAL,Rose,7 Rue Metellus,0,ferme
+..." rows="10"></textarea>
+            <button class="btn btn-primary" onclick="importCSV()">📥 Importer</button>
+          </div>
+
+          <!-- MANUAL ENTRY -->
+          <div class="card">
+            <div class="card-header"><h3>✏️ Saisie Manuelle</h3></div>
+            <form id="addForm" onsubmit="saveAbonne(event)">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label>PDL (Lokalizasyon) *</label>
+                  <input type="text" id="f-pdl" placeholder="504006000100" required>
+                </div>
+                <div class="form-group">
+                  <label>Non *</label>
+                  <input type="text" id="f-nom" placeholder="DUPONT" required>
+                </div>
+                <div class="form-group">
+                  <label>Prenon</label>
+                  <input type="text" id="f-prenom" placeholder="Jean">
+                </div>
+                <div class="form-group full">
+                  <label>Adrès *</label>
+                  <input type="text" id="f-adresse" placeholder="81 Rue Chavannes, Pétion-Ville" required>
+                </div>
+                <div class="form-group">
+                  <label>Telefòn</label>
+                  <input type="text" id="f-telephone" placeholder="509 3823-0006">
+                </div>
+                <div class="form-group">
+                  <label>Solde Antérieur (HTG)</label>
+                  <input type="number" id="f-solde" placeholder="0" value="0">
+                </div>
+                <div class="form-group">
+                  <label>Estati</label>
+                  <select id="f-statut">
+                    <option value="actif">Aktif</option>
+                    <option value="dette">An Dèt</option>
+                    <option value="ferme">Fèmen</option>
+                    <option value="nouveau">Nouvo</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Remak</label>
+                  <input type="text" id="f-notes" placeholder="Nòt sou kliyan an...">
+                </div>
+                <div class="form-group">
+                  <label>Randevou (Swivi)</label>
+                  <input type="date" id="f-randevou">
+                </div>
+                <div class="form-group full">
+                  <label>Doléans</label>
+                  <input type="text" id="f-doleances" placeholder="Plent kliyan an...">
+                </div>
+                <div class="form-group full">
+                  <label>Aksyon Swivi (Contact, Swivi, etc.)</label>
+                  <input type="text" id="f-swivi" placeholder="Ki aksyon ki dwe fèt?">
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary">💾 Anrejistre Abone</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- SAMPLE DATA -->
+        <div class="card" style="margin-top:1.5rem">
+          <div class="card-header">
+            <h3>🗃️ Charger Données Exemple (Archive 2019 - Millet)</h3>
+            <button class="btn btn-outline" onclick="loadSampleData()">Charger Exemples</button>
+          </div>
+          <p>Données extraites du Journal de Facturation 2019 — Secteur MILL1, Agence Pétion-Ville.</p>
+          <div id="importStats" class="import-stats hidden">
+            <span class="stat-chip green">✓ <span id="stat-ok">0</span> importés</span>
+            <span class="stat-chip red">✗ <span id="stat-err">0</span> erreurs</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ============ MODAL: CONVOCATION ============ -->
+  <div class="modal-overlay" id="convModal" onclick="closeModal('convModal')">
+    <div class="modal" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h2>📋 Nouvelle Convocation</h2>
+        <button onclick="closeModal('convModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="conv-preview" id="convPreview">
+          <!-- Convocation form preview -->
+          <div class="conv-doc">
+            <div class="conv-doc-header">
+              <div class="conv-logo-area">
+                <div class="conv-logo">DINEPA</div>
+                <div class="conv-sub">OREPA OUEST<br>Direction Commerciale<br>CTE Région Métropolitaine<br><small>Agence Territoriale de Pétion-Ville</small></div>
+              </div>
+              <div class="conv-title-area">
+                <h1>CONVOCATION</h1>
+              </div>
+            </div>
+            <div class="conv-body-text">
+              <p>Nous vous saurions gré de bien vouloir passer à nos bureaux situés au <strong>86, rue Grégoire, Pétion-Ville</strong>, dans les prochaines <strong>24 heures</strong>, pour régulariser votre dossier.</p>
+              <p>À défaut, votre dossier sera soumis au service contentieux.</p>
+            </div>
+            <div class="conv-fields">
+              <div class="conv-field"><label>Secteur :</label><input type="text" id="cv-secteur" value="MILL1"></div>
+              <div class="conv-field"><label>PDL :</label><input type="text" id="cv-pdl" placeholder="504006000100"></div>
+              <div class="conv-field"><label>Nom / Prénom :</label><input type="text" id="cv-nom" placeholder="NOM Prénom"></div>
+              <div class="conv-field"><label>Adresse :</label><input type="text" id="cv-adresse" placeholder="Adresse complète"></div>
+              <div class="conv-field"><label>Montant Dû (HTG) :</label><input type="number" id="cv-montant" placeholder="0"></div>
+              <div class="conv-field"><label>Période Arriéré :</label><input type="text" id="cv-periode" placeholder="Jan 2023 - Avr 2026"></div>
+            </div>
+            <div class="conv-footer">
+              <div>
+                <p>Contact : <strong>(509) 3823-0006 · 4407-9750 · 3758-0906</strong></p>
+              </div>
+              <div class="conv-stamp">
+                <div>Direction Commerciale</div>
+                <div class="stamp-circle">OREPA<br>OUEST</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="closeModal('convModal')">Annuler</button>
+        <button class="btn btn-primary" onclick="saveConvocation()">💾 Enregistrer & Imprimer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ MODAL: ABONNE DETAIL ============ -->
+  <div class="modal-overlay" id="detailModal" onclick="closeModal('detailModal')">
+    <div class="modal" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h2>👤 Détail Abonné</h2>
+        <button onclick="closeModal('detailModal')">✕</button>
+      </div>
+      <div class="modal-body" id="detailBody">
+        <!-- Filled dynamically -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="closeModal('detailModal')">Fermer</button>
+        <button class="btn btn-danger" onclick="deleteCurrentAbonne()">🗑️ Supprimer</button>
+        <button class="btn btn-primary" onclick="showConvForCurrent()">📋 Créer Convocation</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
