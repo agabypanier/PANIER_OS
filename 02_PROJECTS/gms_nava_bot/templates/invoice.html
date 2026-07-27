@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', 'Segoe UI', Arial, sans-serif; color: #111; background: #fff; font-size: 10px; line-height: 1.4; }
+    .page { width: 100%; padding: 30px 35px 80px 35px; }
+
+    /* HEADER */
+    .header { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 18px; border-bottom: 3px solid {{color_primary}}; }
+    .header-left { display: flex; align-items: center; gap: 14px; }
+    .logo { width: 70px; height: 70px; object-fit: contain; }
+    .company-name { font-size: 18px; font-weight: 700; color: {{color_primary}}; letter-spacing: 0.3px; }
+    .company-details { font-size: 9px; color: #555; margin-top: 3px; line-height: 1.5; }
+    .doc-type-box { text-align: right; }
+    .doc-type { font-size: 28px; font-weight: 700; color: {{color_primary}}; letter-spacing: 2px; }
+    .doc-number { font-size: 11px; color: #333; margin-top: 4px; font-weight: 600; }
+
+    /* INFO GRID */
+    .info-grid { display: flex; justify-content: space-between; margin-top: 20px; gap: 20px; }
+    .info-block { flex: 1; }
+    .info-block.right { text-align: right; }
+    .info-label { font-size: 8px; text-transform: uppercase; letter-spacing: 1.5px; color: #888; font-weight: 600; margin-bottom: 6px; }
+    .info-value { font-size: 11px; color: #111; line-height: 1.6; }
+    .info-value strong { font-size: 13px; display: block; margin-bottom: 2px; }
+
+    /* TABLE */
+    .table-container { margin-top: 22px; }
+    table { width: 100%; border-collapse: collapse; }
+    thead th {
+        background: {{color_primary}};
+        color: #fff;
+        padding: 9px 12px;
+        text-align: left;
+        font-size: 8.5px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    thead th:first-child { border-radius: 4px 0 0 0; }
+    thead th:last-child { border-radius: 0 4px 0 0; }
+    thead th.num { text-align: center; width: 40px; }
+    thead th.qty { text-align: center; width: 60px; }
+    thead th.price { text-align: right; width: 100px; }
+    thead th.total { text-align: right; width: 110px; }
+    tbody td { padding: 9px 12px; font-size: 10px; border-bottom: 1px solid #e5e5e5; color: #222; }
+    tbody td.num { text-align: center; color: #888; }
+    tbody td.qty { text-align: center; font-weight: 500; }
+    tbody td.price { text-align: right; }
+    tbody td.total { text-align: right; font-weight: 600; }
+    tbody tr:last-child td { border-bottom: 2px solid {{color_primary}}; }
+
+    /* TOTALS */
+    .totals-area { display: flex; justify-content: space-between; margin-top: 16px; align-items: flex-start; }
+    .totals-notes { flex: 1; max-width: 55%; }
+    .totals-table { width: 240px; }
+    .totals-table .row { display: flex; justify-content: space-between; padding: 5px 0; font-size: 10px; color: #555; }
+    .totals-table .row .label { font-weight: 500; }
+    .totals-table .row .value { font-weight: 500; }
+    .totals-table .row.grand {
+        border-top: 2px solid #111;
+        margin-top: 6px;
+        padding-top: 8px;
+        font-size: 14px;
+        font-weight: 700;
+        color: #111;
+    }
+
+    /* NOTES */
+    .notes-block { margin-top: 12px; }
+    .notes-label { font-size: 8px; text-transform: uppercase; letter-spacing: 1px; color: #888; font-weight: 600; margin-bottom: 4px; }
+    .notes-text { font-size: 9.5px; color: #444; line-height: 1.5; padding: 8px 10px; background: #f9f9f9; border-radius: 3px; border: 1px solid #eee; }
+
+    /* FOOTER */
+    .footer {
+        position: fixed; bottom: 0; left: 0; right: 0;
+        padding: 10px 35px;
+        border-top: 2px solid {{color_primary}};
+        font-size: 8px; color: #888; text-align: center;
+        background: #fff;
+    }
+    .footer strong { color: #555; }
+</style>
+</head>
+<body>
+<div class="page">
+
+    <div class="header">
+        <div class="header-left">
+            {{#if logo_base64}}<img src="{{logo_base64}}" alt="" class="logo">{{/if}}
+            <div>
+                <div class="company-name">{{company_name}}</div>
+                <div class="company-details">
+                    {{company_address}}<br>
+                    Tel: {{company_phone}}<br>
+                    {{company_email}}
+                </div>
+            </div>
+        </div>
+        <div class="doc-type-box">
+            <div class="doc-type">{{doc_title}}</div>
+            <div class="doc-number">N° {{doc_number}}</div>
+        </div>
+    </div>
+
+    <div class="info-grid">
+        <div class="info-block">
+            <div class="info-label">Facturer à</div>
+            <div class="info-value">
+                <strong>{{client_name}}</strong>
+                {{#if client_address}}{{client_address}}<br>{{/if}}
+                {{#if client_phone}}Tel: {{client_phone}}{{/if}}
+            </div>
+        </div>
+        <div class="info-block right">
+            <div class="info-label">Détails</div>
+            <div class="info-value">
+                <strong>Date: {{date_formatted}}</strong>
+                Devise: {{currency}}
+            </div>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th class="num">#</th>
+                    <th>Description</th>
+                    <th class="qty">Qté</th>
+                    <th class="price">Prix Unit.</th>
+                    <th class="total">Montant</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each items}}
+                <tr>
+                    <td class="num">{{inc @index}}</td>
+                    <td>{{this.description}}</td>
+                    <td class="qty">{{this.quantity}}</td>
+                    <td class="price">{{formatMoney this.unit_price ../currency}}</td>
+                    <td class="total">{{formatMoney this.total ../currency}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="totals-area">
+        <div class="totals-notes">
+            {{#if notes}}
+            <div class="notes-block">
+                <div class="notes-label">Notes</div>
+                <div class="notes-text">{{notes}}</div>
+            </div>
+            {{/if}}
+            {{#if bank_info}}
+            <div style="margin-top: 10px; padding: 8px 12px; border: 1px solid {{color_primary}}; border-radius: 3px; background: #f0f4ff;">
+                <div style="font-size: 8px; text-transform: uppercase; letter-spacing: 1px; color: {{color_primary}}; font-weight: 600; margin-bottom: 4px;">💳 Paiement par virement</div>
+                <div style="font-size: 10px; color: #222; font-weight: 600;">{{bank_info}}</div>
+            </div>
+            {{/if}}
+        </div>
+        <div class="totals-table">
+            <div class="row"><span class="label">Sous-total</span><span class="value">{{formatMoney subtotal currency}}</span></div>
+            {{#if tax_amount}}<div class="row"><span class="label">TCA ({{tax_rate}}%)</span><span class="value">{{formatMoney tax_amount currency}}</span></div>{{/if}}
+            <div class="row grand"><span class="label">TOTAL</span><span class="value">{{formatMoney total currency}}</span></div>
+            {{#if show_htg}}
+            <div class="row" style="margin-top: 6px; padding-top: 6px; border-top: 1px dashed #ccc; font-size: 9px;"><span class="label">Taux de change</span><span class="value">{{htg_rate}} HTG / USD</span></div>
+            <div class="row grand" style="border-top: none; margin-top: 0; padding-top: 2px; color: #e53935; font-size: 13px;"><span class="label">TOTAL HTG</span><span class="value">{{formatMoney total_htg 'HTG '}}</span></div>
+            {{/if}}
+        </div>
+    </div>
+
+</div>
+
+<div class="footer">
+    <strong>{{company_name}}</strong> &mdash; {{company_address}} &mdash; Tel: {{company_phone}} &mdash; {{company_email}}
+</div>
+</body>
+</html>
