@@ -1,24 +1,38 @@
-# GMS/NAVA Telegram Bot - Docker Image
-FROM node:20-alpine
+# GMS/NAVA Telegram Bot - Cloud Dockerfile
+FROM node:20-slim
 
-# Install dependencies
+# Install Chromium and system dependencies for Puppeteer
+RUN apt-get update && apt-get install -y \
+    chromium \
+    fonts-ipafont-gothic \
+    fonts-wqy-zenhei \
+    fonts-thai-tlwg \
+    fonts-kacst \
+    fonts-freefont-ttf \
+    libxss1 \
+    --no-install-recommends \
+    && rm -rf /var/lib/apt/lists/*
+
+# Tell Puppeteer to use installed Chromium
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
+
 WORKDIR /app
 
-# Copy package files first for better caching
+# Copy package files
 COPY package*.json ./
-RUN npm ci --only=production
 
-# Copy source code
+# Install npm packages
+RUN npm install --production
+
+# Copy app code
 COPY . .
 
-# Create directories for persistent data
+# Create persistent directories
 RUN mkdir -p /data /app/generated_pdfs
 
-# Use a volume for persistent data (bot.db + generated PDFs)
 VOLUME ["/data"]
 
-# Environment variables (set in Railway dashboard)
 ENV NODE_ENV=production
 
-# Start the bot
 CMD ["node", "index.js"]
