@@ -1,8 +1,9 @@
-const CACHE='bodwo-v3';
+const CACHE='bodwo-v5';
 const ASSETS=[
   './',
   './index.html',
   './bodwo.html',
+  './export.html',
   './data.js',
   './data_metivier.js',
   './app.js',

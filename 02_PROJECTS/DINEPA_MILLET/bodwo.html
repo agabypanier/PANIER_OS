@@ -1563,6 +1563,189 @@ document.getElementById('copyReportBtn').onclick = () => {
 
 // ─── STARTUP ──────────────────────────────────────────────────────────────────
 loadClients();
+
+// ─── MIGRATION TOOLBAR (Export + Import IndexedDB) ────────────────────────────
+function ensureMigrationToolbar() {
+  if (document.getElementById('migrationToolbar')) return;
+
+  const toolbar = document.createElement('div');
+  toolbar.id = 'migrationToolbar';
+  toolbar.style.cssText = `
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 99999;
+    background: #fff3cd; color: #000; border-top: 2px solid #856404;
+    padding: 12px; font-family: monospace; font-size: 12px;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.15);
+    max-height: 70vh; overflow-y: auto;
+  `;
+  toolbar.innerHTML = `
+    <details>
+      <summary style="cursor:pointer;font-weight:bold;padding:4px;">
+        🛠️ Migrasyon done (Export / Import) — Klike pou ouvri
+      </summary>
+      <div style="margin-top:8px;">
+        <div style="margin-bottom:8px;">
+          <strong>1️⃣ Ekspòte localStorage:</strong><br>
+          <button id="btnExportLS" style="padding:6px 10px;margin:4px 0;background:#0d6efd;color:white;border:none;border-radius:4px;cursor:pointer;">
+            📋 Ekspòte localStorage → JSON
+          </button>
+          <textarea id="exportResult" style="width:100%;height:80px;display:none;margin-top:4px;font-size:10px;" readonly></textarea>
+        </div>
+
+        <div style="margin-bottom:8px;padding-top:8px;border-top:1px dashed #856404;">
+          <strong>1️⃣b Ekspòte IndexedDB (kliyan + voice notes + GPS):</strong><br>
+          <button id="btnExportIDB" style="padding:6px 10px;margin:4px 0;background:#6610f2;color:white;border:none;border-radius:4px;cursor:pointer;">
+            🗄️ Ekspòte IndexedDB → JSON
+          </button>
+          <textarea id="exportIDBResult" style="width:100%;height:120px;display:none;margin-top:4px;font-size:10px;" readonly></textarea>
+          <div id="exportIDBStatus" style="font-size:11px;margin-top:4px;"></div>
+        </div>
+
+        <hr style="margin:10px 0;">
+        <div>
+          <strong>2️⃣ Voye (Import) done nan IndexedDB:</strong><br>
+          <textarea id="importInput" placeholder="Kole JSON la isit la..." style="width:100%;height:80px;margin-top:4px;font-size:10px;"></textarea>
+          <button id="btnImportIDB" style="padding:6px 10px;margin:4px 0;background:#198754;color:white;border:none;border-radius:4px;cursor:pointer;">
+            📥 Voye done sa a nan IndexedDB
+          </button>
+          <div id="importStatus" style="margin-top:4px;"></div>
+        </div>
+        <button id="btnCloseToolbar" style="padding:4px 8px;margin-top:6px;background:#dc3545;color:white;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
+          ✕ Fèmen zouti sa a
+        </button>
+      </div>
+    </details>
+  `;
+  document.body.appendChild(toolbar);
+
+  document.getElementById('btnExportLS').onclick = () => {
+    const data = {};
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      data[k] = localStorage.getItem(k);
+    }
+    const json = JSON.stringify(data, null, 2);
+    const ta = document.getElementById('exportResult');
+    ta.style.display = 'block';
+    ta.value = json;
+    ta.select();
+    try {
+      navigator.clipboard.writeText(json);
+      toast("localStorage kopye nan clipboard! 📋", "success");
+    } catch (e) {
+      toast("Seleksyone tèks la epi kopye manyèlman", "info");
+    }
+  };
+
+  document.getElementById('btnExportIDB').onclick = async () => {
+    const status = document.getElementById('exportIDBStatus');
+    const ta = document.getElementById('exportIDBResult');
+    status.innerHTML = '<span style="color:#0d6efd;">⏳ Ap li IndexedDB...</span>';
+    try {
+      const dbReq = indexedDB.open("BodwoDB");
+      dbReq.onerror = () => { status.innerHTML = '<span style="color:#dc3545;">❌ Pa ka louvri IndexedDB "BodwoDB"</span>'; };
+      dbReq.onsuccess = (e) => {
+        const db = e.target.result;
+        const storeNames = Array.from(db.objectStoreNames);
+        const exportData = { _meta: { source: "BodwoDB", exportedAt: new Date().toISOString(), stores: storeNames } };
+        let pending = storeNames.length;
+        if (pending === 0) {
+          status.innerHTML = '<span style="color:#dc3545;">❌ Okenn store nan IndexedDB sa a</span>';
+          return;
+        }
+        storeNames.forEach(name => {
+          const tx = db.transaction(name, "readonly");
+          const req = tx.objectStore(name).getAll();
+          req.onsuccess = () => {
+            exportData[name] = req.result || [];
+            pending--;
+            if (pending === 0) {
+              const json = JSON.stringify(exportData, null, 2);
+              ta.style.display = 'block';
+              ta.value = json;
+              ta.select();
+              const clientCount = (exportData.clients || []).length;
+              const voiceCount = (exportData.voiceNotes || []).length;
+              status.innerHTML = `<span style="color:#198754;">✅ ${clientCount} kliyan + ${voiceCount} voice notes. Tèks la otomatikman kopye.</span>`;
+              try {
+                navigator.clipboard.writeText(json);
+                toast("IndexedDB kopye nan clipboard! 🗄️", "success");
+              } catch (e) {
+                toast("Seleksyone tèks la epi kopye manyèlman", "info");
+              }
+            }
+          };
+          req.onerror = () => {
+            pending--;
+            if (pending === 0) {
+              const json = JSON.stringify(exportData, null, 2);
+              ta.style.display = 'block';
+              ta.value = json;
+            }
+          };
+        });
+      };
+    } catch (err) {
+      status.innerHTML = `<span style="color:#dc3545;">❌ Erè: ${err.message}</span>`;
+    }
+  };
+
+  document.getElementById('btnImportIDB').onclick = async () => {
+    const raw = document.getElementById('importInput').value.trim();
+    const status = document.getElementById('importStatus');
+    if (!raw) {
+      status.innerHTML = '<span style="color:#dc3545;">❌ Vid. Kole JSON an nan bwat ki anlè a dabò.</span>';
+      return;
+    }
+    try {
+      const parsed = JSON.parse(raw);
+      const dbReq = indexedDB.open("BodwoDB", 1);
+      dbReq.onerror = () => { status.innerHTML = '<span style="color:#dc3545;">❌ Pa ka louvri IndexedDB</span>'; };
+      dbReq.onupgradeneeded = (e) => {
+        const dbInstance = e.target.result;
+        if (!dbInstance.objectStoreNames.contains("clients")) {
+          dbInstance.createObjectStore("clients", { keyPath: "id" });
+        }
+        if (!dbInstance.objectStoreNames.contains("voiceNotes")) {
+          dbInstance.createObjectStore("voiceNotes", { keyPath: "id" });
+        }
+      };
+      dbReq.onsuccess = (e) => {
+        const db = e.target.result;
+        let imported = 0;
+        const tx = db.transaction(["clients", "voiceNotes"], "readwrite");
+        const clientStore = tx.objectStore("clients");
+        const voiceStore = tx.objectStore("voiceNotes");
+        if (Array.isArray(parsed.clients)) {
+          for (const item of parsed.clients) {
+            if (item && item.id) { clientStore.put(item); imported++; }
+          }
+        }
+        if (Array.isArray(parsed.voiceNotes)) {
+          for (const item of parsed.voiceNotes) {
+            if (item && item.id) { voiceStore.put(item); imported++; }
+          }
+        }
+        tx.oncomplete = () => {
+          status.innerHTML = `<span style="color:#198754;">✅ ${imported} eleman voye nan IndexedDB. Louvri app a ankò pou w wè yo.</span>`;
+          toast(`${imported} eleman sove! ✅`, "success");
+        };
+      };
+    } catch (e) {
+      status.innerHTML = `<span style="color:#dc3545;">❌ JSON pa valab: ${e.message}</span>`;
+    }
+  };
+
+  document.getElementById('btnCloseToolbar').onclick = () => {
+    toolbar.remove();
+    localStorage.setItem('_migrationToolbarDismissed', '1');
+  };
+
+  if (localStorage.getItem('_migrationToolbarDismissed') === '1') {
+    toolbar.style.display = 'none';
+  }
+}
+
+setTimeout(ensureMigrationToolbar, 800);
 </script>
 </body>
 </html>

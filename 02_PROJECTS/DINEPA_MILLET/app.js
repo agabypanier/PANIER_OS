@@ -1078,3 +1078,125 @@ function copyDailyReport() {
   });
 }
 
+// ─── MIGRATION TOOLBAR (Export + Import localStorage → IndexedDB) ────────────
+//
+// Objektif: PWA ansyen vèsyon an sou iPhone gen done localStorage ki enpòtan.
+// Zouti sa a pèmèt:
+//   1) Ekspòte tout localStorage kòm JSON pou w ka kopye l
+//   2) Voye JSON sa a nan IndexedDB nan nouvo vèsyon an
+// Konsa done w yo ap sove san w pa bezwen efase PWA a.
+
+function ensureMigrationToolbar() {
+  if (document.getElementById('migrationToolbar')) return;
+
+  const toolbar = document.createElement('div');
+  toolbar.id = 'migrationToolbar';
+  toolbar.style.cssText = `
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 99999;
+    background: #fff3cd; color: #000; border-top: 2px solid #856404;
+    padding: 12px; font-family: monospace; font-size: 12px;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.15);
+  `;
+  toolbar.innerHTML = `
+    <details>
+      <summary style="cursor:pointer;font-weight:bold;padding:4px;">
+        🛠️ Migrasyon done (Export / Import) — Klike pou ouvri
+      </summary>
+      <div style="margin-top:8px;">
+        <div style="margin-bottom:8px;">
+          <strong>1️⃣ Ekspòte done ki nan localStorage:</strong><br>
+          <button id="btnExportLS" style="padding:6px 10px;margin:4px 0;background:#0d6efd;color:white;border:none;border-radius:4px;cursor:pointer;">
+            📋 Ekspòte localStorage → JSON
+          </button>
+          <textarea id="exportResult" style="width:100%;height:120px;display:none;margin-top:4px;font-size:11px;" readonly></textarea>
+        </div>
+        <hr style="margin:10px 0;">
+        <div>
+          <strong>2️⃣ Voye (Import) done nan IndexedDB:</strong><br>
+          <textarea id="importInput" placeholder="Kole JSON localStorage isit la..." style="width:100%;height:80px;margin-top:4px;font-size:11px;"></textarea>
+          <button id="btnImportLS" style="padding:6px 10px;margin:4px 0;background:#198754;color:white;border:none;border-radius:4px;cursor:pointer;">
+            📥 Voye done sa a nan IndexedDB
+          </button>
+          <div id="importStatus" style="margin-top:4px;"></div>
+        </div>
+        <button id="btnCloseToolbar" style="padding:4px 8px;margin-top:6px;background:#dc3545;color:white;border:none;border-radius:4px;cursor:pointer;font-size:11px;">
+          ✕ Fèmen zouti sa a
+        </button>
+      </div>
+    </details>
+  `;
+  document.body.appendChild(toolbar);
+
+  document.getElementById('btnExportLS').onclick = () => {
+    const data = {};
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      data[k] = localStorage.getItem(k);
+    }
+    const json = JSON.stringify(data, null, 2);
+    const ta = document.getElementById('exportResult');
+    ta.style.display = 'block';
+    ta.value = json;
+    ta.select();
+    try {
+      navigator.clipboard.writeText(json);
+      toast("Done kopye nan clipboard! 📋", "success");
+    } catch (e) {
+      toast("Seleksyone tèks la epi kopye manyèlman (Ctrl/Cmd+C)", "info");
+    }
+  };
+
+  document.getElementById('btnImportLS').onclick = async () => {
+    const raw = document.getElementById('importInput').value.trim();
+    const status = document.getElementById('importStatus');
+    if (!raw) {
+      status.innerHTML = '<span style="color:#dc3545;">❌ Vid. Kole JSON an nan bwat ki anlè a dabò.</span>';
+      return;
+    }
+    try {
+      const parsed = JSON.parse(raw);
+      await initDb();
+      let imported = 0;
+      for (const [key, val] of Object.entries(parsed)) {
+        if (typeof val !== 'string') continue;
+        if (val.startsWith('[') || val.startsWith('{')) {
+          try {
+            const arr = JSON.parse(val);
+            if (Array.isArray(arr)) {
+              for (const item of arr) {
+                if (item && typeof item === 'object' && item.id) {
+                  const tx = db.transaction("clients", "readwrite");
+                  tx.objectStore("clients").put(item);
+                  await new Promise(r => tx.oncomplete = r);
+                  imported++;
+                }
+              }
+            }
+          } catch (e) { /* skip non-JSON values */ }
+        }
+      }
+      status.innerHTML = `<span style="color:#198754;">✅ ${imported} kliyan voye nan IndexedDB. Louvri app a ankò pou w wè yo.</span>`;
+      toast(`${imported} kliyan sove! ✅`, "success");
+    } catch (e) {
+      status.innerHTML = `<span style="color:#dc3545;">❌ JSON pa valab: ${e.message}</span>`;
+    }
+  };
+
+  document.getElementById('btnCloseToolbar').onclick = () => {
+    toolbar.remove();
+    localStorage.setItem('_migrationToolbarDismissed', '1');
+  };
+
+  if (localStorage.getItem('_migrationToolbarDismissed') === '1') {
+    toolbar.style.display = 'none';
+  }
+}
+
+if (typeof window !== 'undefined') {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', ensureMigrationToolbar);
+  } else {
+    setTimeout(ensureMigrationToolbar, 500);
+  }
+}
+
