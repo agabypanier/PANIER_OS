@@ -1,8 +1,69 @@
 # PANIER OS - Git Ignore
+
+# ===== ENV & SECRETS (PA JAMA KONTMIYE SA) =====
+.env
+.env.*
+*.env
 mail_config.json
+config.json
+secrets.json
+*.pem
+*.key
+*credentials*
+
+# ===== PYTHON =====
 __pycache__/
 *.pyc
-.env
+*.pyo
+*.pyd
+.Python
+venv/
+env/
+.venv/
+
+# ===== NODE / JS =====
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.npm
+.eslintcache
+.vite/
+dist/
+build/
+coverage/
+
+# ===== DATABASES =====
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+panier-finans.db
+data/*.db
+
+# ===== IDE / OS =====
 .vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+$RECYCLE.BIN/
+
+# ===== LOGS / TEMP =====
+*.log
+*.tmp
 /tmp/
 /scratch/
+.cache/
+
+# ===== BUILD ARTIFACTS =====
+*.tsbuildinfo
+.next/
+.nuxt/
+.output/
+
+# ===== ARCHIVES & BACKUPS (MAY CONTAIN SENSITIVE DATA) =====
+04_ARCHIVE/

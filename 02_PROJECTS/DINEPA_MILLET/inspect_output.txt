@@ -1,0 +1,27 @@
+Columns:
+['Paj', 'Localisation', 'Titulaire', 'Adresse', 'Telephone', 'Solde', 'Categorie', 'Tarif_Taxe', 'Statut', 'Type', 'Verifye']
+
+First 20 rows:
+    Paj  Localisation                    Titulaire                 Adresse                      Telephone      Solde           Categorie  Tarif_Taxe Statut          Type Verifye
+0     1  5.040060e+11              DEBROSSE URBAIN                     NaN                            NaN   3574.630           Résidence    1947.000  Actif   Forfaitaire     NaN
+1     1  5.040060e+11                  BOYER Hervé                     NaN                            NaN  23397.000           Résidence    1947.000  Actif   Forfaitaire     NaN
+2     1  5.040060e+11                   COLON LEON          MONTAGNE NOIRE                            NaN  23397.000           Résidence    1947.000  Actif   Forfaitaire     NaN
+3     1  5.040060e+11              CHARLMERS Raoul         RUE C CASSAGNOL                            NaN   8547.000           Résidence    1947.000  Actif   Forfaitaire     NaN
+4     1  5.040060e+11              MARZOUKA Joseph  65, RTE MONTAGNE NOIRE                            NaN   4512.429           Résidence    6490.000  Actif   Forfaitaire     NaN
+5     1  5.040060e+11          Fritz Alphonse Jean  55, RTE MONTAGNE NOIRE                            NaN   8130.634           Résidence    1947.000  Actif   Forfaitaire     NaN
+6     1  5.040060e+11           CASSAGNOL Emmanuel  67, RTE MONTAGNE NOIRE                            NaN    -15.002           Résidence    1947.000  Actif   Forfaitaire      Wi
+7     1  5.040060e+11               MIREILLE Coles  23, RTE MONTAGNE NOIRE                            NaN  98873.486           Résidence    1947.000  Actif   Forfaitaire     NaN
+8     1  5.040060e+11  Dutour Jonathan André Raoul  23, RTE MONTAGNE NOIRE                            NaN  20096.996         Particulier       0.000  Actif  Volumétrique      Wi
+9     1  5.040070e+11                 MOURRA JAMES         45, RUE BOSSIER                            NaN  15862.000           Résidence    1947.000  Actif   Forfaitaire     NaN
+10    1  5.040070e+11                   Jean Herby     12, RUE C CASSAGNOL              (509) 36.33.22.52     -3.000           Résidence    5192.000  Actif   Forfaitaire      Wi
+11    1  5.040070e+11              SALNAVE CHARLES  38, rue montagne noire              (509) 36.44.43.65    742.000            Commerce    1947.000  Actif   Forfaitaire      Wi
+12    1  5.040070e+11    GUY MARC & PIE. R. Julien   7, RTE MONTAGNE NOIRE  (509) 34.44.03.53;(509) 32...  59599.385           Résidence    1947.000  Actif   Forfaitaire      Wi
+13    1  5.040070e+11                VILLARD Denis   9, RTE MONTAGNE NOIRE                            NaN  61075.160           Résidence    1947.000  Actif   Forfaitaire     NaN
+14    1  5.040070e+11               BARDINAL CLARA      RTE MONTAGNE NOIRE                            NaN   6896.269           Résidence    1947.000  Actif   Forfaitaire     NaN
+15    1  5.040070e+11              COIRIN Philippe  13, RTE MONTAGNE NOIRE                            NaN  27977.326           Résidence    1947.000  Actif   Forfaitaire     NaN
+16    1  5.040070e+11                 Andre Marina  15, RTE MONTAGNE NOIRE                            NaN  78249.595         Particulier    6194.716  Actif   Forfaitaire     NaN
+17    1  5.040070e+11               THOMAS JEANINE            rue dambalah                            NaN  27042.565           Résidence    1947.000  Actif   Forfaitaire     NaN
+18    1  5.040070e+11         Tidor Marie Michelle  21, RTE MONTAGNE NOIRE                            NaN   1946.997           Résidence    1947.000  Actif   Forfaitaire     NaN
+19    1  5.040070e+11               FAURE Germaine       25, IMP CASSAGNOL              (509) 45.41.36.86      0.000  Organisme Non-Gou.    3551.800  Actif   Forfaitaire      Wi
+
+Total rows: 352

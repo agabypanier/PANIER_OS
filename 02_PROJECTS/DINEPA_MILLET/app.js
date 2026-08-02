@@ -3,6 +3,7 @@ let DB = { abonnes: [], convocations: [], activity: [] };
 let currentAbonneId = null;
 let sortKey = 'pdl';
 let sortAsc = true;
+let currentSecteur = 'millet'; // 'millet' ou 'metivier'
 
 // ─── PDL PARSER ──────────────────────────────────────────────────────────────
 function parsePDL(pdl) {
@@ -25,26 +26,86 @@ function blocName(pdl) {
 }
 
 // ─── INIT ─────────────────────────────────────────────────────────────────────
+// ─── INIT ─────────────────────────────────────────────────────────────────────
 window.onload = () => {
+  const savedSecteur = localStorage.getItem('dinepa_active_secteur');
+  if (savedSecteur) {
+    currentSecteur = savedSecteur;
+    const selectEl = document.getElementById('sektèSelect');
+    if (selectEl) selectEl.value = currentSecteur;
+    const labels = {
+      millet: 'Sektè Millet (MILL1) · Archive 2019',
+      metivier: 'Sektè Métivier (METV1) · Archive 2019'
+    };
+    const el = document.getElementById('pageSubtitle');
+    if (el) el.textContent = labels[currentSecteur] || '';
+  }
   loadFromStorage();
   updateDashboard();
   renderAbonnes();
   renderConvocations();
 };
 
+function getStorageKey() {
+  return currentSecteur === 'metivier' ? 'dinepa_metivier_db' : 'dinepa_millet_db';
+}
+
 function loadFromStorage() {
-  const saved = localStorage.getItem('dinepa_millet_db');
+  const saved = localStorage.getItem(getStorageKey());
   if (saved) {
     DB = JSON.parse(saved);
-  } else if (typeof DINEPA_ARCHIVE_2019 !== 'undefined' && DINEPA_ARCHIVE_2019.length > 0) {
-    // First launch: auto-load the 2019 archive
-    DINEPA_ARCHIVE_2019.forEach((s, i) => {
-      DB.abonnes.push({ ...s, id: 'arch-' + i, lastAction: 'Archive 2019', secteur: 'MILL1', notes: s.notes || '', doleances: s.doleances || '', swivi: '', randevou: '' });
-    });
-    addActivity('green', `Archive 2019 chargée automatiquement : ${DINEPA_ARCHIVE_2019.length} abonnés`);
-    saveToStorage();
+    // Auto-update if Métivier database has less than 500 subscribers
+    if (currentSecteur === 'metivier' && DB.abonnes.length < 500 && typeof DINEPA_METIVIER !== 'undefined' && DINEPA_METIVIER.length > 500) {
+      DB = { abonnes: [], convocations: [], activity: [] };
+      DINEPA_METIVIER.forEach((s, i) => {
+        DB.abonnes.push({ ...s, id: 'metv-' + i, lastAction: 'Archive Métivier', secteur: 'METV1', notes: s.notes || '', doleances: s.doleances || '', swivi: '', randevou: '' });
+      });
+      addActivity('blue', `Mise à jour automatique Métivier : ${DINEPA_METIVIER.length} abonés chargés`);
+      saveToStorage();
+    }
+    // Auto-update if Millet database has less than 1300 subscribers
+    if (currentSecteur === 'millet' && DB.abonnes.length < 1300 && typeof DINEPA_ARCHIVE_2019 !== 'undefined' && DINEPA_ARCHIVE_2019.length > 1300) {
+      DB = { abonnes: [], convocations: [], activity: [] };
+      DINEPA_ARCHIVE_2019.forEach((s, i) => {
+        DB.abonnes.push({ ...s, id: 'arch-' + i, lastAction: 'Archive 2019', secteur: 'MILL1', notes: s.notes || '', doleances: s.doleances || '', swivi: '', randevou: '' });
+      });
+      addActivity('green', `Mise à jour automatique Millet : ${DINEPA_ARCHIVE_2019.length} abonés chargés`);
+      saveToStorage();
+    }
+  } else {
+    // First launch: auto-load archive selon sektè
+    DB = { abonnes: [], convocations: [], activity: [] };
+    if (currentSecteur === 'millet' && typeof DINEPA_ARCHIVE_2019 !== 'undefined' && DINEPA_ARCHIVE_2019.length > 0) {
+      DINEPA_ARCHIVE_2019.forEach((s, i) => {
+        DB.abonnes.push({ ...s, id: 'arch-' + i, lastAction: 'Archive 2019', secteur: 'MILL1', notes: s.notes || '', doleances: s.doleances || '', swivi: '', randevou: '' });
+      });
+      addActivity('green', `Archive Millet chargée : ${DINEPA_ARCHIVE_2019.length} abonés`);
+      saveToStorage();
+    } else if (currentSecteur === 'metivier' && typeof DINEPA_METIVIER !== 'undefined' && DINEPA_METIVIER.length > 0) {
+      DINEPA_METIVIER.forEach((s, i) => {
+        DB.abonnes.push({ ...s, id: 'metv-' + i, lastAction: 'Archive Métivier', secteur: 'METV1', notes: s.notes || '', doleances: s.doleances || '', swivi: '', randevou: '' });
+      });
+      addActivity('blue', `Archive Métivier chargée : ${DINEPA_METIVIER.length} abonés`);
+      saveToStorage();
+    }
   }
   populateFilters();
+}
+
+function changeSecteur(val) {
+  currentSecteur = val;
+  localStorage.setItem('dinepa_active_secteur', val);
+  const labels = {
+    millet: 'Sektè Millet (MILL1) · Archive 2019',
+    metivier: 'Sektè Métivier (METV1) · Archive 2019'
+  };
+  const el = document.getElementById('pageSubtitle');
+  if (el) el.textContent = labels[val] || '';
+  loadFromStorage();
+  updateDashboard();
+  renderAbonnes();
+  renderConvocations();
+  toast(`Sektè ${val === 'metivier' ? 'Métivier' : 'Millet'} chajé ✓`, 'success');
 }
 
 function populateFilters() {
@@ -52,6 +113,12 @@ function populateFilters() {
   const zoneSelect = document.getElementById('filterZone');
   if (zoneSelect) {
     zoneSelect.innerHTML = '<option value="">Toutes les Zones</option>' + zones.map(z => `<option value="${z}">${z}</option>`).join('');
+  }
+  // Populate category filter
+  const cats = [...new Set(DB.abonnes.map(a => a.categorie).filter(Boolean))].sort();
+  const catSelect = document.getElementById('filterCategorie');
+  if (catSelect) {
+    catSelect.innerHTML = '<option value="">Toutes Catégories</option>' + cats.map(c => `<option value="${c}">${c}</option>`).join('');
   }
   updateBlocFilter();
 }
@@ -67,7 +134,7 @@ function updateBlocFilter() {
 }
 
 function saveToStorage() {
-  localStorage.setItem('dinepa_millet_db', JSON.stringify(DB));
+  localStorage.setItem(getStorageKey(), JSON.stringify(DB));
 }
 
 // ─── NAVIGATION ───────────────────────────────────────────────────────────────
@@ -92,12 +159,16 @@ function updateDashboard() {
   const dette = a.filter(x => x.statut === 'dette').length;
   const conv  = a.filter(x => x.statut === 'convoque').length;
   const ferme = a.filter(x => x.statut === 'ferme').length;
+  const verifye = a.filter(x => x.verifye && x.verifye.toString().toLowerCase() === 'wi').length;
+  const totalTarif = a.reduce((sum, x) => sum + (parseFloat(x.tarif_taxe) || 0), 0);
 
   setText('kpi-total', total);
   setText('kpi-actif', actif);
   setText('kpi-dette', dette);
   setText('kpi-conv', conv);
   setText('kpi-ferme', ferme);
+  setText('kpi-verifye', verifye);
+  setText('kpi-tarif', totalTarif > 0 ? Math.round(totalTarif).toLocaleString() + ' HTG/mwa' : '0');
   setText('badge-abonnes', total);
   setText('badge-conv', DB.convocations.filter(c => c.statut === 'pending').length);
 
@@ -139,12 +210,18 @@ function renderAbonnes(list) {
   setText('resultCount', data.length + ' résultats');
 
   if (data.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="8" class="empty-row"><div class="empty-state"><span>📭</span><p>Aucun résultat.</p></div></td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="13" class="empty-row"><div class="empty-state"><span>📭</span><p>Aucun résultat.</p></div></td></tr>`;
     return;
   }
 
   tbody.innerHTML = data.map((a, idx) => {
     const p = parsePDL(a.pdl);
+    const isVerifye = a.verifye && a.verifye.toString().toLowerCase() === 'wi';
+    const verifBadge = isVerifye
+      ? `<span title="Vizit verifye" style="color:#22c55e;font-size:1rem">✅</span>`
+      : `<span title="Pa verifye" style="color:#94a3b8;font-size:.85rem">—</span>`;
+    const tarif = parseFloat(a.tarif_taxe) || 0;
+    const tarifStr = tarif > 0 ? tarif.toLocaleString() + ' HTG' : '—';
     return `
     <tr>
       <td style="color:var(--text2);font-size:.75rem">${idx + 1}</td>
@@ -152,12 +229,13 @@ function renderAbonnes(list) {
       <td><span class="loc-code">${p.bloc}</span></td>
       <td><span class="pdl-code">${a.pdl || '—'}</span></td>
       <td><strong>${a.nom || ''}</strong> ${a.prenom || ''}</td>
-      <td style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${a.adresse || '—'}</td>
+      <td style="max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${a.adresse || '—'}</td>
       <td style="font-size:.8rem">${a.telephone || '—'}</td>
       <td><span class="badge badge-${a.statut}">${labelStatut(a.statut)}</span></td>
-      <td>${a.solde_ant && Number(a.solde_ant) > 0 ? Number(a.solde_ant).toLocaleString() + ' HTG' : '0'}</td>
-      <td style="font-size:.75rem;color:var(--text2);max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${a.notes || '—'}</td>
-      <td style="font-size:.75rem;color:var(--text2);max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${a.doleances || '—'}</td>
+      <td style="font-size:.75rem">${a.categorie || '—'}</td>
+      <td style="font-size:.75rem;font-weight:600;color:var(--teal)">${tarifStr}</td>
+      <td style="text-align:center">${verifBadge}</td>
+      <td>${a.solde_ant && Number(a.solde_ant) > 0 ? '<span style="color:var(--red);font-weight:600">' + Number(a.solde_ant).toLocaleString() + ' HTG</span>' : '<span style="color:var(--text2)">0</span>'}</td>
       <td>
         <div class="action-btns">
           <button class="btn-icon" onclick="showDetail('${a.id}')" title="Voir détail">👁️</button>
@@ -174,17 +252,23 @@ function getFiltered() {
   let data = [...DB.abonnes];
   const zone = document.getElementById('filterZone')?.value || '';
   const bloc = document.getElementById('filterBloc')?.value || '';
+  const cat  = document.getElementById('filterCategorie')?.value || '';
+  const ver  = document.getElementById('filterVerifye')?.value || '';
   const search = document.getElementById('searchAbonne')?.value?.toLowerCase() || '';
-  
+
   if (zone) data = data.filter(a => zoneName(a.pdl) === zone);
   if (bloc) data = data.filter(a => parsePDL(a.pdl).bloc === bloc);
-  
+  if (cat)  data = data.filter(a => (a.categorie || '') === cat);
+  if (ver === 'wi')  data = data.filter(a => a.verifye && a.verifye.toString().toLowerCase() === 'wi');
+  if (ver === 'non') data = data.filter(a => !a.verifye || a.verifye.toString().toLowerCase() !== 'wi');
+
   if (search) data = data.filter(a =>
     (a.pdl || '').toLowerCase().includes(search) ||
     (a.nom || '').toLowerCase().includes(search) ||
     (a.prenom || '').toLowerCase().includes(search) ||
     (a.adresse || '').toLowerCase().includes(search) ||
     (a.telephone || '').toLowerCase().includes(search) ||
+    (a.categorie || '').toLowerCase().includes(search) ||
     zoneName(a.pdl).toLowerCase().includes(search) ||
     blocName(a.pdl).toLowerCase().includes(search) ||
     (a.swivi || '').toLowerCase().includes(search)
@@ -263,6 +347,12 @@ function showDetail(id) {
   if (!a) return;
   currentAbonneId = id;
   const p = parsePDL(a.pdl);
+  const isVerifye = a.verifye && a.verifye.toString().toLowerCase() === 'wi';
+  const verifBadge = isVerifye
+    ? `<span style="background:#dcfce7;color:#16a34a;border:1px solid #86efac;padding:.2rem .6rem;border-radius:20px;font-size:.8rem;font-weight:600">✅ Verifye</span>`
+    : `<span style="background:#f1f5f9;color:#64748b;border:1px solid #cbd5e1;padding:.2rem .6rem;border-radius:20px;font-size:.8rem">⏳ Pa Verifye</span>`;
+  const tarif = parseFloat(a.tarif_taxe) || 0;
+  const solde = Number(a.solde_ant || 0);
   document.getElementById('detailBody').innerHTML = `
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
       <div><label style="font-size:.72rem;color:var(--text2)">PDL (LOKALIZASYON)</label><p class="pdl-code" style="font-size:1.2rem;margin-top:.25rem">${a.pdl || '—'}</p></div>
@@ -271,7 +361,10 @@ function showDetail(id) {
       <div><label style="font-size:.72rem;color:var(--text2)">STATUT</label><p style="margin-top:.25rem"><span class="badge badge-${a.statut}">${labelStatut(a.statut)}</span></p></div>
       <div style="grid-column:1/-1"><label style="font-size:.72rem;color:var(--text2)">ADRESSE</label><p style="margin-top:.25rem">${a.adresse || '—'}</p></div>
       <div><label style="font-size:.72rem;color:var(--text2)">TELEFÒN</label><p style="margin-top:.25rem">${a.telephone || '—'}</p></div>
-      <div><label style="font-size:.72rem;color:var(--text2)">SOLDE ANTÉRIEUR</label><p style="margin-top:.25rem;color:var(--red);font-weight:600">${Number(a.solde_ant||0).toLocaleString()} HTG</p></div>
+      <div><label style="font-size:.72rem;color:var(--text2)">VIZIT VERIFYE</label><p style="margin-top:.25rem">${verifBadge}</p></div>
+      <div><label style="font-size:.72rem;color:var(--text2)">KATEGORI</label><p style="margin-top:.25rem;font-weight:600">${a.categorie || '—'} <span style="font-size:.75rem;color:var(--text2);font-weight:400">(${a.type || '—'})</span></p></div>
+      <div><label style="font-size:.72rem;color:var(--text2)">TARIF / MWA</label><p style="margin-top:.25rem;color:var(--teal);font-weight:700;font-size:1.05rem">${tarif > 0 ? tarif.toLocaleString() + ' HTG/mwa' : '—'}</p></div>
+      <div><label style="font-size:.72rem;color:var(--text2)">DÈT JWIYÈ (SOLDE ANT.)</label><p style="margin-top:.25rem;color:${solde > 0 ? 'var(--red)' : 'var(--green)'};font-weight:700;font-size:1.1rem">${solde > 0 ? solde.toLocaleString() + ' HTG' : '✅ Okenn dèt'}</p></div>
       <div><label style="font-size:.72rem;color:var(--text2)">RANDEVOU / SWIVI</label><p style="margin-top:.25rem;color:var(--blue);font-weight:600">${a.randevou || 'Aucun'}</p></div>
       ${a.notes ? `<div style="grid-column:1/-1"><label style="font-size:.72rem;color:var(--text2)">REMAK</label><p style="margin-top:.25rem;color:var(--text2)">${a.notes}</p></div>` : ''}
       ${a.doleances ? `<div style="grid-column:1/-1"><label style="font-size:.72rem;color:var(--text2)">DOLÉANS</label><p style="margin-top:.25rem;color:var(--orange)">${a.doleances}</p></div>` : ''}
@@ -528,7 +621,56 @@ function v(id) { return document.getElementById(id)?.value?.trim() || ''; }
 
 // ─── RESET & RELOAD ARCHIVE ─────────────────────────────────────────────────
 function resetAndLoad() {
-  if (!confirm('Sa ap efase tout vye done yo epi chaje Archive 2019 la nèf. Kontinye?')) return;
-  localStorage.removeItem('dinepa_millet_db');
+  const sekteName = currentSecteur === 'metivier' ? 'Métivier' : 'Millet';
+  if (!confirm(`Sa ap efase tout done sektè ${sekteName} yo epi rechaje l nèf. Kontinye?`)) return;
+  localStorage.removeItem(getStorageKey());
   location.reload();
+}
+
+// ─── BACKUP & SYNC ──────────────────────────────────────────────────────────
+function exportBackupJSON() {
+  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({
+    secteur: currentSecteur,
+    db: DB,
+    exportDate: new Date().toISOString()
+  }));
+  const downloadAnchor = document.createElement('a');
+  downloadAnchor.setAttribute("href",     dataStr);
+  downloadAnchor.setAttribute("download", `dinepa_backup_${currentSecteur}_${new Date().toISOString().slice(0,10)}.json`);
+  document.body.appendChild(downloadAnchor);
+  downloadAnchor.click();
+  downloadAnchor.remove();
+  toast('Backup JSON kòmanse telechaje! 📥', 'success');
+}
+
+function importBackupJSON(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const parsed = JSON.parse(e.target.result);
+      if (parsed && parsed.db && Array.isArray(parsed.db.abonnes)) {
+        if (confirm(`Èske w vle ranplase done sektè ${currentSecteur} yo ak backup ${parsed.secteur || ''} ki te fèt nan dat ${new Date(parsed.exportDate).toLocaleDateString()}?`)) {
+          // If the backup sector is different, switch sector
+          if (parsed.secteur && parsed.secteur !== currentSecteur) {
+            changeSecteur(parsed.secteur);
+            const selectEl = document.getElementById('sektèSelect');
+            if (selectEl) selectEl.value = parsed.secteur;
+          }
+          DB = parsed.db;
+          saveToStorage();
+          updateDashboard();
+          renderAbonnes();
+          renderConvocations();
+          toast('Done yo enpòte avèk siksè! 🔄', 'success');
+        }
+      } else {
+        toast('Fichye backup la pa valid ❌', 'error');
+      }
+    } catch(err) {
+      toast('Erè pandan lekti fichye a ❌', 'error');
+    }
+  };
+  reader.readAsText(file);
 }

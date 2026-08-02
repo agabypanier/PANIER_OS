@@ -58,7 +58,14 @@
     </nav>
 
     <div class="sidebar-footer">
-      <span class="version-tag">v1.0 · Mai 2026</span>
+      <div style="margin-bottom:.75rem">
+        <label style="font-size:.68rem;color:var(--text2);font-weight:600;display:block;margin-bottom:.35rem">SEKTÈ AKTIF :</label>
+        <select id="sektèSelect" onchange="changeSecteur(this.value)" style="width:100%;padding:.4rem .6rem;border-radius:6px;border:1px solid var(--border);background:var(--bg2);color:var(--text1);font-size:.8rem;cursor:pointer">
+          <option value="millet">💧 Millet (MILL1)</option>
+          <option value="metivier">💧 Métivier (METV1)</option>
+        </select>
+      </div>
+      <span class="version-tag">v1.1 · Out 2026</span>
     </div>
   </aside>
 
@@ -69,7 +76,7 @@
     <header class="topbar">
       <div class="topbar-left">
         <h1 class="page-title" id="pageTitle">Dashboard</h1>
-        <span class="page-subtitle">Secteur Millet · Archive 2019</span>
+        <span class="page-subtitle" id="pageSubtitle">Sektè Millet (MILL1) · Archive 2019</span>
       </div>
       <div class="topbar-right">
         <div class="search-wrap">
@@ -126,6 +133,20 @@
           <div class="kpi-data">
             <span class="kpi-value" id="kpi-recouvre">0 HTG</span>
             <span class="kpi-label">Récupéré Aujourd'hui</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon green">✅</div>
+          <div class="kpi-data">
+            <span class="kpi-value" id="kpi-verifye">0</span>
+            <span class="kpi-label">Abonnés Vérifiés</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon blue">📅</div>
+          <div class="kpi-data">
+            <span class="kpi-value" id="kpi-tarif" style="font-size:1rem">0</span>
+            <span class="kpi-label">Total Tarif / Mwa</span>
           </div>
         </div>
       </div>
@@ -211,6 +232,14 @@
           <select id="filterBloc" onchange="filterAbonnes()">
             <option value="">Tous les Blocs</option>
           </select>
+          <select id="filterCategorie" onchange="filterAbonnes()">
+            <option value="">Toutes Catégories</option>
+          </select>
+          <select id="filterVerifye" onchange="filterAbonnes()">
+            <option value="">Tout (Verifye / Pa)</option>
+            <option value="wi">✅ Verifye sèlman</option>
+            <option value="non">⏳ Pa Verifye sèlman</option>
+          </select>
           <input type="text" id="searchAbonne" placeholder="Chèche PDL, non, telefòn..." oninput="filterAbonnes()">
         </div>
         <div class="toolbar-right">
@@ -232,9 +261,10 @@
               <th>Adrès</th>
               <th>Telefòn</th>
               <th onclick="sortTable('statut')">Estati ↕</th>
-              <th>Solde</th>
-              <th>Remak</th>
-              <th>Doléans</th>
+              <th onclick="sortTable('categorie')">Kategori ↕</th>
+              <th onclick="sortTable('tarif_taxe')">Tarif/Mwa ↕</th>
+              <th>✅ Verifye</th>
+              <th onclick="sortTable('solde_ant')">Dèt (Solde) ↕</th>
               <th>Aksyon</th>
             </tr>
           </thead>
@@ -405,6 +435,19 @@ localisation,pdl,nom,prenom,adresse,solde_ant,statut
           </div>
         </div>
 
+        <!-- BACKUP & SYNC -->
+        <div class="card" style="margin-top:1.5rem; border: 1.5px dashed var(--teal)">
+          <div class="card-header">
+            <h3>🔄 Transfere Done (Telefòn ⇆ Òdinatè)</h3>
+          </div>
+          <p>Telechaje tout done ki sou telefòn ou yo kòm yon backup, epi enpòte yo sou òdinatè a pou senkronize travay ou te fè sou tèren an.</p>
+          <div style="display:flex; gap:1rem; margin-top:1rem; flex-wrap:wrap">
+            <button class="btn btn-primary" onclick="exportBackupJSON()" style="background:var(--teal); border-color:var(--teal)">📤 Ekspòte Done (Backup JSON)</button>
+            <button class="btn btn-outline" onclick="document.getElementById('backupFile').click()">📥 Enpòte Done (Chaje JSON)</button>
+            <input type="file" id="backupFile" accept=".json" onchange="importBackupJSON(event)" style="display:none">
+          </div>
+        </div>
+
         <!-- SAMPLE DATA -->
         <div class="card" style="margin-top:1.5rem">
           <div class="card-header">
@@ -495,6 +538,7 @@ localisation,pdl,nom,prenom,adresse,solde_ant,statut
   <div class="toast-container" id="toastContainer"></div>
 
   <script src="data.js"></script>
+  <script src="data_metivier.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

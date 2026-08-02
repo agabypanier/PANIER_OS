@@ -1,8 +1,12 @@
-const CACHE='bodwo-v2';
+const CACHE='bodwo-v3';
 const ASSETS=[
   './',
+  './index.html',
   './bodwo.html',
   './data.js',
+  './data_metivier.js',
+  './app.js',
+  './style.css',
   './icon.svg',
   './manifest.json',
   'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css',
