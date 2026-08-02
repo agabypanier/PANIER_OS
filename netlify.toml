@@ -1,2 +1,4 @@
 [build]
-  publish = "02_PROJECTS/DINEPA_MILLET"
+  base = "02_PROJECTS/DINEPA_MILLET"
+  publish = "."
+  command = ""
