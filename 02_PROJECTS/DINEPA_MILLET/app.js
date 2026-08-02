@@ -16,6 +16,68 @@ function parsePDL(pdl) {
     kay: s.substring(6)
   };
 }
+// ─── INDEXEDDB ENGINE ────────────────────────────────────────────────────────
+const DB_NAME = "BodwoDB";
+const DB_VERSION = 1;
+let db = null;
+
+function initDb() {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open(DB_NAME, DB_VERSION);
+    request.onerror = (e) => reject("Pa kapab louvri IndexedDB");
+    request.onsuccess = (e) => {
+      db = e.target.result;
+      resolve(db);
+    };
+    request.onupgradeneeded = (e) => {
+      const dbInstance = e.target.result;
+      if (!dbInstance.objectStoreNames.contains("clients")) {
+        dbInstance.createObjectStore("clients", { keyPath: "id" });
+      }
+      if (!dbInstance.objectStoreNames.contains("voiceNotes")) {
+        dbInstance.createObjectStore("voiceNotes", { keyPath: "id" });
+      }
+    };
+  });
+}
+
+function dbGetAllClients() {
+  return new Promise((resolve) => {
+    const tx = db.transaction("clients", "readonly");
+    const store = tx.objectStore("clients");
+    const req = store.getAll();
+    req.onsuccess = () => resolve(req.result || []);
+    req.onerror = () => resolve([]);
+  });
+}
+
+function normalizeClient(c) {
+  c.kòd = c.kòd || c.pdl || '';
+  c.pdl = c.kòd;
+  
+  c.nòt = c.nòt || c.adresse || '';
+  c.adresse = c.nòt;
+  
+  if (c.non) {
+    const parts = c.non.split(' ');
+    c.nom = c.nom || parts[0] || '';
+    c.prenom = c.prenom || parts.slice(1).join(' ') || '';
+  } else {
+    c.non = `${c.nom || ''} ${c.prenom || ''}`.trim().toUpperCase();
+  }
+  
+  if (c.sektè === 'Métivier' || c.secteur === 'METV1') {
+    c.sektè = 'Métivier';
+    c.secteur = 'METV1';
+  } else {
+    c.sektè = 'Millet';
+    c.secteur = 'MILL1';
+  }
+  
+  c.solde_ant = parseFloat(c.solde_ant) || 0;
+  return c;
+}
+
 function zoneName(pdl) {
   const p = parsePDL(pdl);
   return `${p.secteur}-${p.zone}`;
@@ -26,8 +88,8 @@ function blocName(pdl) {
 }
 
 // ─── INIT ─────────────────────────────────────────────────────────────────────
-// ─── INIT ─────────────────────────────────────────────────────────────────────
-window.onload = () => {
+window.onload = async () => {
+  await initDb().catch(console.error);
   const savedSecteur = localStorage.getItem('dinepa_active_secteur');
   if (savedSecteur) {
     currentSecteur = savedSecteur;
@@ -40,7 +102,7 @@ window.onload = () => {
     const el = document.getElementById('pageSubtitle');
     if (el) el.textContent = labels[currentSecteur] || '';
   }
-  loadFromStorage();
+  await loadFromStorage();
   updateDashboard();
   renderAbonnes();
   renderConvocations();
@@ -50,49 +112,81 @@ function getStorageKey() {
   return currentSecteur === 'metivier' ? 'dinepa_metivier_db' : 'dinepa_millet_db';
 }
 
-function loadFromStorage() {
-  const saved = localStorage.getItem(getStorageKey());
-  if (saved) {
-    DB = JSON.parse(saved);
-    // Auto-update if Métivier database has less than 500 subscribers
-    if (currentSecteur === 'metivier' && DB.abonnes.length < 500 && typeof DINEPA_METIVIER !== 'undefined' && DINEPA_METIVIER.length > 500) {
-      DB = { abonnes: [], convocations: [], activity: [] };
-      DINEPA_METIVIER.forEach((s, i) => {
-        DB.abonnes.push({ ...s, id: 'metv-' + i, lastAction: 'Archive Métivier', secteur: 'METV1', notes: s.notes || '', doleances: s.doleances || '', swivi: '', randevou: '' });
-      });
-      addActivity('blue', `Mise à jour automatique Métivier : ${DINEPA_METIVIER.length} abonés chargés`);
-      saveToStorage();
+async function loadFromStorage() {
+  const savedConvs = localStorage.getItem(getStorageKey() + '_convs');
+  const savedActivity = localStorage.getItem(getStorageKey() + '_activity');
+  DB.convocations = savedConvs ? JSON.parse(savedConvs) : [];
+  DB.activity = savedActivity ? JSON.parse(savedActivity) : [];
+  
+  let allClients = [];
+  if (db) {
+    allClients = await dbGetAllClients();
+  }
+  
+  const isMetivier = currentSecteur === 'metivier';
+  let filtered = allClients.filter(c => {
+    const sect = c.sektè || c.secteur || '';
+    if (isMetivier) {
+      return sect.toLowerCase().includes('metv') || sect === 'Métivier';
+    } else {
+      return sect.toLowerCase().includes('mill') || sect === 'Millet';
     }
-    // Auto-update if Millet database has less than 1300 subscribers
-    if (currentSecteur === 'millet' && DB.abonnes.length < 1300 && typeof DINEPA_ARCHIVE_2019 !== 'undefined' && DINEPA_ARCHIVE_2019.length > 1300) {
-      DB = { abonnes: [], convocations: [], activity: [] };
-      DINEPA_ARCHIVE_2019.forEach((s, i) => {
-        DB.abonnes.push({ ...s, id: 'arch-' + i, lastAction: 'Archive 2019', secteur: 'MILL1', notes: s.notes || '', doleances: s.doleances || '', swivi: '', randevou: '' });
-      });
-      addActivity('green', `Mise à jour automatique Millet : ${DINEPA_ARCHIVE_2019.length} abonés chargés`);
-      saveToStorage();
+  });
+  
+  if (filtered.length > 0) {
+    DB.abonnes = filtered.map(normalizeClient);
+    
+    if (isMetivier && DB.abonnes.length < 500 && typeof DINEPA_METIVIER !== 'undefined' && DINEPA_METIVIER.length > 500) {
+      await upgradeSectorData('metivier', DINEPA_METIVIER);
+    } else if (!isMetivier && DB.abonnes.length < 1300 && typeof DINEPA_ARCHIVE_2019 !== 'undefined' && DINEPA_ARCHIVE_2019.length > 1300) {
+      await upgradeSectorData('millet', DINEPA_ARCHIVE_2019);
     }
   } else {
-    // First launch: auto-load archive selon sektè
-    DB = { abonnes: [], convocations: [], activity: [] };
-    if (currentSecteur === 'millet' && typeof DINEPA_ARCHIVE_2019 !== 'undefined' && DINEPA_ARCHIVE_2019.length > 0) {
-      DINEPA_ARCHIVE_2019.forEach((s, i) => {
-        DB.abonnes.push({ ...s, id: 'arch-' + i, lastAction: 'Archive 2019', secteur: 'MILL1', notes: s.notes || '', doleances: s.doleances || '', swivi: '', randevou: '' });
-      });
-      addActivity('green', `Archive Millet chargée : ${DINEPA_ARCHIVE_2019.length} abonés`);
-      saveToStorage();
-    } else if (currentSecteur === 'metivier' && typeof DINEPA_METIVIER !== 'undefined' && DINEPA_METIVIER.length > 0) {
-      DINEPA_METIVIER.forEach((s, i) => {
-        DB.abonnes.push({ ...s, id: 'metv-' + i, lastAction: 'Archive Métivier', secteur: 'METV1', notes: s.notes || '', doleances: s.doleances || '', swivi: '', randevou: '' });
-      });
-      addActivity('blue', `Archive Métivier chargée : ${DINEPA_METIVIER.length} abonés`);
-      saveToStorage();
+    if (!isMetivier && typeof DINEPA_ARCHIVE_2019 !== 'undefined' && DINEPA_ARCHIVE_2019.length > 0) {
+      await upgradeSectorData('millet', DINEPA_ARCHIVE_2019);
+    } else if (isMetivier && typeof DINEPA_METIVIER !== 'undefined' && DINEPA_METIVIER.length > 0) {
+      await upgradeSectorData('metivier', DINEPA_METIVIER);
     }
   }
   populateFilters();
 }
 
-function changeSecteur(val) {
+async function upgradeSectorData(sector, archive) {
+  const isMetivier = sector === 'metivier';
+  const prefix = isMetivier ? 'metv-' : 'arch-';
+  const sectTag = isMetivier ? 'Métivier' : 'Millet';
+  const sectCode = isMetivier ? 'METV1' : 'MILL1';
+  
+  const abonnesToSave = archive.map((s, i) => {
+    return normalizeClient({
+      ...s,
+      id: prefix + i,
+      lastAction: isMetivier ? 'Archive Métivier' : 'Archive 2019',
+      secteur: sectCode,
+      sektè: sectTag,
+      notes: s.notes || '',
+      doleances: s.doleances || '',
+      swivi: '',
+      randevou: '',
+      lat: null,
+      lng: null,
+      dènyeBòdwo: null
+    });
+  });
+  
+  if (db) {
+    const tx = db.transaction("clients", "readwrite");
+    const store = tx.objectStore("clients");
+    abonnesToSave.forEach(c => store.put(c));
+    await new Promise(r => tx.oncomplete = r);
+  }
+  
+  DB.abonnes = abonnesToSave;
+  addActivity(isMetivier ? 'blue' : 'green', `Archive ${sectTag} chargée : ${archive.length} abonés`);
+  localStorage.setItem(getStorageKey() + '_activity', JSON.stringify(DB.activity));
+}
+
+async function changeSecteur(val) {
   currentSecteur = val;
   localStorage.setItem('dinepa_active_secteur', val);
   const labels = {
@@ -101,7 +195,7 @@ function changeSecteur(val) {
   };
   const el = document.getElementById('pageSubtitle');
   if (el) el.textContent = labels[val] || '';
-  loadFromStorage();
+  await loadFromStorage();
   updateDashboard();
   renderAbonnes();
   renderConvocations();
@@ -133,8 +227,18 @@ function updateBlocFilter() {
   }
 }
 
-function saveToStorage() {
-  localStorage.setItem(getStorageKey(), JSON.stringify(DB));
+async function saveToStorage() {
+  localStorage.setItem(getStorageKey() + '_convs', JSON.stringify(DB.convocations));
+  localStorage.setItem(getStorageKey() + '_activity', JSON.stringify(DB.activity));
+  if (db) {
+    const tx = db.transaction("clients", "readwrite");
+    const store = tx.objectStore("clients");
+    DB.abonnes.forEach(a => {
+      const c = normalizeClient(a);
+      store.put(c);
+    });
+    return new Promise(r => tx.oncomplete = r);
+  }
 }
 
 // ─── NAVIGATION ───────────────────────────────────────────────────────────────
@@ -143,8 +247,25 @@ function showView(viewId, navEl) {
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   document.getElementById('view-' + viewId).classList.add('active');
   if (navEl) navEl.classList.add('active');
-  const titles = { dashboard:'Dashboard', abonnes:'Abonnés', convocations:'Convocations', map:'Carte Millet', import:'Importer Archive' };
+  
+  const titles = { 
+    dashboard: 'Dashboard', 
+    abonnes: 'Abonnés', 
+    convocations: 'Convocations', 
+    map: 'Kat GPS Tèren', 
+    bodwo: 'Bòdwo Tèren',
+    rapo: 'Rapò Swivi',
+    import: 'Importer Archive' 
+  };
   document.getElementById('pageTitle').textContent = titles[viewId] || viewId;
+  
+  if (viewId === 'map') {
+    setTimeout(initMap, 100);
+  } else if (viewId === 'bodwo') {
+    renderBodwo();
+  } else if (viewId === 'rapo') {
+    renderRapo();
+  }
 }
 
 function toggleSidebar() {
@@ -674,3 +795,286 @@ function importBackupJSON(event) {
   };
   reader.readAsText(file);
 }
+
+// ─── LEAFLET MAP INTEGRATION ──────────────────────────────────────────────────
+let map = null;
+let markersLayer = null;
+
+function initMap() {
+  const mapDiv = document.getElementById('map');
+  if (!mapDiv) return;
+
+  if (map) {
+    map.invalidateSize();
+    renderMap();
+    return;
+  }
+  
+  map = L.map('map').setView([18.5150, -72.3080], 14);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+  }).addTo(map);
+  
+  markersLayer = L.layerGroup().addTo(map);
+  renderMap();
+}
+
+function renderMap() {
+  if (!map || !markersLayer) return;
+  markersLayer.clearLayers();
+  
+  const withGeo = DB.abonnes.filter(c => c.lat != null && c.lng != null);
+  if (withGeo.length === 0) return;
+  
+  const bounds = [];
+  withGeo.forEach(c => {
+    const done = sameMonth(c.dènyeBòdwo);
+    const color = currentSecteur === 'millet' ? '#4fb8a6' : '#5b8def';
+    
+    const m = L.circleMarker([c.lat, c.lng], {
+      radius: done ? 9 : 7,
+      fillColor: done ? '#6fbf73' : color,
+      color: done ? '#ffffff' : color,
+      weight: done ? 2 : 1.5,
+      fillOpacity: done ? 0.95 : 0.15,
+      dashArray: done ? null : "3, 4"
+    }).addTo(markersLayer);
+    
+    const popupContent = `
+      <div style="font-family:sans-serif;color:#111;min-width:140px;font-size:12px;">
+        <h4 style="margin:0 0 6px 0;font-size:13px;font-weight:700;">${c.non}</h4>
+        <span style="font-size:10px;background:#eee;padding:2px 5px;border-radius:3px;text-transform:uppercase;">${c.sektè}</span>
+        <div style="margin-top:8px;">
+          <b>Kod:</b> ${c.kòd || '—'}<br>
+          <b>Dèt:</b> ${Math.round(c.solde_ant).toLocaleString()} HTG<br>
+          <b>Estati:</b> ${done ? '<span style="color:green;font-weight:bold;">Fèt ✓</span>' : '<span style="color:orange;">Rete</span>'}<br>
+        </div>
+        <button onclick="showDetail('${c.id}')" style="width:100%;margin-top:10px;background:#14b8a6;border:none;color:#fff;padding:6px;border-radius:4px;cursor:pointer;font-weight:bold;font-size:11px;">Detay & Swivi</button>
+      </div>
+    `;
+    m.bindPopup(popupContent);
+    bounds.push([c.lat, c.lng]);
+  });
+  
+  if (bounds.length > 0) {
+    map.fitBounds(bounds);
+  }
+}
+
+function sameMonth(iso) {
+  if (!iso) return false;
+  const d = new Date(iso), n = new Date();
+  return d.getMonth() === n.getMonth() && d.getFullYear() === n.getFullYear();
+}
+
+function sameDay(iso) {
+  if (!iso) return false;
+  const d = new Date(iso), n = new Date();
+  return d.getDate() === n.getDate() && d.getMonth() === n.getMonth() && d.getFullYear() === n.getFullYear();
+}
+
+// ─── BÒDWO TÈREN VIEW ─────────────────────────────────────────────────────────
+function renderBodwo() {
+  const tableBody = document.getElementById('bodwoTableBody');
+  if (!tableBody) return;
+  
+  const zoneVal = document.getElementById('bodwoFilterZone')?.value || '';
+  const statusVal = document.getElementById('bodwoFilterStatus')?.value || '';
+  const searchVal = document.getElementById('bodwoSearch')?.value?.toLowerCase() || '';
+  
+  let data = DB.abonnes;
+  
+  if (zoneVal) {
+    data = data.filter(a => zoneName(a.pdl) === zoneVal);
+  }
+  if (statusVal) {
+    data = data.filter(a => {
+      const done = sameMonth(a.dènyeBòdwo);
+      return statusVal === 'done' ? done : !done;
+    });
+  }
+  if (searchVal) {
+    data = data.filter(a => 
+      a.pdl.toLowerCase().includes(searchVal) || 
+      a.non.toLowerCase().includes(searchVal) || 
+      a.adresse.toLowerCase().includes(searchVal)
+    );
+  }
+  
+  const zoneSelect = document.getElementById('bodwoFilterZone');
+  if (zoneSelect && zoneSelect.options.length <= 1) {
+    const zones = [...new Set(DB.abonnes.map(a => zoneName(a.pdl)))].sort();
+    zoneSelect.innerHTML = '<option value="">Tout Zòn</option>' + zones.map(z => `<option value="${z}">${z}</option>`).join('');
+  }
+  
+  document.getElementById('bodwoResultCount').textContent = `${data.length} abonnés`;
+  
+  if (data.length === 0) {
+    tableBody.innerHTML = '<tr><td colspan="7" class="empty-row"><div class="empty-state"><span>🔍</span><p>Aucun abonné trouvé.</p></div></td></tr>';
+    return;
+  }
+  
+  tableBody.innerHTML = data.map(a => {
+    const done = sameMonth(a.dènyeBòdwo);
+    const hasGeo = a.lat != null && a.lng != null;
+    return `
+      <tr>
+        <td><span class="badge ${a.sektè === 'Millet' ? 'badge-actif' : 'badge-convoque'}">${a.sektè}</span></td>
+        <td><span class="loc-code">${a.pdl}</span></td>
+        <td>
+          <div style="font-weight:600">${a.non}</div>
+          <div style="font-size:0.75rem;color:var(--text2)">${a.adresse}</div>
+        </td>
+        <td>${a.telephone || '—'}</td>
+        <td style="font-weight:600">${Math.round(a.solde_ant).toLocaleString()} HTG</td>
+        <td>
+          ${hasGeo ? `
+            <button class="btn btn-outline" style="border-color:var(--green);color:var(--green);padding:.3rem .6rem;font-size:.75rem;cursor:pointer;" onclick="showOnMap(${a.lat}, ${a.lng})">📍 Kat (OK)</button>
+          ` : `
+            <button class="btn btn-danger" style="padding:.3rem .6rem;font-size:.75rem;cursor:pointer;" onclick="recordGPS('${a.id}')">📡 GPS</button>
+          `}
+        </td>
+        <td>
+          ${done ? `
+            <button class="btn btn-outline" style="border-color:var(--green);color:var(--green);padding:.3rem .6rem;font-size:.75rem;cursor:pointer;" onclick="undoDelivery('${a.id}')">✅ Fèt</button>
+          ` : `
+            <button class="btn btn-primary" style="padding:.3rem .6rem;font-size:.75rem;cursor:pointer;" onclick="confirmDelivery('${a.id}')">✉️ Livre</button>
+          `}
+        </td>
+      </tr>
+    `;
+  }).join('');
+}
+
+function showOnMap(lat, lng) {
+  showView('map', document.querySelector('.nav-item[onclick*="map"]'));
+  setTimeout(() => {
+    if (map) {
+      map.setView([lat, lng], 18);
+    }
+  }, 200);
+}
+
+function recordGPS(id) {
+  if (!navigator.geolocation) {
+    toast("Geolocation pa sipòte nan navigatè sa a ❌", "error");
+    return;
+  }
+  toast("📡 Ap chèche koodone GPS...", "info");
+  navigator.geolocation.getCurrentPosition(
+    async (pos) => {
+      const { latitude, longitude } = pos.coords;
+      const ab = DB.abonnes.find(x => x.id === id);
+      if (ab) {
+        ab.lat = latitude;
+        ab.lng = longitude;
+        await saveToStorage();
+        renderBodwo();
+        toast("Koodone GPS anrejistre avèk siksè! 📍", "success");
+      }
+    },
+    (err) => {
+      toast("Pa kapab jwenn GPS. Asire w sèvis lokalizasyon an aktive ❌", "error");
+    },
+    { enableHighAccuracy: true, timeout: 8000 }
+  );
+}
+
+async function confirmDelivery(id) {
+  const ab = DB.abonnes.find(x => x.id === id);
+  if (ab) {
+    ab.dènyeBòdwo = new Date().toISOString();
+    ab.statut = 'convoque';
+    await saveToStorage();
+    renderBodwo();
+    toast(`Bòdwo livre pou ${ab.non} ✓`, "success");
+  }
+}
+
+async function undoDelivery(id) {
+  const ab = DB.abonnes.find(x => x.id === id);
+  if (ab) {
+    ab.dènyeBòdwo = null;
+    await saveToStorage();
+    renderBodwo();
+    toast(`Livrezon bòdwo anile pou ${ab.non} ✓`, "info");
+  }
+}
+
+// ─── RAPÒ SWIVI VIEW ──────────────────────────────────────────────────────────
+function renderRapo() {
+  const a = DB.abonnes;
+  const total = a.length;
+  const livre = a.filter(x => sameMonth(x.dènyeBòdwo)).length;
+  const rete = total - livre;
+  
+  const livrePct = total > 0 ? Math.round((livre / total) * 100) : 0;
+  const retePct = total > 0 ? 100 - livrePct : 0;
+  
+  const barLivre = document.getElementById('bar-livre-pct');
+  const valLivre = document.getElementById('val-livre-pct');
+  if (barLivre) barLivre.style.width = `${livrePct}%`;
+  if (valLivre) valLivre.textContent = `${livrePct}%`;
+  
+  const barRete = document.getElementById('bar-rete-pct');
+  const valRete = document.getElementById('val-rete-pct');
+  if (barRete) barRete.style.width = `${retePct}%`;
+  if (valRete) valRete.textContent = `${retePct}%`;
+  
+  const activityList = document.getElementById('rapoActivityList');
+  if (activityList) {
+    const complaints = a.filter(x => x.doleances || x.swivi || sameDay(x.dènyeBòdwo));
+    if (complaints.length === 0) {
+      activityList.innerHTML = '<div class="empty" style="padding:16px;text-align:center;color:var(--text2)">Pa gen okenn doleyans oswa swivi pou jodi a.</div>';
+      return;
+    }
+    
+    activityList.innerHTML = complaints.map(c => `
+      <div class="activity-item" style="margin-bottom:.5rem;padding:.5rem;background:var(--bg3);border-radius:8px;display:flex;align-items:center;gap:.75rem;">
+        <span class="activity-dot ${c.doleances ? 'red' : 'green'}" style="width:8px;height:8px;border-radius:50%;background:${c.doleances ? 'var(--red)' : 'var(--green)'}"></span>
+        <div style="flex:1">
+          <strong>${c.non}</strong> (${c.pdl})
+          <div style="font-size:0.75rem;color:var(--text2)">
+            ${c.doleances ? `⚠️ Doleyans: ${c.doleances}` : ''}
+            ${c.swivi ? ` | 📝 Swivi: ${c.swivi}` : ''}
+            ${sameDay(c.dènyeBòdwo) ? ` | ✅ Bòdwo bay jodi a` : ''}
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+}
+
+function copyDailyReport() {
+  const a = DB.abonnes;
+  const todayLivre = a.filter(x => sameDay(x.dènyeBòdwo));
+  const complaints = a.filter(x => x.doleances && sameDay(x.dènyeBòdwo));
+  
+  let reportText = `📊 *RAPÒ REKOUVREMAN JOUNEN AN (${new Date().toLocaleDateString('fr-FR')})*\n`;
+  reportText += `Sektè: ${currentSecteur === 'metivier' ? 'Métivier' : 'Millet'}\n`;
+  reportText += `--------------------------------------------------\n`;
+  reportText += `✉️ Bòdwo Livre: ${todayLivre.length}\n`;
+  reportText += `⚠️ Doleyans: ${complaints.length}\n\n`;
+  
+  if (todayLivre.length > 0) {
+    reportText += `✅ *LIVREZON YO :*\n`;
+    todayLivre.forEach((x, i) => {
+      reportText += `${i+1}. ${x.non} (${x.pdl}) - Solde: ${Math.round(x.solde_ant)} HTG\n`;
+    });
+    reportText += `\n`;
+  }
+  
+  if (complaints.length > 0) {
+    reportText += `⚠️ *DOLEYANS ANREJISTRE :*\n`;
+    complaints.forEach((x, i) => {
+      reportText += `${i+1}. ${x.non} (${x.pdl}): ${x.doleances}\n`;
+    });
+  }
+  
+  navigator.clipboard.writeText(reportText).then(() => {
+    toast("Rapò jounen an kopye nan Clipboard! 📋", "success");
+  }).catch(() => {
+    toast("Echèk kopye rapò ❌", "error");
+  });
+}
+
