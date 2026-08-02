@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DINEPA - Ekspòte Done</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #1a1a2e; color: #eee;
+  padding: 16px; min-height: 100vh;
+}
+h1 { font-size: 20px; text-align: center; margin-bottom: 12px; color: #00d4ff; }
+.status { background: #16213e; border-radius: 8px; padding: 12px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+.status .ok { color: #00e676; }
+.status .warn { color: #ffab00; }
+.status .err { color: #ff5252; }
+.btn {
+  display: block; width: 100%; padding: 14px; margin: 8px 0;
+  border: none; border-radius: 8px; font-size: 15px; font-weight: 600;
+  cursor: pointer; color: #fff;
+}
+.btn-blue { background: #0d6efd; }
+.btn-purple { background: #7c3aed; }
+.btn-green { background: #059669; }
+.btn-orange { background: #d97706; }
+.btn:active { opacity: 0.7; }
+textarea {
+  width: 100%; height: 200px; background: #0f0f23; color: #00ff88;
+  border: 1px solid #333; border-radius: 8px; padding: 10px;
+  font-family: monospace; font-size: 11px; margin: 8px 0;
+}
+.count { font-size: 24px; font-weight: bold; color: #00d4ff; }
+.section { background: #16213e; border-radius: 8px; padding: 12px; margin: 10px 0; }
+.section h2 { font-size: 15px; margin-bottom: 8px; color: #7c3aed; }
+#shareSection { display: none; }
+</style>
+</head>
+<body>
+
+<h1>🔐 DINEPA — Ekspòte Done w yo</h1>
+
+<div class="status" id="statusBox">
+  ⏳ Ap analize done yo...
+</div>
+
+<div class="section" id="lsSection">
+  <h2>📋 localStorage</h2>
+  <div id="lsInfo">Ap chaje...</div>
+  <button class="btn btn-blue" id="btnExportLS" style="display:none;">📋 Ekspòte localStorage</button>
+</div>
+
+<div class="section" id="idbSection">
+  <h2>🗄️ IndexedDB (BodwoDB)</h2>
+  <div id="idbInfo">Ap chaje...</div>
+  <button class="btn btn-purple" id="btnExportIDB" style="display:none;">🗄️ Ekspòte IndexedDB</button>
+</div>
+
+<div class="section">
+  <h2>📦 Ekspòte TOUT (localStorage + IndexedDB)</h2>
+  <button class="btn btn-green" id="btnExportAll">📦 Ekspòte TOUT done → JSON</button>
+</div>
+
+<div class="section" id="shareSection">
+  <h2>📤 Done w yo (kopye oswa telechaje)</h2>
+  <textarea id="output" readonly placeholder="Done yo ap parèt isit la..."></textarea>
+  <button class="btn btn-blue" id="btnCopy">📋 Kopye nan Clipboard</button>
+  <button class="btn btn-orange" id="btnDownload">💾 Telechaje kòm fichye JSON</button>
+  <div style="margin-top:10px;font-size:12px;color:#aaa;">
+    💡 <b>Konsèy:</b> Si "Kopye" pa mache, kenbe dwèt ou sou tèks la → Select All → Copy.
+    Ou ka voye l bay tèt ou pa <b>WhatsApp, imel, oswa Notes</b>.
+  </div>
+</div>
+
+<script>
+// ============= ANALYZE STORAGE =============
+const allData = { _exportDate: new Date().toISOString(), _source: 'DINEPA PWA Export Tool', localStorage: {}, indexedDB: {} };
+
+// --- localStorage ---
+function analyzeLS() {
+  const info = document.getElementById('lsInfo');
+  const btn = document.getElementById('btnExportLS');
+  try {
+    const count = localStorage.length;
+    if (count === 0) {
+      info.innerHTML = '<span class="warn">⚠️ localStorage vid (0 kle)</span>';
+      return;
+    }
+    const keys = [];
+    let totalSize = 0;
+    for (let i = 0; i < count; i++) {
+      const k = localStorage.key(i);
+      const v = localStorage.getItem(k);
+      allData.localStorage[k] = v;
+      keys.push(k);
+      totalSize += (k.length + v.length) * 2;
+    }
+    const sizeKB = (totalSize / 1024).toFixed(1);
+    info.innerHTML = `<span class="ok">✅ ${count} kle jwenn (${sizeKB} KB)</span><br><small style="color:#888;">Kle yo: ${keys.join(', ')}</small>`;
+    btn.style.display = 'block';
+  } catch (e) {
+    info.innerHTML = `<span class="err">❌ Erè: ${e.message}</span>`;
+  }
+}
+
+// --- IndexedDB ---
+function analyzeIDB() {
+  const info = document.getElementById('idbInfo');
+  const btn = document.getElementById('btnExportIDB');
+
+  try {
+    const req = indexedDB.open('BodwoDB');
+    req.onerror = () => {
+      info.innerHTML = '<span class="warn">⚠️ Pa ka louvri BodwoDB (li ka pa egziste)</span>';
+      updateStatus();
+    };
+    req.onsuccess = (e) => {
+      const db = e.target.result;
+      const storeNames = Array.from(db.objectStoreNames);
+      if (storeNames.length === 0) {
+        info.innerHTML = '<span class="warn">⚠️ BodwoDB egziste men li vid (0 stores)</span>';
+        updateStatus();
+        return;
+      }
+      let pending = storeNames.length;
+      let totalRecords = 0;
+      const details = [];
+      
+      storeNames.forEach(name => {
+        const tx = db.transaction(name, 'readonly');
+        const store = tx.objectStore(name);
+        const getAll = store.getAll();
+        getAll.onsuccess = () => {
+          const records = getAll.result || [];
+          allData.indexedDB[name] = records;
+          totalRecords += records.length;
+          details.push(`${name}: ${records.length} eleman`);
+          pending--;
+          if (pending === 0) {
+            info.innerHTML = `<span class="ok">✅ <span class="count">${totalRecords}</span> total eleman nan ${storeNames.length} store(s)</span><br><small style="color:#888;">${details.join(' | ')}</small>`;
+            btn.style.display = 'block';
+            updateStatus();
+          }
+        };
+        getAll.onerror = () => {
+          pending--;
+          if (pending === 0) {
+            info.innerHTML = `<span class="ok">✅ ${totalRecords} eleman jwenn (${details.join(', ')})</span>`;
+            btn.style.display = 'block';
+            updateStatus();
+          }
+        };
+      });
+    };
+  } catch (e) {
+    info.innerHTML = `<span class="err">❌ Erè: ${e.message}</span>`;
+    updateStatus();
+  }
+}
+
+function updateStatus() {
+  const box = document.getElementById('statusBox');
+  const lsCount = Object.keys(allData.localStorage).length;
+  const idbStores = Object.keys(allData.indexedDB);
+  let idbTotal = 0;
+  idbStores.forEach(s => { idbTotal += (allData.indexedDB[s] || []).length; });
+
+  if (lsCount === 0 && idbTotal === 0) {
+    box.innerHTML = '<span class="warn">⚠️ Okenn done pa jwenn nan storage sa a. Asire w ou louvri paj sa a nan menm aplikasyon PWA a (pa nan Safari apa).</span>';
+  } else {
+    box.innerHTML = `<span class="ok">✅ Done jwenn!</span><br>📋 localStorage: <b>${lsCount}</b> kle<br>🗄️ IndexedDB: <b>${idbTotal}</b> eleman nan <b>${idbStores.length}</b> store(s)<br><br>👇 Klike sou <b>"Ekspòte TOUT"</b> pou w sove yo.`;
+  }
+}
+
+function showOutput(json) {
+  const section = document.getElementById('shareSection');
+  const output = document.getElementById('output');
+  section.style.display = 'block';
+  output.value = json;
+  output.scrollTop = 0;
+  section.scrollIntoView({ behavior: 'smooth' });
+}
+
+// --- BUTTONS ---
+document.getElementById('btnExportLS').onclick = () => {
+  showOutput(JSON.stringify(allData.localStorage, null, 2));
+};
+
+document.getElementById('btnExportIDB').onclick = () => {
+  showOutput(JSON.stringify(allData.indexedDB, null, 2));
+};
+
+document.getElementById('btnExportAll').onclick = () => {
+  showOutput(JSON.stringify(allData, null, 2));
+};
+
+document.getElementById('btnCopy').onclick = () => {
+  const output = document.getElementById('output');
+  output.select();
+  output.setSelectionRange(0, 99999999);
+  try {
+    navigator.clipboard.writeText(output.value).then(() => {
+      alert('✅ Done yo kopye nan clipboard! Voye l bay tèt ou pa WhatsApp oswa Notes.');
+    }).catch(() => {
+      document.execCommand('copy');
+      alert('✅ Done yo kopye! Voye l bay tèt ou pa WhatsApp oswa Notes.');
+    });
+  } catch (e) {
+    document.execCommand('copy');
+    alert('✅ Seleksyone tèks la epi kopye manyèlman (Ctrl+C oswa long-press → Copy).');
+  }
+};
+
+document.getElementById('btnDownload').onclick = () => {
+  const output = document.getElementById('output');
+  const blob = new Blob([output.value], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `dinepa_backup_${new Date().toISOString().slice(0,10)}.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+};
+
+// --- INIT ---
+analyzeLS();
+analyzeIDB();
+setTimeout(updateStatus, 3000);
+</script>
+</body>
+</html>
