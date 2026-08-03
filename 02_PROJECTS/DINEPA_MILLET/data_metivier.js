@@ -589,7 +589,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "5192.0",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5219608,
+    "lng": -72.2541766
   },
   {
     "pdl": "506041005200",
@@ -653,7 +655,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.520528,
+    "lng": -72.2538755
   },
   {
     "pdl": "506041006600",
@@ -669,7 +673,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5205613,
+    "lng": -72.2538453
   },
   {
     "pdl": "506041007000",
@@ -733,7 +739,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5189139,
+    "lng": -72.2553708
   },
   {
     "pdl": "506041009800",
@@ -765,7 +773,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5187826,
+    "lng": -72.2554141
   },
   {
     "pdl": "506042000100",
@@ -797,7 +807,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5207248,
+    "lng": -72.2535194
   },
   {
     "pdl": "506042000300",
@@ -829,7 +841,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5206027,
+    "lng": -72.2533853
   },
   {
     "pdl": "506042000600",
@@ -893,7 +907,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5205238,
+    "lng": -72.2530544
   },
   {
     "pdl": "506042001200",
@@ -909,7 +925,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5203887,
+    "lng": -72.2530571
   },
   {
     "pdl": "506042001300",
@@ -1021,7 +1039,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5203706,
+    "lng": -72.2528489
   },
   {
     "pdl": "506042003700",
@@ -1053,7 +1073,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5202809,
+    "lng": -72.2526031
   },
   {
     "pdl": "506042004300",
@@ -1069,7 +1091,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5202374,
+    "lng": -72.2524197
   },
   {
     "pdl": "506042004601",
@@ -1085,7 +1109,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5200676,
+    "lng": -72.2521911
   },
   {
     "pdl": "506042004602",
@@ -1101,7 +1127,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5200676,
+    "lng": -72.2521911
   },
   {
     "pdl": "506042004700",
@@ -1741,7 +1769,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "10384.0",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5219789,
+    "lng": -72.2513083
   },
   {
     "pdl": "51206101573B",
@@ -1757,7 +1787,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5219789,
+    "lng": -72.2513083
   },
   {
     "pdl": "51206101581A",
@@ -1773,7 +1805,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5219951,
+    "lng": -72.251256
   },
   {
     "pdl": "51206101581B",
@@ -1789,7 +1823,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5219951,
+    "lng": -72.251256
   },
   {
     "pdl": "51206101582A",
@@ -1805,7 +1841,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5219951,
+    "lng": -72.251256
   },
   {
     "pdl": "51206101582D",
@@ -1821,7 +1859,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5219951,
+    "lng": -72.251256
   },
   {
     "pdl": "51206101588C",
@@ -1837,7 +1877,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5219951,
+    "lng": -72.251256
   },
   {
     "pdl": "51206101600C",
@@ -1853,7 +1895,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5217551,
+    "lng": -72.2510253
   },
   {
     "pdl": "51206101601A",
@@ -1869,7 +1913,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5217551,
+    "lng": -72.2510253
   },
   {
     "pdl": "51206101605A",
@@ -1885,7 +1931,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5217551,
+    "lng": -72.2510253
   },
   {
     "pdl": "51206101610A",
@@ -1901,7 +1949,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5213514,
+    "lng": -72.2513938
   },
   {
     "pdl": "51206101612B",
@@ -1917,7 +1967,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5213514,
+    "lng": -72.2513938
   },
   {
     "pdl": "51206101615A",
@@ -1933,7 +1985,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5213514,
+    "lng": -72.2513938
   },
   {
     "pdl": "51206101692B",
@@ -1949,7 +2003,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5217081,
+    "lng": -72.2512164
   },
   {
     "pdl": "51206101692E",
@@ -1965,7 +2021,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5217081,
+    "lng": -72.2512164
   },
   {
     "pdl": "51206101695B",
@@ -1981,7 +2039,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5217081,
+    "lng": -72.2512164
   },
   {
     "pdl": "51206101792A",
@@ -1997,7 +2057,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5217529,
+    "lng": -72.2507702
   },
   {
     "pdl": "51206101794A",
@@ -2013,7 +2075,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5217529,
+    "lng": -72.2507702
   },
   {
     "pdl": "51206101831A",
@@ -2077,7 +2141,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5225737,
+    "lng": -72.2502213
   },
   {
     "pdl": "51206101965E",
@@ -2093,7 +2159,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5225737,
+    "lng": -72.2502213
   },
   {
     "pdl": "51206101967A",
@@ -2109,7 +2177,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2187.35",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5225737,
+    "lng": -72.2502213
   },
   {
     "pdl": "51206101971E",
@@ -2173,7 +2243,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5238816,
+    "lng": -72.2490532
   },
   {
     "pdl": "51206101993A",
@@ -2189,7 +2261,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2187.35",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5238816,
+    "lng": -72.2490532
   },
   {
     "pdl": "51206101998A",
@@ -2205,7 +2279,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5238816,
+    "lng": -72.2490532
   },
   {
     "pdl": "51206101998B",
@@ -2221,7 +2297,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2187.35",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5238816,
+    "lng": -72.2490532
   },
   {
     "pdl": "51206101998C",
@@ -2237,7 +2315,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5238816,
+    "lng": -72.2490532
   },
   {
     "pdl": "51206102142A",
@@ -2253,7 +2333,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5234724,
+    "lng": -72.2498026
   },
   {
     "pdl": "51206102146A",
@@ -2269,7 +2351,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5234724,
+    "lng": -72.2498026
   },
   {
     "pdl": "51206102148B",
@@ -2285,7 +2369,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5234724,
+    "lng": -72.2498026
   },
   {
     "pdl": "51206102148B",
@@ -2301,7 +2387,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5234724,
+    "lng": -72.2498026
   },
   {
     "pdl": "51261H009418",
@@ -3437,7 +3525,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5209982,
+    "lng": -72.2534323
   },
   {
     "pdl": "512061014304",
@@ -3453,7 +3543,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5209982,
+    "lng": -72.2534323
   },
   {
     "pdl": "512061014305",
@@ -3469,7 +3561,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5209982,
+    "lng": -72.2534323
   },
   {
     "pdl": "512061014306",
@@ -3485,7 +3579,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5209982,
+    "lng": -72.2534323
   },
   {
     "pdl": "512061014307",
@@ -3501,7 +3597,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5209982,
+    "lng": -72.2534323
   },
   {
     "pdl": "512061014500",
@@ -3533,7 +3631,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "7788.0",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5209991,
+    "lng": -72.2536515
   },
   {
     "pdl": "512061014916",
@@ -3549,7 +3649,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "10384.0",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5209991,
+    "lng": -72.2536515
   },
   {
     "pdl": "512061015100",
@@ -3565,7 +3667,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "7788.0",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5218581,
+    "lng": -72.2508423
   },
   {
     "pdl": "512061015300",
@@ -3629,7 +3733,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "5192.0",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5219589,
+    "lng": -72.252524
   },
   {
     "pdl": "512061015601",
@@ -3725,7 +3831,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "10384.0",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5219789,
+    "lng": -72.2513083
   },
   {
     "pdl": "512061015701",
@@ -3741,7 +3849,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "5192.0",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5219789,
+    "lng": -72.2513083
   },
   {
     "pdl": "512061015702",
@@ -3757,7 +3867,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "10384.0",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5219789,
+    "lng": -72.2513083
   },
   {
     "pdl": "512061015703",
@@ -3773,7 +3885,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2187.35",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5219789,
+    "lng": -72.2513083
   },
   {
     "pdl": "512061015801",
@@ -3789,7 +3903,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5219951,
+    "lng": -72.251256
   },
   {
     "pdl": "512061015802",
@@ -3805,7 +3921,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5219951,
+    "lng": -72.251256
   },
   {
     "pdl": "512061015803",
@@ -3821,7 +3939,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5219951,
+    "lng": -72.251256
   },
   {
     "pdl": "512061016000",
@@ -3837,7 +3957,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5217551,
+    "lng": -72.2510253
   },
   {
     "pdl": "512061016001",
@@ -3853,7 +3975,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5217551,
+    "lng": -72.2510253
   },
   {
     "pdl": "512061016004",
@@ -3869,7 +3993,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5217551,
+    "lng": -72.2510253
   },
   {
     "pdl": "512061016005",
@@ -3885,7 +4011,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5217551,
+    "lng": -72.2510253
   },
   {
     "pdl": "512061016006",
@@ -3901,7 +4029,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5217551,
+    "lng": -72.2510253
   },
   {
     "pdl": "512061016100",
@@ -3917,7 +4047,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5213514,
+    "lng": -72.2513938
   },
   {
     "pdl": "512061016101",
@@ -3933,7 +4065,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5213514,
+    "lng": -72.2513938
   },
   {
     "pdl": "512061016104",
@@ -3949,7 +4083,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5213514,
+    "lng": -72.2513938
   },
   {
     "pdl": "512061016105",
@@ -3965,7 +4101,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5213514,
+    "lng": -72.2513938
   },
   {
     "pdl": "512061016902",
@@ -3981,7 +4119,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5217081,
+    "lng": -72.2512164
   },
   {
     "pdl": "512061016903",
@@ -3997,7 +4137,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5217081,
+    "lng": -72.2512164
   },
   {
     "pdl": "512061011601",
@@ -4077,7 +4219,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5206132,
+    "lng": -72.2537112
   },
   {
     "pdl": "512061013000",
@@ -4429,7 +4573,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5203941,
+    "lng": -72.2524318
   },
   {
     "pdl": "512061013801",
@@ -4445,7 +4591,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5203941,
+    "lng": -72.2524318
   },
   {
     "pdl": "512061013802",
@@ -4461,7 +4609,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5203941,
+    "lng": -72.2524318
   },
   {
     "pdl": "512061013805",
@@ -4477,7 +4627,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5203941,
+    "lng": -72.2524318
   },
   {
     "pdl": "512061013807",
@@ -4493,7 +4645,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5203941,
+    "lng": -72.2524318
   },
   {
     "pdl": "512061014000",
@@ -4557,7 +4711,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5209982,
+    "lng": -72.2534323
   },
   {
     "pdl": "512061014302",
@@ -4573,7 +4729,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5209982,
+    "lng": -72.2534323
   },
   {
     "pdl": "51261013210",
@@ -4845,7 +5003,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5222898,
+    "lng": -72.2564571
   },
   {
     "pdl": "506024013100",
@@ -4861,7 +5021,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5224485,
+    "lng": -72.2556997
   },
   {
     "pdl": "506024014100",
@@ -4909,7 +5071,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5219904,
+    "lng": -72.2554728
   },
   {
     "pdl": "506024014600",
@@ -5005,7 +5169,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.519702,
+    "lng": -72.2556505
   },
   {
     "pdl": "506024019400",
@@ -5053,7 +5219,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5205366,
+    "lng": -72.2546647
   },
   {
     "pdl": "506024022201",
@@ -5069,7 +5237,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5205366,
+    "lng": -72.2546647
   },
   {
     "pdl": "506024023100",
@@ -5101,7 +5271,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5197736,
+    "lng": -72.2553658
   },
   {
     "pdl": "506024023800",
@@ -5213,7 +5385,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5202558,
+    "lng": -72.2539151
   },
   {
     "pdl": "506042023901",
@@ -5229,7 +5403,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5202558,
+    "lng": -72.2539151
   },
   {
     "pdl": "506042024300",
@@ -5309,7 +5485,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5222304,
+    "lng": -72.2563941
   },
   {
     "pdl": "506042026400",
@@ -6173,7 +6351,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5195653,
+    "lng": -72.2551388
   },
   {
     "pdl": "506041002900",
@@ -6205,7 +6385,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5199916,
+    "lng": -72.2550027
   },
   {
     "pdl": "506041003800",
@@ -6221,7 +6403,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5207658,
+    "lng": -72.2541652
   },
   {
     "pdl": "506041004100",
@@ -6237,7 +6421,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5210315,
+    "lng": -72.2540361
   },
   {
     "pdl": "506041004300",
@@ -6253,7 +6439,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5212108,
+    "lng": -72.2541082
   },
   {
     "pdl": "506041004400",
@@ -6301,7 +6489,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5234724,
+    "lng": -72.2498026
   },
   {
     "pdl": "51206102150B",
@@ -6317,7 +6507,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5238215,
+    "lng": -72.2492608
   },
   {
     "pdl": "51206102153A",
@@ -6333,7 +6525,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5238215,
+    "lng": -72.2492608
   },
   {
     "pdl": "51206102153B",
@@ -6349,7 +6543,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5238215,
+    "lng": -72.2492608
   },
   {
     "pdl": "51206102178C",
@@ -6365,7 +6561,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5238174,
+    "lng": -72.2483535
   },
   {
     "pdl": "51206102320A",
@@ -6381,7 +6579,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5239185,
+    "lng": -72.2488195
   },
   {
     "pdl": "51206102765B",
@@ -6893,7 +7093,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5192878,
+    "lng": -72.2546614
   },
   {
     "pdl": "51206101144C",
@@ -6909,7 +7111,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5192878,
+    "lng": -72.2546614
   },
   {
     "pdl": "512061011524",
@@ -7261,7 +7465,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5203941,
+    "lng": -72.2524318
   },
   {
     "pdl": "51206101387B",
@@ -7277,7 +7483,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "7788.0",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5203941,
+    "lng": -72.2524318
   },
   {
     "pdl": "51206101431A",
@@ -7293,7 +7501,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5209982,
+    "lng": -72.2534323
   },
   {
     "pdl": "51206101431B",
@@ -7309,7 +7519,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5209982,
+    "lng": -72.2534323
   },
   {
     "pdl": "51206101433C",
@@ -7325,7 +7537,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5209982,
+    "lng": -72.2534323
   },
   {
     "pdl": "51206101435A",
@@ -7341,7 +7555,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5209982,
+    "lng": -72.2534323
   },
   {
     "pdl": "51206101436B",
@@ -7357,7 +7573,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5209982,
+    "lng": -72.2534323
   },
   {
     "pdl": "51206101436B",
@@ -7373,7 +7591,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "5192.0",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5209982,
+    "lng": -72.2534323
   },
   {
     "pdl": "51206101510A",
@@ -7389,7 +7609,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "7788.0",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5218581,
+    "lng": -72.2508423
   },
   {
     "pdl": "51206101521A",
@@ -7437,7 +7659,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5219789,
+    "lng": -72.2513083
   },
   {
     "pdl": "51261L007504",
@@ -8013,7 +8237,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5217081,
+    "lng": -72.2512164
   },
   {
     "pdl": "512061016905",
@@ -8029,7 +8255,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5217081,
+    "lng": -72.2512164
   },
   {
     "pdl": "512061016906",
@@ -8045,7 +8273,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5217081,
+    "lng": -72.2512164
   },
   {
     "pdl": "512061016907",
@@ -8061,7 +8291,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5217081,
+    "lng": -72.2512164
   },
   {
     "pdl": "512061017201",
@@ -8077,7 +8309,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5213997,
+    "lng": -72.2509382
   },
   {
     "pdl": "512061017601",
@@ -8093,7 +8327,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5213259,
+    "lng": -72.2512138
   },
   {
     "pdl": "512061017602",
@@ -8109,7 +8345,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5213259,
+    "lng": -72.2512138
   },
   {
     "pdl": "512061017603",
@@ -8125,7 +8363,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5213259,
+    "lng": -72.2512138
   },
   {
     "pdl": "512061017901",
@@ -8141,7 +8381,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5217529,
+    "lng": -72.2507702
   },
   {
     "pdl": "512061018301",
@@ -8173,7 +8415,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5229635,
+    "lng": -72.2509781
   },
   {
     "pdl": "512061019300",
@@ -8189,7 +8433,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2187.35",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5229282,
+    "lng": -72.2505231
   },
   {
     "pdl": "512061019301",
@@ -8205,7 +8451,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2187.35",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5229282,
+    "lng": -72.2505231
   },
   {
     "pdl": "512061019400",
@@ -8221,7 +8469,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5231221,
+    "lng": -72.2504684
   },
   {
     "pdl": "512061019405",
@@ -8237,7 +8487,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5231221,
+    "lng": -72.2504684
   },
   {
     "pdl": "512061019607",
@@ -8253,7 +8505,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2187.35",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5225737,
+    "lng": -72.2502213
   },
   {
     "pdl": "512061019700",
@@ -8301,7 +8555,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5238816,
+    "lng": -72.2490532
   },
   {
     "pdl": "512061019901",
@@ -8317,7 +8573,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5238816,
+    "lng": -72.2490532
   },
   {
     "pdl": "512061019902",
@@ -8333,7 +8591,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5238816,
+    "lng": -72.2490532
   },
   {
     "pdl": "512061019903",
@@ -8349,7 +8609,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5238816,
+    "lng": -72.2490532
   },
   {
     "pdl": "512061019904",
@@ -8365,7 +8627,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5238816,
+    "lng": -72.2490532
   },
   {
     "pdl": "512061019905",
@@ -8381,7 +8645,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2187.35",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5238816,
+    "lng": -72.2490532
   },
   {
     "pdl": "512061020300",
@@ -8413,7 +8679,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5234724,
+    "lng": -72.2498026
   },
   {
     "pdl": "512061021402",
@@ -8429,7 +8697,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5234724,
+    "lng": -72.2498026
   },
   {
     "pdl": "512061021403",
@@ -8445,7 +8715,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5234724,
+    "lng": -72.2498026
   },
   {
     "pdl": "512061021404",
@@ -8461,7 +8733,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5234724,
+    "lng": -72.2498026
   },
   {
     "pdl": "512061021406",
@@ -8477,7 +8751,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5234724,
+    "lng": -72.2498026
   },
   {
     "pdl": "512061021407",
@@ -8493,7 +8769,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "5192.0",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5234724,
+    "lng": -72.2498026
   },
   {
     "pdl": "512061021408",
@@ -8509,7 +8787,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5234724,
+    "lng": -72.2498026
   },
   {
     "pdl": "512061021500",
@@ -8525,7 +8805,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5238215,
+    "lng": -72.2492608
   },
   {
     "pdl": "512061021501",
@@ -8541,7 +8823,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5238215,
+    "lng": -72.2492608
   },
   {
     "pdl": "512061021507",
@@ -8557,7 +8841,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5238215,
+    "lng": -72.2492608
   },
   {
     "pdl": "512061021600",
@@ -8589,7 +8875,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.522004,
+    "lng": -72.2557229
   },
   {
     "pdl": "512061006901",
@@ -8605,7 +8893,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.522004,
+    "lng": -72.2557229
   },
   {
     "pdl": "512061006903",
@@ -8621,7 +8911,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.522004,
+    "lng": -72.2557229
   },
   {
     "pdl": "512061007000",
@@ -8637,7 +8929,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5218006,
+    "lng": -72.2557571
   },
   {
     "pdl": "512061007001",
@@ -8653,7 +8947,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "5192.0",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5218006,
+    "lng": -72.2557571
   },
   {
     "pdl": "512061007404",
@@ -8669,7 +8965,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "5192.0",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5219042,
+    "lng": -72.256548
   },
   {
     "pdl": "512061007410",
@@ -8685,7 +8983,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5219042,
+    "lng": -72.256548
   },
   {
     "pdl": "512061007500",
@@ -8717,7 +9017,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5223191,
+    "lng": -72.2552558
   },
   {
     "pdl": "512061007702",
@@ -8733,7 +9035,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5218044,
+    "lng": -72.254362
   },
   {
     "pdl": "512061007705",
@@ -8749,7 +9053,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5218044,
+    "lng": -72.254362
   },
   {
     "pdl": "512061007706",
@@ -8765,7 +9071,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5218044,
+    "lng": -72.254362
   },
   {
     "pdl": "512061008100",
@@ -8781,7 +9089,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5216028,
+    "lng": -72.2543794
   },
   {
     "pdl": "512061008200",
@@ -8797,7 +9107,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5214127,
+    "lng": -72.2543751
   },
   {
     "pdl": "512061009300",
@@ -8813,7 +9125,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5196232,
+    "lng": -72.255051
   },
   {
     "pdl": "512061009302",
@@ -8829,7 +9143,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5196232,
+    "lng": -72.255051
   },
   {
     "pdl": "512061010102",
@@ -8893,7 +9209,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5209368,
+    "lng": -72.2541089
   },
   {
     "pdl": "512061010404",
@@ -8909,7 +9227,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5209368,
+    "lng": -72.2541089
   },
   {
     "pdl": "512061010800",
@@ -8925,7 +9245,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5209238,
+    "lng": -72.2514904
   },
   {
     "pdl": "512061010803",
@@ -8941,7 +9263,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5209238,
+    "lng": -72.2514904
   },
   {
     "pdl": "512061010804",
@@ -8957,7 +9281,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5209238,
+    "lng": -72.2514904
   },
   {
     "pdl": "512061010805",
@@ -8973,7 +9299,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "5192.0",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5209238,
+    "lng": -72.2514904
   },
   {
     "pdl": "512061011001",
@@ -9037,7 +9365,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5207537,
+    "lng": -72.2526239
   },
   {
     "pdl": "512061011201",
@@ -9053,7 +9383,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5207537,
+    "lng": -72.2526239
   },
   {
     "pdl": "512061011300",
@@ -9069,7 +9401,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5204437,
+    "lng": -72.2539409
   },
   {
     "pdl": "512061011301",
@@ -9085,7 +9419,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5204437,
+    "lng": -72.2539409
   },
   {
     "pdl": "512061011380",
@@ -9101,7 +9437,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5204437,
+    "lng": -72.2539409
   },
   {
     "pdl": "512061011404",
@@ -9117,7 +9455,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5192878,
+    "lng": -72.2546614
   },
   {
     "pdl": "512061011410",
@@ -9133,7 +9473,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5192878,
+    "lng": -72.2546614
   },
   {
     "pdl": "512061011517",
@@ -11965,7 +12307,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5239185,
+    "lng": -72.2488195
   },
   {
     "pdl": "512061023203",
@@ -11981,7 +12325,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5239185,
+    "lng": -72.2488195
   },
   {
     "pdl": "512061025300",
@@ -12029,7 +12375,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5201888,
+    "lng": -72.2525173
   },
   {
     "pdl": "50604700063A",
@@ -12093,7 +12441,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.522452,
+    "lng": -72.2566838
   },
   {
     "pdl": "51206100682A",
@@ -12109,7 +12459,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.522452,
+    "lng": -72.2566838
   },
   {
     "pdl": "51206100682B",
@@ -12125,7 +12477,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.522452,
+    "lng": -72.2566838
   },
   {
     "pdl": "512061006828",
@@ -12141,7 +12495,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.522452,
+    "lng": -72.2566838
   },
   {
     "pdl": "51206100682C",
@@ -12157,7 +12513,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.522452,
+    "lng": -72.2566838
   },
   {
     "pdl": "51206100683A",
@@ -12173,7 +12531,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.522452,
+    "lng": -72.2566838
   },
   {
     "pdl": "51206100691B",
@@ -12189,7 +12549,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.522004,
+    "lng": -72.2557229
   },
   {
     "pdl": "51206100691C",
@@ -12205,7 +12567,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "5192.0",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.522004,
+    "lng": -72.2557229
   },
   {
     "pdl": "51206100770A",
@@ -12221,7 +12585,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5218044,
+    "lng": -72.254362
   },
   {
     "pdl": "512061007704",
@@ -12237,7 +12603,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5218044,
+    "lng": -72.254362
   },
   {
     "pdl": "51206100776B",
@@ -12253,7 +12621,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5218044,
+    "lng": -72.254362
   },
   {
     "pdl": "51206100796B",
@@ -12333,7 +12703,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2187.35",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5209368,
+    "lng": -72.2541089
   },
   {
     "pdl": "51206101041A",
@@ -12349,7 +12721,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5209368,
+    "lng": -72.2541089
   },
   {
     "pdl": "51206101122A",
@@ -12365,7 +12739,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5207537,
+    "lng": -72.2526239
   },
   {
     "pdl": "51206101133A",
@@ -12381,7 +12757,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5204437,
+    "lng": -72.2539409
   },
   {
     "pdl": "51206101134B",
@@ -12397,7 +12775,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5204437,
+    "lng": -72.2539409
   },
   {
     "pdl": "506049004702",
@@ -12909,7 +13289,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.5223054,
+    "lng": -72.2556474
   },
   {
     "pdl": "512061006801",
@@ -12925,7 +13307,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.522452,
+    "lng": -72.2566838
   },
   {
     "pdl": "512061006805",
@@ -12941,7 +13325,9 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.522452,
+    "lng": -72.2566838
   },
   {
     "pdl": "512061006806",
@@ -12957,6 +13343,8 @@ const DINEPA_METIVIER = [
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
     "verifye": "",
-    "secteur": "METV1"
+    "secteur": "METV1",
+    "lat": 18.522452,
+    "lng": -72.2566838
   }
 ];

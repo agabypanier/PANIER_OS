@@ -78,7 +78,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "6490.0",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.5000697,
+    "lng": -72.2813262
   },
   {
     "pdl": "504006001200",
@@ -242,7 +244,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "1947.0",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.4984116,
+    "lng": -72.2856738
   },
   {
     "pdl": "504007003800",
@@ -428,8 +432,8 @@ const DINEPA_ARCHIVE_2019 = [
     "tarif_taxe": "1947.0",
     "type": "Forfaitaire",
     "verifye": "Wi",
-    "lat": 18.500452967996267,
-    "lng": -72.28396572857888
+    "lat": 18.4989617,
+    "lng": -72.2856919
   },
   {
     "pdl": "504007008806",
@@ -444,7 +448,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Commerce",
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.4991442,
+    "lng": -72.2860654
   },
   {
     "pdl": "504007009000",
@@ -720,7 +726,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "1947.0",
     "type": "Forfaitaire",
-    "verifye": "Wi"
+    "verifye": "Wi",
+    "lat": 18.497046,
+    "lng": -72.289502
   },
   {
     "pdl": "504007014400",
@@ -810,7 +818,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Particulier",
     "tarif_taxe": "6194.716",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.492372,
+    "lng": -72.2897611
   },
   {
     "pdl": "504007014903",
@@ -826,8 +836,8 @@ const DINEPA_ARCHIVE_2019 = [
     "tarif_taxe": "1947.0",
     "type": "Forfaitaire",
     "verifye": "",
-    "lat": 18.49237687056573,
-    "lng": -72.28953166147626
+    "lat": 18.492372,
+    "lng": -72.2897611
   },
   {
     "pdl": "504007014904",
@@ -842,7 +852,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "1947.0",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.492372,
+    "lng": -72.2897611
   },
   {
     "pdl": "504007014905",
@@ -857,7 +869,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "1947.0",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.492372,
+    "lng": -72.2897611
   },
   {
     "pdl": "504007014906",
@@ -872,7 +886,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "1947.0",
     "type": "Forfaitaire",
-    "verifye": "Wi"
+    "verifye": "Wi",
+    "lat": 18.492372,
+    "lng": -72.2897611
   },
   {
     "pdl": "504007014907",
@@ -887,7 +903,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "1947.0",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.492372,
+    "lng": -72.2897611
   },
   {
     "pdl": "504007014908",
@@ -902,7 +920,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "1947.0",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.492372,
+    "lng": -72.2897611
   },
   {
     "pdl": "504007014910",
@@ -917,7 +937,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "3906.98",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.492372,
+    "lng": -72.2897611
   },
   {
     "pdl": "504007015002",
@@ -932,7 +954,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "1947.0",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.4918022,
+    "lng": -72.289849
   },
   {
     "pdl": "504007015005",
@@ -947,7 +971,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "1947.0",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.4918022,
+    "lng": -72.289849
   },
   {
     "pdl": "504007015006",
@@ -962,7 +988,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "1947.0",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.4918022,
+    "lng": -72.289849
   },
   {
     "pdl": "504007015008",
@@ -977,7 +1005,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "1947.0",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.4918022,
+    "lng": -72.289849
   },
   {
     "pdl": "504007015100",
@@ -992,7 +1022,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Particulier",
     "tarif_taxe": "6194.716",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.4921195,
+    "lng": -72.2897554
   },
   {
     "pdl": "504007015107",
@@ -1007,7 +1039,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Particulier",
     "tarif_taxe": "6194.716",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.4921195,
+    "lng": -72.2897554
   },
   {
     "pdl": "504007015201",
@@ -1022,7 +1056,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Particulier",
     "tarif_taxe": "6194.716",
     "type": "Forfaitaire",
-    "verifye": "Wi"
+    "verifye": "Wi",
+    "lat": 18.4924286,
+    "lng": -72.2906201
   },
   {
     "pdl": "504007015202",
@@ -1037,7 +1073,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "1947.0",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.4924286,
+    "lng": -72.2906201
   },
   {
     "pdl": "504007015203",
@@ -1052,7 +1090,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "1947.0",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.4924286,
+    "lng": -72.2906201
   },
   {
     "pdl": "504007015600",
@@ -1067,7 +1107,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "1947.0",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.491502,
+    "lng": -72.2902308
   },
   {
     "pdl": "504007015603",
@@ -1083,8 +1125,8 @@ const DINEPA_ARCHIVE_2019 = [
     "tarif_taxe": "1947.0",
     "type": "Forfaitaire",
     "verifye": "",
-    "lat": 18.49293057885184,
-    "lng": -72.29236053821285
+    "lat": 18.491502,
+    "lng": -72.2902308
   },
   {
     "pdl": "504007015605",
@@ -1100,8 +1142,8 @@ const DINEPA_ARCHIVE_2019 = [
     "tarif_taxe": "3906.98",
     "type": "Forfaitaire",
     "verifye": "",
-    "lat": 18.492994402263207,
-    "lng": -72.29238509980608
+    "lat": 18.491502,
+    "lng": -72.2902308
   },
   {
     "pdl": "504007015608",
@@ -1117,8 +1159,8 @@ const DINEPA_ARCHIVE_2019 = [
     "tarif_taxe": "7788.0",
     "type": "Forfaitaire",
     "verifye": "",
-    "lat": 18.492534580454716,
-    "lng": -72.29198580016086
+    "lat": 18.491502,
+    "lng": -72.2902308
   },
   {
     "pdl": "504007015609",
@@ -1133,7 +1175,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "1947.0",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.491502,
+    "lng": -72.2902308
   },
   {
     "pdl": "504007015700",
@@ -1148,7 +1192,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Particulier",
     "tarif_taxe": "7788.0",
     "type": "Forfaitaire",
-    "verifye": "Wi"
+    "verifye": "Wi",
+    "lat": 18.4926054,
+    "lng": -72.2920879
   },
   {
     "pdl": "504007015700",
@@ -1163,7 +1209,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "0.0",
     "type": "Forfaitaire",
-    "verifye": "Wi"
+    "verifye": "Wi",
+    "lat": 18.4926054,
+    "lng": -72.2920879
   },
   {
     "pdl": "504007015900",
@@ -1178,7 +1226,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Particulier",
     "tarif_taxe": "6194.716",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.4916369,
+    "lng": -72.2900035
   },
   {
     "pdl": "504007016000",
@@ -1223,7 +1273,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "1947.0",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.5067157,
+    "lng": -72.2839575
   },
   {
     "pdl": "504009001100",
@@ -1366,7 +1418,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Commerce",
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
-    "verifye": "Wi"
+    "verifye": "Wi",
+    "lat": 18.5065539,
+    "lng": -72.2833912
   },
   {
     "pdl": "504010001702",
@@ -1639,7 +1693,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "3906.98",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.5027987,
+    "lng": -72.283693
   },
   {
     "pdl": "504014010400",
@@ -1705,7 +1761,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "1947.0",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.5050122,
+    "lng": -72.2849251
   },
   {
     "pdl": "504014011702",
@@ -2412,8 +2470,8 @@ const DINEPA_ARCHIVE_2019 = [
     "tarif_taxe": "3906.98",
     "type": "Forfaitaire",
     "verifye": "Wi",
-    "lat": 18.51620088815821,
-    "lng": -72.2798112455408
+    "lat": 18.5158454,
+    "lng": -72.2794474
   },
   {
     "pdl": "512006023607",
@@ -2791,7 +2849,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "3906.98",
     "type": "Forfaitaire",
-    "verifye": "Wi"
+    "verifye": "Wi",
+    "lat": 18.5165712,
+    "lng": -72.27496
   },
   {
     "pdl": "522014002600",
@@ -2889,7 +2949,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "1947.0",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.5162332,
+    "lng": -72.2817554
   },
   {
     "pdl": "522064008101",
@@ -2904,7 +2966,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "3906.98",
     "type": "Forfaitaire",
-    "verifye": "Wi"
+    "verifye": "Wi",
+    "lat": 18.5162822,
+    "lng": -72.2748987
   },
   {
     "pdl": "532001000400",
@@ -2970,7 +3034,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "1947.0",
     "type": "Volumétrique",
-    "verifye": "Wi"
+    "verifye": "Wi",
+    "lat": 18.5101186,
+    "lng": -72.2813135
   },
   {
     "pdl": "532001002600",
@@ -3393,7 +3459,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "1770.0",
     "type": "Forfaitaire",
-    "verifye": "Wi"
+    "verifye": "Wi",
+    "lat": 18.5135109,
+    "lng": -72.2807093
   },
   {
     "pdl": "532003013100",
@@ -3534,7 +3602,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "3906.98",
     "type": "Forfaitaire",
-    "verifye": "Wi"
+    "verifye": "Wi",
+    "lat": 18.5135109,
+    "lng": -72.2807093
   },
   {
     "pdl": "532003003400",
@@ -3822,7 +3892,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "1947.0",
     "type": "Forfaitaire",
-    "verifye": "Wi"
+    "verifye": "Wi",
+    "lat": 18.5144926,
+    "lng": -72.278981
   },
   {
     "pdl": "532003038204",
@@ -4462,7 +4534,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "1947.0",
     "type": "Forfaitaire",
-    "verifye": "Wi"
+    "verifye": "Wi",
+    "lat": 18.4989426,
+    "lng": -72.2856989
   },
   {
     "pdl": "504007008670",
@@ -4477,7 +4551,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Commerce",
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
-    "verifye": "Wi"
+    "verifye": "Wi",
+    "lat": 18.4989426,
+    "lng": -72.2856989
   },
   {
     "pdl": "504007009981",
@@ -4568,8 +4644,8 @@ const DINEPA_ARCHIVE_2019 = [
     "tarif_taxe": "5192.0",
     "type": "Forfaitaire",
     "verifye": "Wi",
-    "lat": 18.491982224609973,
-    "lng": -72.28934565757997
+    "lat": 18.497046,
+    "lng": -72.289502
   },
   {
     "pdl": "504007014321",
@@ -4584,7 +4660,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Petite et Moyenne E.",
     "tarif_taxe": "10384.0",
     "type": "Forfaitaire",
-    "verifye": "Wi"
+    "verifye": "Wi",
+    "lat": 18.497046,
+    "lng": -72.289502
   },
   {
     "pdl": "504007014324",
@@ -4599,7 +4677,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Particulier",
     "tarif_taxe": "6194.716",
     "type": "Forfaitaire",
-    "verifye": "Wi"
+    "verifye": "Wi",
+    "lat": 18.497046,
+    "lng": -72.289502
   },
   {
     "pdl": "504007014918",
@@ -4614,7 +4694,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "1947.0",
     "type": "Forfaitaire",
-    "verifye": "Wi"
+    "verifye": "Wi",
+    "lat": 18.492372,
+    "lng": -72.2897611
   },
   {
     "pdl": "504007014950",
@@ -4629,7 +4711,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Particulier",
     "tarif_taxe": "6194.716",
     "type": "Forfaitaire",
-    "verifye": "Wi"
+    "verifye": "Wi",
+    "lat": 18.492372,
+    "lng": -72.2897611
   },
   {
     "pdl": "504007015074",
@@ -4644,7 +4728,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "1947.0",
     "type": "Forfaitaire",
-    "verifye": "Wi"
+    "verifye": "Wi",
+    "lat": 18.4918022,
+    "lng": -72.289849
   },
   {
     "pdl": "504007015007",
@@ -4659,7 +4745,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "1947.0",
     "type": "Forfaitaire",
-    "verifye": "Wi"
+    "verifye": "Wi",
+    "lat": 18.4918022,
+    "lng": -72.289849
   },
   {
     "pdl": "504007015008",
@@ -4674,7 +4762,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Particulier",
     "tarif_taxe": "6194.716",
     "type": "Forfaitaire",
-    "verifye": "Wi"
+    "verifye": "Wi",
+    "lat": 18.4918022,
+    "lng": -72.289849
   },
   {
     "pdl": "504007015098",
@@ -4689,7 +4779,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Particulier",
     "tarif_taxe": "6194.716",
     "type": "Forfaitaire",
-    "verifye": "Wi"
+    "verifye": "Wi",
+    "lat": 18.4918022,
+    "lng": -72.289849
   },
   {
     "pdl": "504007015099",
@@ -4704,7 +4796,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Particulier",
     "tarif_taxe": "6194.716",
     "type": "Forfaitaire",
-    "verifye": "Wi"
+    "verifye": "Wi",
+    "lat": 18.4918022,
+    "lng": -72.289849
   },
   {
     "pdl": "504007015101",
@@ -4719,7 +4813,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "6490.0",
     "type": "Forfaitaire",
-    "verifye": "Wi"
+    "verifye": "Wi",
+    "lat": 18.4921195,
+    "lng": -72.2897554
   },
   {
     "pdl": "504007014205",
@@ -4854,7 +4950,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "1947.0",
     "type": "Forfaitaire",
-    "verifye": "Wi"
+    "verifye": "Wi",
+    "lat": 18.497046,
+    "lng": -72.289502
   },
   {
     "pdl": "504007014303",
@@ -4869,7 +4967,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "1947.0",
     "type": "Forfaitaire",
-    "verifye": "Wi"
+    "verifye": "Wi",
+    "lat": 18.497046,
+    "lng": -72.289502
   },
   {
     "pdl": "504007014304",
@@ -4884,7 +4984,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "1947.0",
     "type": "Forfaitaire",
-    "verifye": "Wi"
+    "verifye": "Wi",
+    "lat": 18.497046,
+    "lng": -72.289502
   },
   {
     "pdl": "504007014140",
@@ -4914,7 +5016,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "3906.98",
     "type": "Forfaitaire",
-    "verifye": "Wi"
+    "verifye": "Wi",
+    "lat": 18.497046,
+    "lng": -72.289502
   },
   {
     "pdl": "504007014000",
@@ -5497,7 +5601,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "",
     "tarif_taxe": "0",
     "type": "",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.4984116,
+    "lng": -72.2856738
   },
   {
     "pdl": "504007002100",
@@ -5994,7 +6100,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "",
     "tarif_taxe": "0",
     "type": "",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.4989426,
+    "lng": -72.2856989
   },
   {
     "pdl": "504007008604",
@@ -6009,7 +6117,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "",
     "tarif_taxe": "0",
     "type": "",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.4989426,
+    "lng": -72.2856989
   },
   {
     "pdl": "504007008700",
@@ -6024,7 +6134,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "",
     "tarif_taxe": "0",
     "type": "",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.4990663,
+    "lng": -72.2848299
   },
   {
     "pdl": "504007008701",
@@ -6039,7 +6151,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "",
     "tarif_taxe": "0",
     "type": "",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.4990663,
+    "lng": -72.2848299
   },
   {
     "pdl": "504007008703",
@@ -6054,7 +6168,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "",
     "tarif_taxe": "0",
     "type": "",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.4990663,
+    "lng": -72.2848299
   },
   {
     "pdl": "504007008900",
@@ -6493,7 +6609,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "",
     "tarif_taxe": "0",
     "type": "",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.497046,
+    "lng": -72.289502
   },
   {
     "pdl": "504007014301",
@@ -6508,7 +6626,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "",
     "tarif_taxe": "0",
     "type": "",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.497046,
+    "lng": -72.289502
   },
   {
     "pdl": "504007014302",
@@ -6523,7 +6643,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "",
     "tarif_taxe": "0",
     "type": "",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.497046,
+    "lng": -72.289502
   },
   {
     "pdl": "504007014309",
@@ -6538,7 +6660,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "",
     "tarif_taxe": "0",
     "type": "",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.497046,
+    "lng": -72.289502
   },
   {
     "pdl": "504007015000",
@@ -6553,7 +6677,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "",
     "tarif_taxe": "0",
     "type": "",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.4918022,
+    "lng": -72.289849
   },
   {
     "pdl": "504007015001",
@@ -6568,7 +6694,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "",
     "tarif_taxe": "0",
     "type": "",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.4918022,
+    "lng": -72.289849
   },
   {
     "pdl": "504007015003",
@@ -6583,7 +6711,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "",
     "tarif_taxe": "0",
     "type": "",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.4918022,
+    "lng": -72.289849
   },
   {
     "pdl": "504007015604",
@@ -6598,7 +6728,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "",
     "tarif_taxe": "0",
     "type": "",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.491502,
+    "lng": -72.2902308
   },
   {
     "pdl": "504007015606",
@@ -6613,7 +6745,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "",
     "tarif_taxe": "0",
     "type": "",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.491502,
+    "lng": -72.2902308
   },
   {
     "pdl": "504007015610",
@@ -6628,7 +6762,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "",
     "tarif_taxe": "0",
     "type": "",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.491502,
+    "lng": -72.2902308
   },
   {
     "pdl": "504007015612",
@@ -6643,7 +6779,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "",
     "tarif_taxe": "0",
     "type": "",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.491502,
+    "lng": -72.2902308
   },
   {
     "pdl": "504007015808",
@@ -8504,7 +8642,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "",
     "tarif_taxe": "0",
     "type": "",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.5050122,
+    "lng": -72.2849251
   },
   {
     "pdl": "504014011801",
@@ -9236,7 +9376,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "",
     "tarif_taxe": "0",
     "type": "",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.4938426,
+    "lng": -72.2865763
   },
   {
     "pdl": "504014026301",
@@ -10911,7 +11053,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "",
     "tarif_taxe": "0",
     "type": "",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.5143922,
+    "lng": -72.2741704
   },
   {
     "pdl": "512011000100",
@@ -11691,7 +11835,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "",
     "tarif_taxe": "0",
     "type": "",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.5165712,
+    "lng": -72.27496
   },
   {
     "pdl": "522014001901",
@@ -13082,8 +13228,8 @@ const DINEPA_ARCHIVE_2019 = [
     "tarif_taxe": "1947.0",
     "type": "",
     "verifye": "",
-    "lat": 18.51228826031088,
-    "lng": -72.28205253854321
+    "lat": 18.5122074,
+    "lng": -72.2821527
   },
   {
     "pdl": "532003000400",
@@ -13144,8 +13290,8 @@ const DINEPA_ARCHIVE_2019 = [
     "tarif_taxe": "0",
     "type": "",
     "verifye": "",
-    "lat": 18.512525869244637,
-    "lng": -72.28153559565298
+    "lat": 18.5126083,
+    "lng": -72.281279
   },
   {
     "pdl": "532003000900",
@@ -14043,7 +14189,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "1947.0",
     "type": "",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.5147743,
+    "lng": -72.2788791
   },
   {
     "pdl": "532003019003",
@@ -14058,7 +14206,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "",
     "tarif_taxe": "0",
     "type": "",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.5147743,
+    "lng": -72.2788791
   },
   {
     "pdl": "532003019100",
@@ -16584,7 +16734,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "5192.0",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.5219608,
+    "lng": -72.2541766
   },
   {
     "pdl": "506041005200",
@@ -16644,7 +16796,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.520528,
+    "lng": -72.2538755
   },
   {
     "pdl": "506041006600",
@@ -16659,7 +16813,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.5205613,
+    "lng": -72.2538453
   },
   {
     "pdl": "506041007000",
@@ -16719,7 +16875,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.5189139,
+    "lng": -72.2553708
   },
   {
     "pdl": "506041009800",
@@ -16749,7 +16907,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.5187826,
+    "lng": -72.2554141
   },
   {
     "pdl": "506042000100",
@@ -16779,7 +16939,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.5207248,
+    "lng": -72.2535194
   },
   {
     "pdl": "506042000300",
@@ -16809,7 +16971,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.5206027,
+    "lng": -72.2533853
   },
   {
     "pdl": "506042000600",
@@ -16869,7 +17033,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.5203887,
+    "lng": -72.2530571
   },
   {
     "pdl": "506042001300",
@@ -16959,7 +17125,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.5203706,
+    "lng": -72.2528489
   },
   {
     "pdl": "506042003700",
@@ -16989,7 +17157,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.5202809,
+    "lng": -72.2526031
   },
   {
     "pdl": "506042004300",
@@ -17004,7 +17174,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.5202374,
+    "lng": -72.2524197
   },
   {
     "pdl": "506042004601",
@@ -17019,7 +17191,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.5200676,
+    "lng": -72.2521911
   },
   {
     "pdl": "506042004602",
@@ -17034,7 +17208,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.5200676,
+    "lng": -72.2521911
   },
   {
     "pdl": "506042004700",
@@ -17739,7 +17915,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "1947.0",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.4924286,
+    "lng": -72.2906201
   },
   {
     "pdl": "532001008400",
@@ -18114,7 +18292,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Particulier",
     "tarif_taxe": "6194.716",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.5147743,
+    "lng": -72.2788791
   },
   {
     "pdl": "53200301901A",
@@ -18129,7 +18309,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "1947.0",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.5147743,
+    "lng": -72.2788791
   },
   {
     "pdl": "53200301901B",
@@ -18144,7 +18326,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "1947.0",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.5147743,
+    "lng": -72.2788791
   },
   {
     "pdl": "53200301902A",
@@ -18159,7 +18343,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "1947.0",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.5147743,
+    "lng": -72.2788791
   },
   {
     "pdl": "53200301903A",
@@ -18174,7 +18360,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "1947.0",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.5147743,
+    "lng": -72.2788791
   },
   {
     "pdl": "53200301904A",
@@ -18189,7 +18377,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "1947.0",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.5147743,
+    "lng": -72.2788791
   },
   {
     "pdl": "53200301906A",
@@ -18204,7 +18394,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "1947.0",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.5147743,
+    "lng": -72.2788791
   },
   {
     "pdl": "53200301922A",
@@ -18489,7 +18681,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.5222898,
+    "lng": -72.2564571
   },
   {
     "pdl": "506024012400",
@@ -18519,7 +18713,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.5224485,
+    "lng": -72.2556997
   },
   {
     "pdl": "506024014300",
@@ -18639,7 +18835,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.519702,
+    "lng": -72.2556505
   },
   {
     "pdl": "506024019500",
@@ -18669,7 +18867,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.5205366,
+    "lng": -72.2546647
   },
   {
     "pdl": "506024022201",
@@ -18684,7 +18884,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.5205366,
+    "lng": -72.2546647
   },
   {
     "pdl": "506024023100",
@@ -18714,7 +18916,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.5197736,
+    "lng": -72.2553658
   },
   {
     "pdl": "506024023800",
@@ -18819,7 +19023,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.5202558,
+    "lng": -72.2539151
   },
   {
     "pdl": "506042024300",
@@ -18894,7 +19100,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.5222304,
+    "lng": -72.2563941
   },
   {
     "pdl": "506042026200",
@@ -19704,7 +19912,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.5195653,
+    "lng": -72.2551388
   },
   {
     "pdl": "506041002900",
@@ -19734,7 +19944,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.5199916,
+    "lng": -72.2550027
   },
   {
     "pdl": "506041003800",
@@ -19749,7 +19961,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "5192.0",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.5207658,
+    "lng": -72.2541652
   },
   {
     "pdl": "506041004100",
@@ -19764,7 +19978,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.5210315,
+    "lng": -72.2540361
   },
   {
     "pdl": "506041004300",
@@ -19779,7 +19995,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "2581.073",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.5212108,
+    "lng": -72.2541082
   },
   {
     "pdl": "506041004400",
@@ -19884,7 +20102,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Particulier",
     "tarif_taxe": "6194.716",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.492372,
+    "lng": -72.2897611
   },
   {
     "pdl": "50400701507A",
@@ -19899,7 +20119,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "1947.0",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.4918022,
+    "lng": -72.289849
   },
   {
     "pdl": "50400701500A",
@@ -19914,7 +20136,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "PME",
     "tarif_taxe": "7788.0",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.4918022,
+    "lng": -72.289849
   },
   {
     "pdl": "50400701568A",
@@ -19929,7 +20153,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "1947.0",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.491502,
+    "lng": -72.2902308
   },
   {
     "pdl": "50400701569A",
@@ -19944,7 +20170,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Particulier",
     "tarif_taxe": "6194.716",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.491502,
+    "lng": -72.2902308
   },
   {
     "pdl": "50400701569B",
@@ -19959,7 +20187,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Particulier",
     "tarif_taxe": "6194.716",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.491502,
+    "lng": -72.2902308
   },
   {
     "pdl": "50400701569D",
@@ -19974,7 +20204,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "1947.0",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.491502,
+    "lng": -72.2902308
   },
   {
     "pdl": "50400701569F",
@@ -19989,7 +20221,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Particulier",
     "tarif_taxe": "6194.716",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.491502,
+    "lng": -72.2902308
   },
   {
     "pdl": "50400701569G",
@@ -20004,7 +20238,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "1947.0",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.491502,
+    "lng": -72.2902308
   },
   {
     "pdl": "50401200040A",
@@ -20139,7 +20375,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "3906.98",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.498858,
+    "lng": -72.2852791
   },
   {
     "pdl": "504071001400",
@@ -20439,7 +20677,9 @@ const DINEPA_ARCHIVE_2019 = [
     "categorie": "Résidence",
     "tarif_taxe": "1947.0",
     "type": "Forfaitaire",
-    "verifye": ""
+    "verifye": "",
+    "lat": 18.5052783,
+    "lng": -72.2832185
   },
   {
     "pdl": "504014011501",
