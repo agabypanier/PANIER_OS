@@ -301,13 +301,17 @@
         <div class="chip" data-f="pending">Rete</div>
       </div>
       
-      <div class="ctrl-row">
+      <div class="ctrl-row" style="flex-wrap:wrap;gap:8px;">
         <select id="blockFilter">
           <option value="all">Tout blòk</option>
         </select>
         <label class="toggle-btn">
           <input type="checkbox" id="hideDoneCheckbox">
           <span>Kache sa ki fèt</span>
+        </label>
+        <label class="toggle-btn" style="border-color:var(--accent);">
+          <input type="checkbox" id="sortByDistanceCheckbox">
+          <span style="color:var(--accent);">📍 Triye pa pi pre</span>
         </label>
       </div>
       
@@ -383,6 +387,19 @@
             <div style="font-size:20px;font-weight:700;color:var(--accent);" id="repPendingCount">0</div>
             <div style="font-size:10px;color:var(--dim);margin-top:4px;">BÒDWO KI RETE</div>
           </div>
+        </div>
+      </div>
+
+      <!-- TECHNICAL AUDITS BREAKDOWN CARD -->
+      <div class="report-card">
+        <div class="report-title" style="color:#e8943d;">🕵️‍♂️ Odit Teknik (Terren)</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12px;">
+          <div style="background:var(--panel2);padding:6px;border-radius:6px;">💧 Tiyo Sèk: <b id="repTiyoSek">0</b></div>
+          <div style="background:var(--panel2);padding:6px;border-radius:6px;">🔌 Klandestin: <b id="repKlandestin">0</b></div>
+          <div style="background:var(--panel2);padding:6px;border-radius:6px;">✂️ Rekonèk: <b id="repRekoneksyon">0</b></div>
+          <div style="background:var(--panel2);padding:6px;border-radius:6px;">⚠️ Ponp Vwazen: <b id="repPonp">0</b></div>
+          <div style="background:var(--panel2);padding:6px;border-radius:6px;">✈️ Aletranje: <b id="repAletranje">0</b></div>
+          <div style="background:var(--panel2);padding:6px;border-radius:6px;">📄 Papye Prèv: <b id="repPapyePrev">0</b></div>
         </div>
       </div>
 
@@ -472,6 +489,19 @@
             <input id="f-schedule-text" placeholder="Ex: Madi 8 AM - 2 PM">
           </div>
           <button type="button" class="btn ghost" id="saveScheduleBtn" style="width:100%;">Sove Orè Blòk sa a</button>
+        </div>
+
+        <!-- BACKUP & RESTORE DONE -->
+        <div style="margin-top:24px;border-top:1px solid var(--line);padding-top:20px;">
+          <b style="color:var(--ink);">📥 Sekirite & Bakop Done</b><br>
+          <span style="font-size:11px;color:var(--dim);">Telechaje tout done enspeksyon, nòt vwa, ak GPS ou yo pou w pa janm pèdi yo.</span>
+          <button type="button" class="btn primary" id="exportBackupBtn" style="width:100%;margin-top:10px;">📥 Telechaje Fichye Bakop (.json)</button>
+          
+          <div class="field" style="margin-top:14px;">
+            <label>Restore Done depi yon fichye Bakop (.json)</label>
+            <input type="file" id="importBackupFile" accept=".json" style="font-size:12px;padding:6px;width:100%;">
+          </div>
+          <button type="button" class="btn ghost" id="importBackupBtn" style="width:100%;">📤 Restore Done yo</button>
         </div>
 
         <div style="margin-top:24px;border-top:1px solid var(--line);padding-top:20px;">
@@ -819,18 +849,72 @@ document.getElementById('blockFilter').addEventListener('change', e => {
 });
 
 document.getElementById('hideDoneCheckbox').addEventListener('change', render);
+document.getElementById('sortByDistanceCheckbox').addEventListener('change', () => {
+  // If checked, trigger geolocation watch immediately to get coordinates
+  if (document.getElementById('sortByDistanceCheckbox').checked) {
+    requestUserLocationForSorting();
+  }
+  render();
+});
 document.getElementById('search').addEventListener('input', render);
+
+let userLat = null, userLng = null;
+function requestUserLocationForSorting() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(pos => {
+      userLat = pos.coords.latitude;
+      userLng = pos.coords.longitude;
+      render();
+    }, err => console.warn("GPS error:", err), { enableHighAccuracy: true });
+  }
+}
+
+// Geolocation Watcher for live distance updates
+if (navigator.geolocation) {
+  navigator.geolocation.watchPosition(pos => {
+    userLat = pos.coords.latitude;
+    userLng = pos.coords.longitude;
+    if (document.getElementById('sortByDistanceCheckbox') && document.getElementById('sortByDistanceCheckbox').checked) {
+      render();
+    }
+  }, err => {}, { enableHighAccuracy: true });
+}
+
+function getDistance(lat1, lon1, lat2, lon2) {
+  if (lat1 == null || lon1 == null || lat2 == null || lon2 == null) return null;
+  const R = 6371e3; // Radius of Earth in meters
+  const f1 = lat1 * Math.PI/180;
+  const f2 = lat2 * Math.PI/180;
+  const df = (lat2-lat1) * Math.PI/180;
+  const dl = (lon2-lon1) * Math.PI/180;
+  const a = Math.sin(df/2) * Math.sin(df/2) +
+            Math.cos(f1) * Math.cos(f2) *
+            Math.sin(dl/2) * Math.sin(dl/2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  return R * c;
+}
 
 function render() {
   const items = getFilteredClients();
+  const sortByDistance = document.getElementById('sortByDistanceCheckbox').checked;
   
-  // Sort: blocks first, then names
-  items.sort((a, b) => {
-    const ka = a.kòd || '';
-    const kb = b.kòd || '';
-    if (ka !== kb) return ka.localeCompare(kb);
-    return a.non.localeCompare(b.non);
-  });
+  if (sortByDistance && userLat != null && userLng != null) {
+    items.sort((a, b) => {
+      if (a.lat == null) return 1;
+      if (b.lat == null) return -1;
+      const distA = getDistance(userLat, userLng, a.lat, a.lng);
+      const distB = getDistance(userLat, userLng, b.lat, b.lng);
+      return distA - distB;
+    });
+  } else {
+    // Sort: blocks first, then names
+    items.sort((a, b) => {
+      const ka = a.kòd || '';
+      const kb = b.kòd || '';
+      if (ka !== kb) return ka.localeCompare(kb);
+      return a.non.localeCompare(b.non);
+    });
+  }
 
   const list = document.getElementById('list');
   if (items.length === 0) {
@@ -840,14 +924,19 @@ function render() {
     list.innerHTML = items.map(c => {
       const done = sameMonth(c.dènyeBòdwo);
       const hasGeo = c.lat != null;
-      const hasVoice = false; // Check asynchronously later or display status
       const hasDoleance = c.doleances && c.doleances.trim() !== '';
       
       let blockHeader = '';
       const b = getSecteurBlock(c.kòd);
-      if (b !== lastBlock && b !== '—') {
+      if (!sortByDistance && b !== lastBlock && b !== '—') {
         lastBlock = b;
         blockHeader = `<div style="padding:14px 6px 4px;color:var(--accent);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid rgba(232,163,61,0.15)">🏢 BLÒK ${b}</div>`;
+      }
+      
+      let distStr = '';
+      if (userLat != null && userLng != null && c.lat != null) {
+        const dist = getDistance(userLat, userLng, c.lat, c.lng);
+        distStr = dist < 1000 ? ` · 📍 <b>${Math.round(dist)}m</b>` : ` · 📍 <b>${(dist/1000).toFixed(1)}km</b>`;
       }
       
       return `${blockHeader}
@@ -858,6 +947,7 @@ function render() {
           <div class="meta">
             <span>${c.sektè}</span>
             ${c.kòd ? '· <b>' + escapeHtml(c.kòd) + '</b>' : ''}
+            ${distStr}
             ${c.solde_ant > 0 ? `· <span style="color:var(--danger)">${formatPrice(c.solde_ant)}</span>` : ''}
             ${c.nòt ? '· ' + escapeHtml(c.nòt.slice(0,25)) : ''}
           </div>
@@ -1868,6 +1958,21 @@ function renderReport() {
   document.getElementById('repTodayCount').textContent = todayDeliveries.length;
   document.getElementById('repDoleancesCount').textContent = complaints.length;
   document.getElementById('repFollowupsCount').textContent = followups.length;
+
+  // Technical audits count
+  const tiyoSekCount = clients.filter(c => c.tiyo_sek).length;
+  const klandestinCount = clients.filter(c => c.priz_klandestin).length;
+  const rekoneksyonCount = clients.filter(c => c.rekoneksyon_ilegal).length;
+  const ponpCount = clients.filter(c => c.vwazen_ponp).length;
+  const aletranjeCount = clients.filter(c => c.aletranje).length;
+  const papyePrevCount = clients.filter(c => c.papye_prev).length;
+
+  document.getElementById('repTiyoSek').textContent = tiyoSekCount;
+  document.getElementById('repKlandestin').textContent = klandestinCount;
+  document.getElementById('repRekoneksyon').textContent = rekoneksyonCount;
+  document.getElementById('repPonp').textContent = ponpCount;
+  document.getElementById('repAletranje').textContent = aletranjeCount;
+  document.getElementById('repPapyePrev').textContent = papyePrevCount;
   
   // Deliveries list
   const delDiv = document.getElementById('repTodayDeliveries');
@@ -1934,6 +2039,14 @@ document.getElementById('copyReportBtn').onclick = () => {
   const todayDeliveries = clients.filter(c => sameMonth(c.dènyeBòdwo) && sameDay(c.dènyeBòdwo));
   const complaints = clients.filter(c => c.doleances && c.doleances.trim() !== '');
   const followups = clients.filter(c => (c.swivi && c.swivi.trim() !== '') || c.randevou);
+
+  // Technical audits count
+  const tiyoSekCount = clients.filter(c => c.tiyo_sek).length;
+  const klandestinCount = clients.filter(c => c.priz_klandestin).length;
+  const rekoneksyonCount = clients.filter(c => c.rekoneksyon_ilegal).length;
+  const ponpCount = clients.filter(c => c.vwazen_ponp).length;
+  const aletranjeCount = clients.filter(c => c.aletranje).length;
+  const papyePrevCount = clients.filter(c => c.papye_prev).length;
   
   let t = `📋 *RAPÒ REKOUVREMAN & BÒDWO* 💧\n`;
   t += `Dat: ${new Date().toLocaleDateString('fr-HT')}\n`;
@@ -1942,6 +2055,14 @@ document.getElementById('copyReportBtn').onclick = () => {
   t += `📊 *REZIME LIVREZON MWA SA:*\n`;
   t += `- Total Bòdwo Livre: ${doneCount}\n`;
   t += `- Bòdwo ki rete: ${clients.length - doneCount}\n\n`;
+
+  t += `🕵️‍♂️ *RAPÒ ODIT TEKNIK & SWIVI:*\n`;
+  t += `- Tiyo Sèk (Pa gen dlo): ${tiyoSekCount}\n`;
+  t += `- Sispèk Priz Klandestin: ${klandestinCount}\n`;
+  t += `- Rekoneksyon Ilegal: ${rekoneksyonCount}\n`;
+  t += `- Ponp Vwazen (Souse dlo): ${ponpCount}\n`;
+  t += `- Mèt kay aletranje: ${aletranjeCount}\n`;
+  t += `- Papye Prèv biwo a: ${papyePrevCount}\n\n`;
   
   t += `🚚 *BÒDWO BAY JODI A (${todayDeliveries.length}):*\n`;
   if (todayDeliveries.length === 0) {
@@ -2274,6 +2395,95 @@ document.getElementById('saveScheduleBtn').addEventListener('click', () => {
   if (!block) { toast("Tanpri chwazi yon blòk!"); return; }
   saveWaterSchedule(block, txt);
   toast(`Orè pou Blòk ${block} sove! ✓`);
+});
+
+// ─── ADMIN BACKUP EXPORT & IMPORT WIRING ─────────────────────────────────────
+document.getElementById('exportBackupBtn').addEventListener('click', async () => {
+  try {
+    const dbReq = indexedDB.open("BodwoDB", 1);
+    dbReq.onsuccess = (e) => {
+      const idb = e.target.result;
+      const tx = idb.transaction(["clients", "voiceNotes"], "readonly");
+      const clientStore = tx.objectStore("clients");
+      const voiceStore = tx.objectStore("voiceNotes");
+      
+      let clientData = [];
+      let voiceData = [];
+      
+      clientStore.getAll().onsuccess = (ev) => {
+        clientData = ev.target.result || [];
+      };
+      
+      voiceStore.getAll().onsuccess = (ev) => {
+        voiceData = ev.target.result || [];
+      };
+      
+      tx.oncomplete = () => {
+        const backup = {
+          version: 1,
+          date: new Date().toISOString(),
+          clients: clientData,
+          voiceNotes: voiceData,
+          schedules: JSON.parse(localStorage.getItem('water_schedules') || '{}')
+        };
+        const blob = new Blob([JSON.stringify(backup, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `dinepa_backup_${new Date().toISOString().split('T')[0]}.json`;
+        a.click();
+        URL.revokeObjectURL(url);
+        toast("Fichye Bakop telechaje avèk siksè ✓");
+      };
+    };
+  } catch (err) {
+    alert("Erè ekspòtasyon: " + err.message);
+  }
+});
+
+document.getElementById('importBackupBtn').addEventListener('click', async () => {
+  const fileInput = document.getElementById('importBackupFile');
+  if (fileInput.files.length === 0) {
+    toast("Tanpri chwazi yon fichye bakop (.json)!");
+    return;
+  }
+  const file = fileInput.files[0];
+  const reader = new FileReader();
+  reader.onload = async (e) => {
+    try {
+      const backup = JSON.parse(e.target.result);
+      if (!backup.clients || !Array.isArray(backup.clients)) {
+        throw new Error("Fichye a pa gen fòma bakop valid!");
+      }
+      
+      const dbReq = indexedDB.open("BodwoDB", 1);
+      dbReq.onsuccess = async (ev) => {
+        const idb = ev.target.result;
+        const tx = idb.transaction(["clients", "voiceNotes"], "readwrite");
+        const clientStore = tx.objectStore("clients");
+        const voiceStore = tx.objectStore("voiceNotes");
+        
+        clientStore.clear();
+        voiceStore.clear();
+        
+        backup.clients.forEach(c => clientStore.put(c));
+        if (backup.voiceNotes) {
+          backup.voiceNotes.forEach(v => voiceStore.put(v));
+        }
+        
+        tx.oncomplete = () => {
+          if (backup.schedules) {
+            localStorage.setItem('water_schedules', JSON.stringify(backup.schedules));
+          }
+          alert("Restore done fèt avèk siksè! Paj la pral rechaje.");
+          location.reload();
+        };
+      };
+    } catch (err) {
+      alert("Erè enpòtasyon: " + err.message);
+    }
+  };
+  reader.readAsText(file);
 });
 
 setTimeout(syncGpsFromArchive, 1200);
