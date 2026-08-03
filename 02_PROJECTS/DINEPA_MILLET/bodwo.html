@@ -491,6 +491,7 @@
 <div id="toast"></div>
 
 <script src="data.js"></script>
+<script src="data_metivier.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
 // ─── INDEXEDDB ENGINE ────────────────────────────────────────────────────────
@@ -661,30 +662,76 @@ async function loadClients() {
   await initDb();
   clients = await dbGetAllClients();
   
-  if (clients.length === 0 && typeof DINEPA_ARCHIVE_2019 !== 'undefined' && DINEPA_ARCHIVE_2019.length > 0) {
-    // Premye chajman: chaje achiv 2019 la otomatikman
-    const parsed = DINEPA_ARCHIVE_2019.map((s, idx) => {
-      const fullSect = s.pdl && s.pdl.startsWith('124') ? 'Métivier' : 'Millet';
+  // Ranje: Si nou gen 0 Métivier nan db a poutan data_metivier.js la prezan, ajoute yo otomatikman san kraze done Millet yo
+  const metivierDbCount = clients.filter(c => c.sektè === 'Métivier').length;
+  if (clients.length > 0 && metivierDbCount === 0 && typeof DINEPA_METIVIER !== 'undefined' && DINEPA_METIVIER.length > 0) {
+    const metivierClients = DINEPA_METIVIER.map((s, idx) => {
       return {
-        id: 'arch-' + idx,
-        non: `${s.nom} ${s.prenom}`.trim().toUpperCase(),
-        sektè: fullSect,
+        id: 'arch-met-' + idx,
+        non: `${s.nom || ''} ${s.prenom || ''}`.trim().toUpperCase(),
+        sektè: 'Métivier',
         kòd: s.pdl || null,
         nòt: s.adresse || '',
         telephone: s.telephone || '',
         solde_ant: parseFloat(s.solde_ant) || 0,
-        statut: s.statut || 'actif',
+        statut: s.statut || ((parseFloat(s.solde_ant) || 0) > 0 ? 'dette' : 'actif'),
         doleances: s.doleances || '',
         swivi: s.notes || '',
         randevou: '',
-        lat: null,
-        lng: null,
-        dènyeBòdwo: null
+        lat: s.lat || null,
+        lng: s.lng || null,
+        dènyeBòdwo: s.dènyeBòdwo || null
       };
     });
-    clients = parsed;
-    await dbSaveClients(clients);
-    toast(`${clients.length} kliyan achiv 2019 chaje nèt ✓`);
+    clients = clients.concat(metivierClients);
+    await dbSaveClients(metivierClients);
+    console.log("🛠️ Ranje: Kliyan Métivier yo enjere kòrèkteman nan baz done!");
+  }
+  
+  if (clients.length === 0) {
+    // Premye chajman: chaje TOUDE achiv yo otomatikman
+    let allSource = [];
+    
+    // Chaje Millet (DINEPA_ARCHIVE_2019)
+    if (typeof DINEPA_ARCHIVE_2019 !== 'undefined' && DINEPA_ARCHIVE_2019.length > 0) {
+      allSource = allSource.concat(DINEPA_ARCHIVE_2019.map(s => ({ ...s, _src: 'Millet' })));
+    }
+    
+    // Chaje Métivier (DINEPA_METIVIER)
+    if (typeof DINEPA_METIVIER !== 'undefined' && DINEPA_METIVIER.length > 0) {
+      allSource = allSource.concat(DINEPA_METIVIER.map(s => ({ ...s, _src: 'Métivier' })));
+    }
+    
+    if (allSource.length > 0) {
+      const parsed = allSource.map((s, idx) => {
+        // Detekte sektè: si fichye a gen s.secteur ki gen 'MET', se Métivier
+        const sect = s._src || (
+          (s.secteur && s.secteur.toUpperCase().includes('MET')) ? 'Métivier' : 'Millet'
+        );
+        return {
+          id: 'arch-' + idx,
+          non: `${s.nom || ''} ${s.prenom || ''}`.trim().toUpperCase(),
+          sektè: sect,
+          kòd: s.pdl || null,
+          nòt: s.adresse || '',
+          telephone: s.telephone || '',
+          solde_ant: parseFloat(s.solde_ant) || 0,
+          statut: s.statut || ((parseFloat(s.solde_ant) || 0) > 0 ? 'dette' : 'actif'),
+          doleances: s.doleances || '',
+          swivi: s.notes || '',
+          randevou: '',
+          lat: s.lat || null,
+          lng: s.lng || null,
+          dènyeBòdwo: s.dènyeBòdwo || null
+        };
+      });
+      clients = parsed;
+      await dbSaveClients(clients);
+      const milletCount = clients.filter(c => c.sektè === 'Millet').length;
+      const metivyeCount = clients.filter(c => c.sektè === 'Métivier').length;
+      const gpsCount = clients.filter(c => c.lat != null).length;
+      toast(`${clients.length} kliyan chaje (${milletCount} Millet + ${metivyeCount} Métivier, ${gpsCount} GPS) ✓`);
+    }
   }
   
   populateBlockFilter();
