@@ -136,10 +136,26 @@ async function loadFromStorage() {
   if (filtered.length > 0) {
     DB.abonnes = filtered.map(normalizeClient);
     
-    if (isMetivier && DB.abonnes.length < 500 && typeof DINEPA_METIVIER !== 'undefined' && DINEPA_METIVIER.length > 500) {
-      await upgradeSectorData('metivier', DINEPA_METIVIER);
-    } else if (!isMetivier && DB.abonnes.length < 1300 && typeof DINEPA_ARCHIVE_2019 !== 'undefined' && DINEPA_ARCHIVE_2019.length > 1300) {
-      await upgradeSectorData('millet', DINEPA_ARCHIVE_2019);
+    // Auto-sync GPS from DINEPA_ARCHIVE_2019 / DINEPA_METIVIER if local DB items lack GPS
+    const archiveSource = isMetivier ? (typeof DINEPA_METIVIER !== 'undefined' ? DINEPA_METIVIER : []) : (typeof DINEPA_ARCHIVE_2019 !== 'undefined' ? DINEPA_ARCHIVE_2019 : []);
+    let syncedAny = false;
+    if (archiveSource.length > 0) {
+      archiveSource.forEach(arch => {
+        if (arch.lat || arch.lng || arch.dènyeBòdwo) {
+          const match = DB.abonnes.find(c => c.kòd === arch.kòd || c.pdl === arch.kòd);
+          if (match) {
+            if (!match.lat && arch.lat) { match.lat = arch.lat; syncedAny = true; }
+            if (!match.lng && arch.lng) { match.lng = arch.lng; syncedAny = true; }
+            if (!match.dènyeBòdwo && arch.dènyeBòdwo) { match.dènyeBòdwo = arch.dènyeBòdwo; syncedAny = true; }
+            if (!match.doleances && arch.doleances) { match.doleances = arch.doleances; syncedAny = true; }
+          }
+        }
+      });
+    }
+    if (syncedAny && db) {
+      const tx = db.transaction("clients", "readwrite");
+      const store = tx.objectStore("clients");
+      DB.abonnes.forEach(c => store.put(c));
     }
   } else {
     if (!isMetivier && typeof DINEPA_ARCHIVE_2019 !== 'undefined' && DINEPA_ARCHIVE_2019.length > 0) {
@@ -168,9 +184,9 @@ async function upgradeSectorData(sector, archive) {
       doleances: s.doleances || '',
       swivi: '',
       randevou: '',
-      lat: null,
-      lng: null,
-      dènyeBòdwo: null
+      lat: s.lat || null,
+      lng: s.lng || null,
+      dènyeBòdwo: s.dènyeBòdwo || null
     });
   });
   
