@@ -337,10 +337,15 @@
       </div>
       <div class="action-filters">
         <div class="action-chip active" data-af="all">🔘 Tout</div>
-        <div class="action-chip" data-af="koupe">✂️ Koupe Tiyo</div>
+        <div class="action-chip" data-af="koupe">✂️ Koupe</div>
         <div class="action-chip" data-af="konvoke">📋 Konvoke</div>
-        <div class="action-chip" data-af="randevou">📅 Randevou Jodi a</div>
-        <div class="action-chip" data-af="dette">💸 Gwo Dèt (+5k HTG)</div>
+        <div class="action-chip" data-af="randevou">📅 Randevou</div>
+        <div class="action-chip" data-af="dette">💸 Gwo Dèt</div>
+        <div class="action-chip" data-af="tiyo_sek" style="background:rgba(91,141,239,0.1);color:#5b8def;">💧 Tiyo Sèk</div>
+        <div class="action-chip" data-af="klandestin" style="background:rgba(217,99,95,0.1);color:#d9635f;">🔌 Klandestin</div>
+        <div class="action-chip" data-af="rekoneksyon" style="background:rgba(217,99,95,0.1);color:#d9635f;">✂️ Rekonèk Ilegal</div>
+        <div class="action-chip" data-af="vwazen_ponp" style="background:rgba(232,148,61,0.1);color:#e8943d;">⚠️ Ponp Vwazen</div>
+        <div class="action-chip" data-af="aletranje" style="background:rgba(155,109,212,0.1);color:#9b6dd4;">✈️ Aletranje</div>
       </div>
       <div class="list" id="actionList"></div>
     </div>
@@ -451,6 +456,23 @@
           <textarea id="f-import" placeholder="504006000100&#9;DEBROSSE&#9;URBAIN&#9;4 RUE BOSSIER&#9;38230006&#9;8500"></textarea>
         </div>
         <button type="button" class="btn ghost" id="importBtn">Enpòte Tablo a</button>
+
+        <!-- WATER SCHEDULES CONFIG -->
+        <div style="margin-top:24px;border-top:1px solid var(--line);padding-top:20px;">
+          <b style="color:var(--ink);">📅 Orè Distribisyon Dlo pa Blòk</b><br>
+          <span style="font-size:11px;color:var(--dim);">Defini ki lè chak blòk jwenn dlo nan tiyo a pou w ka konnen ki lè pou w al fè kontwòl.</span>
+          <div class="field" style="margin-top:10px;">
+            <label>Chwazi Blòk</label>
+            <select id="scheduleBlockSelect">
+              <option value="">-- Chwazi Blòk --</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Orè / Jou ak Lè Distribisyon</label>
+            <input id="f-schedule-text" placeholder="Ex: Madi 8 AM - 2 PM">
+          </div>
+          <button type="button" class="btn ghost" id="saveScheduleBtn" style="width:100%;">Sove Orè Blòk sa a</button>
+        </div>
 
         <div style="margin-top:24px;border-top:1px solid var(--line);padding-top:20px;">
           <button type="button" class="btn danger-outline" id="resetMonthBtn">Kòmanse Nouvo Mwa (konsève kote GPS & nòt)</button>
@@ -840,9 +862,34 @@ function switchTab(name) {
     renderReport();
   } else if (name === 'aksyon') {
     renderActionTab();
+  } else if (name === 'add') {
+    populateScheduleBlockSelect();
   }
 }
 document.querySelectorAll('.tabbtn').forEach(b => b.onclick = () => switchTab(b.dataset.tab));
+
+// ─── WATER SCHEDULE STORAGE & CONFIG ──────────────────────────────────────────
+function getWaterSchedule(block) {
+  try {
+    const scheds = JSON.parse(localStorage.getItem('water_schedules') || '{}');
+    return scheds[block] || '';
+  } catch (e) { return ''; }
+}
+function saveWaterSchedule(block, text) {
+  try {
+    const scheds = JSON.parse(localStorage.getItem('water_schedules') || '{}');
+    scheds[block] = text;
+    localStorage.setItem('water_schedules', JSON.stringify(scheds));
+  } catch (e) {}
+}
+function populateScheduleBlockSelect() {
+  const sel = document.getElementById('scheduleBlockSelect');
+  if (!sel) return;
+  const blocks = Array.from(new Set(clients.map(c => getSecteurBlock(c.kòd)).filter(b => b !== '—' && b !== ''))).sort();
+  sel.innerHTML = '<option value="">-- Chwazi Blòk --</option>' +
+    blocks.map(b => `<option value="${b}">Blòk ${b}</option>`).join('');
+  document.getElementById('f-schedule-text').value = '';
+}
 
 // Action tab filter chips
 document.querySelectorAll('.action-chip[data-af]').forEach(chip => {
@@ -884,6 +931,16 @@ async function openSheet(id) {
   const geoText = c.lat != null ? `Kote sovgade ✓ (${c.lat.toFixed(5)}, ${c.lng.toFixed(5)})` : 'Pa gen kote sovgade';
   const lastDateText = c.dènyeBòdwo ? new Date(c.dènyeBòdwo).toLocaleString('fr-HT') : 'Poko janm livre';
   
+  const blockVal = getSecteurBlock(c.kòd);
+  const rawBlk = blockVal !== '—' ? blockVal : '';
+  const waterSched = rawBlk ? getWaterSchedule(rawBlk) : '';
+  const schedHtml = waterSched ? `
+    <div class="detail-row" style="background:rgba(232,163,61,0.08);border-left:3px solid var(--accent);padding:8px;margin-bottom:8px;border-radius:0 6px 6px 0;">
+      <span class="label" style="color:var(--accent);">📅 Distribisyon dlo Blòk:</span>
+      <span class="val" style="font-weight:700;color:var(--accent);">${escapeHtml(waterSched)}</span>
+    </div>
+  ` : '';
+
   let audioHtml = `
     <div class="audio-panel">
       <div class="audio-header">
@@ -909,6 +966,7 @@ async function openSheet(id) {
     </div>
     
     <div class="sheet-details">
+      ${schedHtml}
       <div class="detail-row">
         <span class="label">Kòd Kliyan (PDL):</span>
         <span class="val"><b>${c.kòd || 'SANS-CODE'}</b></span>
@@ -956,8 +1014,67 @@ async function openSheet(id) {
         </select>
       </div>
 
+      <!-- ODIT TEKNIK & TEREN -->
+      <div style="background:var(--panel2);padding:10px;border-radius:8px;margin-bottom:12px;border:1px solid var(--line);">
+        <div style="font-size:11px;font-weight:700;color:var(--accent);margin-bottom:8px;text-transform:uppercase;">🕵️‍♂️ Odit Teknik (Terren)</div>
+        <div style="display:grid;grid-template-columns:1fr;gap:6px;font-size:12px;">
+          <label style="display:flex;align-items:center;gap:6px;">
+            <input type="checkbox" id="auditTiyoSek" ${c.tiyo_sek?'checked':''}>
+            <span>💧 Tiyo Sèk (Pa gen dlo)</span>
+          </label>
+          <label style="display:flex;align-items:center;gap:6px;">
+            <input type="checkbox" id="auditPrizKlandestin" ${c.priz_klandestin?'checked':''}>
+            <span>🔌 Sispèk Priz Klandestin</span>
+          </label>
+          <label style="display:flex;align-items:center;gap:6px;">
+            <input type="checkbox" id="auditRekoneksyon" ${c.rekoneksyon_ilegal?'checked':''}>
+            <span>✂️ Rekoneksyon Ilegal (Kliyan koupe)</span>
+          </label>
+          <label style="display:flex;align-items:center;gap:6px;">
+            <input type="checkbox" id="auditPonpVwazen" ${c.vwazen_ponp?'checked':''}>
+            <span>⚠️ Vwazinaj rale dlo (Ponp/Kontè)</span>
+          </label>
+          <label style="display:flex;align-items:center;gap:6px;">
+            <input type="checkbox" id="auditPapyePrev" ${c.papye_prev?'checked':''}>
+            <span>📄 Gen Papye Prèv biwo a</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- ARANJMAN & DETAY OKIPASYON -->
+      <div style="background:var(--panel2);padding:10px;border-radius:8px;margin-bottom:12px;border:1px solid var(--line);">
+        <div style="font-size:11px;font-weight:700;color:var(--accent);margin-bottom:8px;text-transform:uppercase;">💵 Aranjman Peman & Kay</div>
+        <div style="display:grid;grid-template-columns:1fr;gap:6px;font-size:12px;">
+          <label style="display:flex;align-items:center;gap:6px;">
+            <input type="checkbox" id="auditPemanPasyel" ${c.peman_pasyel?'checked':''}>
+            <span>💰 Akò Peman Pasyèl</span>
+          </label>
+          <label style="display:flex;align-items:center;gap:6px;">
+            <input type="checkbox" id="auditDemannRediksyon" ${c.demann_rediksyon?'checked':''}>
+            <span>📉 Demann Rediksyon nan Biwo</span>
+          </label>
+          <label style="display:flex;align-items:center;gap:6px;">
+            <input type="checkbox" id="auditKontansye" ${c.kontansye?'checked':''}>
+            <span>⚖️ Voye nan Sèvis Kontansye</span>
+          </label>
+          <hr style="border:none;border-top:1px solid var(--line);margin:4px 0;">
+          <label style="display:flex;align-items:center;gap:6px;">
+            <input type="checkbox" id="auditAletranje" ${c.aletranje?'checked':''}>
+            <span>✈️ Mèt kay aletranje</span>
+          </label>
+          <label style="display:flex;align-items:center;gap:6px;">
+            <input type="checkbox" id="auditGeranLa" ${c.geran_la?'checked':''}>
+            <span>🏡 Jèran/Gadyen sèlman ki la</span>
+          </label>
+          <label style="display:flex;align-items:center;gap:6px;">
+            <input type="checkbox" id="auditPaGenKontak" ${c.pa_gen_kontak?'checked':''}>
+            <span>🚫 Pa gen kontak valid</span>
+          </label>
+        </div>
+      </div>
+
       <div class="field">
-        <label>Doleyans Kliyan (Plent: pa gen dlo, elatriye)</label>
+        <label>Doleyans Kliyan (Nòt terenn)</label>
         <textarea id="sheetDoleances" placeholder="Ekri plent kliyan an si genyen...">${escapeHtml(c.doleances || '')}</textarea>
       </div>
 
@@ -1056,6 +1173,21 @@ async function saveFollowupData(id) {
   c.doleances = document.getElementById('sheetDoleances').value.trim();
   c.swivi = document.getElementById('sheetSwivi').value.trim();
   c.randevou = document.getElementById('sheetRandevou').value;
+  
+  // Audits Technical
+  c.tiyo_sek = document.getElementById('auditTiyoSek').checked;
+  c.priz_klandestin = document.getElementById('auditPrizKlandestin').checked;
+  c.rekoneksyon_ilegal = document.getElementById('auditRekoneksyon').checked;
+  c.vwazen_ponp = document.getElementById('auditPonpVwazen').checked;
+  c.papye_prev = document.getElementById('auditPapyePrev').checked;
+
+  // Audits Financial & Occupancy
+  c.peman_pasyel = document.getElementById('auditPemanPasyel').checked;
+  c.demann_rediksyon = document.getElementById('auditDemannRediksyon').checked;
+  c.kontansye = document.getElementById('auditKontansye').checked;
+  c.aletranje = document.getElementById('auditAletranje').checked;
+  c.geran_la = document.getElementById('auditGeranLa').checked;
+  c.pa_gen_kontak = document.getElementById('auditPaGenKontak').checked;
   
   await dbSaveClient(c);
   render();
@@ -1607,10 +1739,21 @@ function renderActionTab() {
   else if (currentActionFilter === 'konvoke') items = konvoke;
   else if (currentActionFilter === 'randevou') items = rdvAujourdhui;
   else if (currentActionFilter === 'dette') items = grosseDette;
+  else if (currentActionFilter === 'tiyo_sek') items = clients.filter(c => c.tiyo_sek);
+  else if (currentActionFilter === 'klandestin') items = clients.filter(c => c.priz_klandestin);
+  else if (currentActionFilter === 'rekoneksyon') items = clients.filter(c => c.rekoneksyon_ilegal);
+  else if (currentActionFilter === 'vwazen_ponp') items = clients.filter(c => c.vwazen_ponp);
+  else if (currentActionFilter === 'aletranje') items = clients.filter(c => c.aletranje);
   else {
-    // All actionable: koupe + konvoke + rdv today + gwo dette
+    // All actionable: koupe + konvoke + rdv today + gwo dette + inspections suspectes
     const seen = new Set();
-    items = [...koupe, ...konvoke, ...rdvAujourdhui, ...grosseDette].filter(c => {
+    items = [
+      ...koupe, 
+      ...konvoke, 
+      ...rdvAujourdhui, 
+      ...grosseDette,
+      ...clients.filter(c => c.tiyo_sek || c.priz_klandestin || c.rekoneksyon_ilegal || c.vwazen_ponp)
+    ].filter(c => {
       if (seen.has(c.id)) return false;
       seen.add(c.id);
       return true;
@@ -1639,9 +1782,15 @@ function renderActionTab() {
   listEl.innerHTML = items.map(c => {
     let tagClass = 'dette';
     let tagLabel = `💸 ${formatPrice(c.solde_ant)}`;
+    
     if (c.statut === 'ferme') { tagClass = 'koupe'; tagLabel = '✂️ KOUPE'; }
     else if (c.statut === 'convoque') { tagClass = 'konvoke'; tagLabel = '📋 KONVOKE'; }
     else if (c.randevou && isToday(c.randevou)) { tagClass = 'randevou'; tagLabel = '📅 RDV JODI A'; }
+    else if (c.priz_klandestin) { tagClass = 'koupe'; tagLabel = '🔌 KLANDESTIN'; }
+    else if (c.tiyo_sek) { tagClass = 'randevou'; tagLabel = '💧 TIYO SÈK'; }
+    else if (c.rekoneksyon_ilegal) { tagClass = 'koupe'; tagLabel = '✂️ REKONÈK'; }
+    else if (c.vwazen_ponp) { tagClass = 'konvoke'; tagLabel = '⚠️ PONP VWAZEN'; }
+    else if (c.aletranje) { tagClass = 'dette'; tagLabel = '✈️ ALETRANJE'; }
 
     const badgeColor = tagClass === 'koupe' ? '#d9635f' : tagClass === 'konvoke' ? '#e8943d' : tagClass === 'randevou' ? '#5b8def' : '#9b6dd4';
     const rdvStr = c.randevou ? `RDV: ${new Date(c.randevou).toLocaleDateString('fr-HT')} · ` : '';
@@ -1652,6 +1801,7 @@ function renderActionTab() {
         <div class="action-name">${escapeHtml(c.non)}</div>
         <div class="action-meta">${rdvStr}${c.sektè} · ${c.kòd || 'SANS-CODE'}</div>
         ${c.doleances ? `<div style="font-size:10px;color:var(--danger);margin-top:2px;">⚠️ ${escapeHtml(c.doleances.slice(0,50))}</div>` : ''}
+        ${c.swivi ? `<div style="font-size:10px;color:var(--dim);margin-top:2px;">📝 ${escapeHtml(c.swivi.slice(0,50))}</div>` : ''}
       </div>
       <div class="action-right">
         <span class="action-tag ${tagClass}">${tagLabel}</span>
@@ -2066,6 +2216,19 @@ async function syncGpsFromArchive() {
     };
   };
 }
+// ─── ADMIN SCHEDULE WIRING ──────────────────────────────────────────────────
+document.getElementById('scheduleBlockSelect').addEventListener('change', e => {
+  const val = e.target.value;
+  document.getElementById('f-schedule-text').value = getWaterSchedule(val);
+});
+document.getElementById('saveScheduleBtn').addEventListener('click', () => {
+  const block = document.getElementById('scheduleBlockSelect').value;
+  const txt = document.getElementById('f-schedule-text').value.trim();
+  if (!block) { toast("Tanpri chwazi yon blòk!"); return; }
+  saveWaterSchedule(block, txt);
+  toast(`Orè pou Blòk ${block} sove! ✓`);
+});
+
 setTimeout(syncGpsFromArchive, 1200);
 </script>
 </body>
