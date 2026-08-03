@@ -1,4 +1,4 @@
-const CACHE='bodwo-v5';
+const CACHE='bodwo-v6';
 const ASSETS=[
   './',
   './index.html',
