@@ -53,8 +53,47 @@
 
   nav{display:flex;border-bottom:1px solid var(--line);background:var(--panel);flex-shrink:0;}
   nav button{flex:1;background:none;border:none;color:var(--dim);font-family:'Space Grotesk',sans-serif;
-    font-weight:600;font-size:13px;padding:12px 0;border-bottom:2px solid transparent;transition:all 0.2s;}
+    font-weight:600;font-size:11px;padding:10px 0;border-bottom:2px solid transparent;transition:all 0.2s;}
   nav button.active{color:var(--accent);border-bottom-color:var(--accent);background:rgba(232,163,61,0.03);}
+  /* ── ACTION TAB STYLES ── */
+  .action-filters{display:flex;gap:8px;padding:12px;overflow-x:auto;flex-shrink:0;}
+  .action-chip{display:flex;align-items:center;gap:5px;padding:8px 12px;border-radius:20px;font-size:12px;
+    font-weight:700;border:1.5px solid transparent;cursor:pointer;white-space:nowrap;transition:all 0.2s;
+    background:var(--panel2);color:var(--dim);}
+  .action-chip.active{color:#fff;}
+  .action-chip[data-af="koupe"].active{background:#d9635f;border-color:#d9635f;}
+  .action-chip[data-af="konvoke"].active{background:#e8943d;border-color:#e8943d;}
+  .action-chip[data-af="randevou"].active{background:#5b8def;border-color:#5b8def;}
+  .action-chip[data-af="dette"].active{background:#9b6dd4;border-color:#9b6dd4;}
+  .action-chip[data-af="all"].active{background:var(--accent);border-color:var(--accent);}
+  .action-item{display:flex;align-items:center;gap:10px;padding:12px;border-bottom:1px solid var(--line);cursor:pointer;}
+  .action-item:active{background:var(--panel2);}
+  .action-badge{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+  .action-info{flex:1;min-width:0;}
+  .action-name{font-weight:600;font-size:13px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .action-meta{font-size:11px;color:var(--dim);margin-top:2px;}
+  .action-right{text-align:right;font-size:11px;color:var(--dim);flex-shrink:0;}
+  .action-tag{padding:2px 7px;border-radius:10px;font-size:10px;font-weight:700;text-transform:uppercase;}
+  .action-tag.koupe{background:rgba(217,99,95,0.15);color:#d9635f;}
+  .action-tag.konvoke{background:rgba(232,148,61,0.15);color:#e8943d;}
+  .action-tag.randevou{background:rgba(91,141,239,0.15);color:#5b8def;}
+  .action-tag.dette{background:rgba(155,109,212,0.15);color:#9b6dd4;}
+  .action-summary{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;padding:12px;flex-shrink:0;}
+  .action-stat-card{background:var(--panel2);border-radius:10px;padding:12px;text-align:center;}
+  .action-stat-n{font-size:22px;font-weight:700;}
+  .action-stat-l{font-size:10px;color:var(--dim);margin-top:2px;text-transform:uppercase;letter-spacing:0.5px;}
+  /* Quick action buttons in sheet */
+  .quick-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;padding-top:12px;border-top:1px solid var(--line);}
+  .quick-btn{flex:1;min-width:100px;padding:9px 6px;border-radius:8px;border:1.5px solid transparent;
+    font-size:12px;font-weight:700;cursor:pointer;transition:all 0.18s;font-family:'Space Grotesk',sans-serif;}
+  .quick-btn.koupe{background:rgba(217,99,95,0.1);border-color:rgba(217,99,95,0.4);color:#d9635f;}
+  .quick-btn.koupe.sel{background:#d9635f;color:#fff;}
+  .quick-btn.konvoke{background:rgba(232,148,61,0.1);border-color:rgba(232,148,61,0.4);color:#e8943d;}
+  .quick-btn.konvoke.sel{background:#e8943d;color:#fff;}
+  /* Map filter buttons */
+  .map-filters{position:absolute;top:10px;left:50%;transform:translateX(-50%);z-index:999;
+    display:flex;gap:6px;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:5px 8px;
+    box-shadow:0 4px 12px var(--shadow);}
 
   main{flex:1;overflow-y:auto;position:relative;display:flex;flex-direction:column;}
   .tab{display:none;height:100%;flex-direction:column;flex:1;}
@@ -239,6 +278,7 @@
 
   <nav>
     <button class="tabbtn active" data-tab="list">LIS</button>
+    <button class="tabbtn" data-tab="aksyon">🎯 AKSYON</button>
     <button class="tabbtn" data-tab="map">KAT</button>
     <button class="tabbtn" data-tab="report">RAPÒ</button>
     <button class="tabbtn" data-tab="add">ADMIN</button>
@@ -275,14 +315,51 @@
       <button class="fab" onclick="switchTab('add')">+</button>
     </div>
 
+    <!-- TAB: AKSYON -->
+    <div class="tab" id="tab-aksyon">
+      <div class="action-summary" id="actionSummary">
+        <div class="action-stat-card">
+          <div class="action-stat-n" style="color:#d9635f;" id="aStatKoupe">0</div>
+          <div class="action-stat-l">✂️ Koupe Tiyo</div>
+        </div>
+        <div class="action-stat-card">
+          <div class="action-stat-n" style="color:#e8943d;" id="aStatKonvoke">0</div>
+          <div class="action-stat-l">📋 Konvoke</div>
+        </div>
+        <div class="action-stat-card">
+          <div class="action-stat-n" style="color:#5b8def;" id="aStatRandevou">0</div>
+          <div class="action-stat-l">📅 Randevou Jodi a</div>
+        </div>
+        <div class="action-stat-card">
+          <div class="action-stat-n" style="color:#9b6dd4;" id="aStatDette">0</div>
+          <div class="action-stat-l">💸 Gwo Dèt</div>
+        </div>
+      </div>
+      <div class="action-filters">
+        <div class="action-chip active" data-af="all">🔘 Tout</div>
+        <div class="action-chip" data-af="koupe">✂️ Koupe Tiyo</div>
+        <div class="action-chip" data-af="konvoke">📋 Konvoke</div>
+        <div class="action-chip" data-af="randevou">📅 Randevou Jodi a</div>
+        <div class="action-chip" data-af="dette">💸 Gwo Dèt (+5k HTG)</div>
+      </div>
+      <div class="list" id="actionList"></div>
+    </div>
+
     <!-- TAB: MAP -->
     <div class="tab" id="tab-map" style="position:relative;">
       <div id="map"></div>
+      <div class="map-filters">
+        <span style="font-size:10px;font-weight:700;color:var(--dim);padding-right:4px;">FILTRE:</span>
+        <button class="action-chip active" data-mf="all" style="padding:3px 8px;font-size:10px;">Tout</button>
+        <button class="action-chip" data-mf="koupe" style="padding:3px 8px;font-size:10px;background:rgba(217,99,95,0.1);">✂️ Koupe</button>
+        <button class="action-chip" data-mf="konvoke" style="padding:3px 8px;font-size:10px;background:rgba(232,148,61,0.1);">📋 Konvoke</button>
+        <button class="action-chip" data-mf="dette" style="padding:3px 8px;font-size:10px;background:rgba(155,109,212,0.1);">💸 Dèt</button>
+      </div>
       <div class="maplegend">
-        <span><i style="background:var(--millet)"></i>Millet</span>
-        <span><i style="background:var(--metivier)"></i>Métivier</span>
-        <span><i style="background:var(--ok);border:1px solid #fff;"></i>Bòdwo Bay (Fèt)</span>
-        <span><i style="border:2px dashed var(--dim);background:transparent;"></i>Rete (An atant)</span>
+        <span><i style="background:#d9635f"></i>Koupe Tiyo</span>
+        <span><i style="background:#e8943d"></i>Konvoke</span>
+        <span><i style="background:#6fbf73;border:1px solid #fff;"></i>Bòdwo Bay</span>
+        <span><i style="border:2px dashed var(--dim);background:transparent;"></i>Nòmal</span>
       </div>
     </div>
 
@@ -746,23 +823,46 @@ function escapeHtml(s){
 }
 
 // ─── TAB NAVIGATION ──────────────────────────────────────────────────────────
+let currentActionFilter = 'all';
+let currentMapFilter = 'all';
+
 function switchTab(name) {
   document.querySelectorAll('.tabbtn').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
   document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.id === 'tab-' + name));
   
   if (name === 'map') {
     setTimeout(() => {
-      if (!map) {
-        initMap();
-      }
+      if (!map) { initMap(); }
       map.invalidateSize();
       renderMap();
     }, 50);
   } else if (name === 'report') {
     renderReport();
+  } else if (name === 'aksyon') {
+    renderActionTab();
   }
 }
 document.querySelectorAll('.tabbtn').forEach(b => b.onclick = () => switchTab(b.dataset.tab));
+
+// Action tab filter chips
+document.querySelectorAll('.action-chip[data-af]').forEach(chip => {
+  chip.onclick = () => {
+    document.querySelectorAll('.action-chip[data-af]').forEach(x => x.classList.remove('active'));
+    chip.classList.add('active');
+    currentActionFilter = chip.dataset.af;
+    renderActionTab();
+  };
+});
+
+// Map filter buttons
+document.querySelectorAll('[data-mf]').forEach(btn => {
+  btn.onclick = () => {
+    document.querySelectorAll('[data-mf]').forEach(x => x.classList.remove('active'));
+    btn.classList.add('active');
+    currentMapFilter = btn.dataset.mf;
+    renderMap();
+  };
+});
 
 // ─── FILTER CHIPS ────────────────────────────────────────────────────────────
 document.querySelectorAll('.chip[data-f]').forEach(c => {
@@ -874,6 +974,13 @@ async function openSheet(id) {
       <button type="button" class="btn primary" id="saveFollowupBtn" style="padding:10px;">💾 Sove Enfòmasyon Rekouvreman</button>
     </div>
 
+    <!-- QUICK ACTION TAGS -->
+    <div class="quick-actions">
+      <div style="width:100%;font-size:11px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:0.5px;">⚡ Aksyon Rapid</div>
+      <button type="button" class="quick-btn koupe ${c.statut==='ferme'?'sel':''}" id="qKoupeBtn">✂️ ${c.statut==='ferme'?'✓ Koupe':'Mete Koupe'}</button>
+      <button type="button" class="quick-btn konvoke ${c.statut==='convoque'?'sel':''}" id="qKonvokeBtn">📋 ${c.statut==='convoque'?'✓ Konvoke':'Konvoke'}</button>
+    </div>
+
     <!-- BILL STAMP BUTTON -->
     <button class="stamp ${done?'done':''}" id="stampBtn" style="margin-top:18px;">
       ${done ? '✓ BÒDWO LIVRE MWA SA' : '⬤ LIVRE BÒDWO KOUNYE A'}
@@ -904,7 +1011,23 @@ async function openSheet(id) {
   
   const om = document.getElementById('openMapBtn');
   if (om) om.onclick = () => window.open(`https://www.google.com/maps?q=${c.lat},${c.lng}`, '_blank');
-  
+
+  // Quick action buttons
+  document.getElementById('qKoupeBtn').onclick = async () => {
+    c.statut = (c.statut === 'ferme') ? 'actif' : 'ferme';
+    await dbSaveClient(c);
+    render();
+    openSheet(c.id);
+    toast(c.statut === 'ferme' ? '✂️ Kliyan make kòm Koupe Tiyo' : 'Kliyan pa koupe ankò');
+  };
+  document.getElementById('qKonvokeBtn').onclick = async () => {
+    c.statut = (c.statut === 'convoque') ? 'actif' : 'convoque';
+    await dbSaveClient(c);
+    render();
+    openSheet(c.id);
+    toast(c.statut === 'convoque' ? '📋 Kliyan make kòm Konvoke' : 'Konvokasyon retire');
+  };
+
   // Audio configuration
   setupAudioRecorder(c.id);
   loadVoiceNotePlayer(c.id);
@@ -1396,39 +1519,64 @@ function initMap() {
   markersLayer = L.layerGroup().addTo(map);
 }
 
+function getMarkerStyle(c) {
+  const done = sameMonth(c.dènyeBòdwo);
+  if (c.statut === 'ferme') return { color: '#d9635f', fillColor: '#d9635f', radius: 9, fillOpacity: 0.9, weight: 2.5, dashArray: null, label: '✂️ Koupe' };
+  if (c.statut === 'convoque') return { color: '#e8943d', fillColor: '#e8943d', radius: 9, fillOpacity: 0.9, weight: 2, dashArray: null, label: '📋 Konvoke' };
+  if (c.randevou && isToday(c.randevou)) return { color: '#5b8def', fillColor: '#5b8def', radius: 9, fillOpacity: 0.9, weight: 2, dashArray: null, label: '📅 Randevou' };
+  if (done) return { color: '#ffffff', fillColor: '#6fbf73', radius: 8, fillOpacity: 0.95, weight: 2, dashArray: null, label: '✓ Fèt' };
+  if (c.doleances && c.doleances.trim()) return { color: '#f4d03f', fillColor: '#f4d03f', radius: 7, fillOpacity: 0.85, weight: 1.5, dashArray: null, label: '⚠️ Doleyans' };
+  const baseColor = c.sektè === 'Millet' ? '#4fb8a6' : '#5b8def';
+  return { color: baseColor, fillColor: baseColor, radius: 7, fillOpacity: 0.18, weight: 1.5, dashArray: '3,4', label: 'Nòmal' };
+}
+
+function isToday(dateStr) {
+  if (!dateStr) return false;
+  const d = new Date(dateStr), n = new Date();
+  return d.getDate() === n.getDate() && d.getMonth() === n.getMonth() && d.getFullYear() === n.getFullYear();
+}
+
 function renderMap() {
   if (!map || !markersLayer) return;
   markersLayer.clearLayers();
   
-  const withGeo = getFilteredClients().filter(c => c.lat != null);
+  let withGeo = getFilteredClients().filter(c => c.lat != null);
+  
+  // Apply map filter
+  if (currentMapFilter === 'koupe') withGeo = withGeo.filter(c => c.statut === 'ferme');
+  else if (currentMapFilter === 'konvoke') withGeo = withGeo.filter(c => c.statut === 'convoque');
+  else if (currentMapFilter === 'dette') withGeo = withGeo.filter(c => (parseFloat(c.solde_ant) || 0) >= 5000);
+  
   if (withGeo.length === 0) return;
   
   const bounds = [];
   withGeo.forEach(c => {
+    const style = getMarkerStyle(c);
     const done = sameMonth(c.dènyeBòdwo);
-    const color = c.sektè === 'Millet' ? '#4fb8a6' : '#5b8def';
     
-    // Custom premium circle marker style
     const m = L.circleMarker([c.lat, c.lng], {
-      radius: done ? 9 : 7,
-      fillColor: done ? '#6fbf73' : color,
-      color: done ? '#ffffff' : color,
-      weight: done ? 2 : 1.5,
-      fillOpacity: done ? 0.95 : 0.15,
-      dashArray: done ? null : "3, 4"
+      radius: style.radius,
+      fillColor: style.fillColor,
+      color: style.color,
+      weight: style.weight,
+      fillOpacity: style.fillOpacity,
+      dashArray: style.dashArray
     }).addTo(markersLayer);
     
     const popupContent = `
-      <div style="font-family:sans-serif;color:#111;min-width:140px;font-size:12px;">
+      <div style="font-family:sans-serif;color:#111;min-width:150px;font-size:12px;">
         <h4 style="margin:0 0 6px 0;font-size:13px;font-family:'Space Grotesk',sans-serif;">${escapeHtml(c.non)}</h4>
-        <span style="font-size:10px;background:#eee;padding:2px 5px;border-radius:3px;text-transform:uppercase;">${c.sektè}</span>
+        <span style="font-size:10px;background:#eee;padding:2px 5px;border-radius:3px;">${c.sektè}</span>
+        ${c.statut === 'ferme' ? '<span style="font-size:10px;background:#d9635f;color:#fff;padding:2px 6px;border-radius:3px;margin-left:4px;">✂️ KOUPE</span>' : ''}
+        ${c.statut === 'convoque' ? '<span style="font-size:10px;background:#e8943d;color:#fff;padding:2px 6px;border-radius:3px;margin-left:4px;">📋 KONVOKE</span>' : ''}
         <div style="margin-top:8px;">
-          <b>Kod:</b> ${c.kòd || '—'}<br>
-          <b>Dèt:</b> ${formatPrice(c.solde_ant)}<br>
+          <b>Kòd:</b> ${c.kòd || '—'}<br>
+          <b>Dèt:</b> <span style="color:${parseFloat(c.solde_ant)>0?'#d9635f':'green'};">${formatPrice(c.solde_ant)}</span><br>
           <b>Estati:</b> ${done ? '<span style="color:green;font-weight:bold;">Fèt ✓</span>' : '<span style="color:orange;">Rete</span>'}<br>
-          ${c.doleances ? `<b style="color:red;">Pleyan:</b> ${escapeHtml(c.doleances.slice(0,30))}<br>` : ''}
+          ${c.doleances ? `<b style="color:red;">⚠️ Plent:</b> ${escapeHtml(c.doleances.slice(0,40))}<br>` : ''}
+          ${c.randevou ? `<b style="color:#5b8def;">📅 RDV:</b> ${new Date(c.randevou).toLocaleDateString('fr-HT')}<br>` : ''}
         </div>
-        <button onclick="openSheet('${c.id}')" style="width:100%;margin-top:10px;background:#e8a33d;border:none;color:#fff;padding:6px;border-radius:4px;cursor:pointer;font-weight:bold;font-size:11px;">Detay & Swivi</button>
+        <button onclick="openSheet('${c.id}')" style="width:100%;margin-top:10px;background:#e8a33d;border:none;color:#fff;padding:6px;border-radius:4px;cursor:pointer;font-weight:bold;font-size:11px;">Detay & Aksyon</button>
       </div>
     `;
     
@@ -1439,6 +1587,78 @@ function renderMap() {
   if (bounds.length > 0) {
     map.fitBounds(bounds, { padding: [30, 30], maxZoom: 16 });
   }
+}
+
+// ─── ACTION TAB RENDERER ─────────────────────────────────────────────────────
+function renderActionTab() {
+  const koupe = clients.filter(c => c.statut === 'ferme');
+  const konvoke = clients.filter(c => c.statut === 'convoque');
+  const rdvAujourdhui = clients.filter(c => c.randevou && isToday(c.randevou));
+  const grosseDette = clients.filter(c => (parseFloat(c.solde_ant) || 0) >= 5000 && c.statut !== 'ferme');
+
+  // Update summary counters
+  document.getElementById('aStatKoupe').textContent = koupe.length;
+  document.getElementById('aStatKonvoke').textContent = konvoke.length;
+  document.getElementById('aStatRandevou').textContent = rdvAujourdhui.length;
+  document.getElementById('aStatDette').textContent = grosseDette.length;
+
+  let items;
+  if (currentActionFilter === 'koupe') items = koupe;
+  else if (currentActionFilter === 'konvoke') items = konvoke;
+  else if (currentActionFilter === 'randevou') items = rdvAujourdhui;
+  else if (currentActionFilter === 'dette') items = grosseDette;
+  else {
+    // All actionable: koupe + konvoke + rdv today + gwo dette
+    const seen = new Set();
+    items = [...koupe, ...konvoke, ...rdvAujourdhui, ...grosseDette].filter(c => {
+      if (seen.has(c.id)) return false;
+      seen.add(c.id);
+      return true;
+    });
+  }
+
+  // Sort: koupe first, then konvoke, then rdv, then dette
+  const priority = c => {
+    if (c.statut === 'ferme') return 0;
+    if (c.statut === 'convoque') return 1;
+    if (c.randevou && isToday(c.randevou)) return 2;
+    return 3;
+  };
+  items.sort((a, b) => priority(a) - priority(b) || (parseFloat(b.solde_ant)||0) - (parseFloat(a.solde_ant)||0));
+
+  const listEl = document.getElementById('actionList');
+  if (items.length === 0) {
+    listEl.innerHTML = `<div class="empty" style="padding:40px 20px;">
+      <div style="font-size:36px;">✅</div>
+      <div style="margin-top:8px;font-weight:600;color:var(--ink);">Tout anfòm!</div>
+      <div style="color:var(--dim);font-size:13px;margin-top:4px;">Pa gen kliyan ki bezwen aksyon kounye a.</div>
+    </div>`;
+    return;
+  }
+
+  listEl.innerHTML = items.map(c => {
+    let tagClass = 'dette';
+    let tagLabel = `💸 ${formatPrice(c.solde_ant)}`;
+    if (c.statut === 'ferme') { tagClass = 'koupe'; tagLabel = '✂️ KOUPE'; }
+    else if (c.statut === 'convoque') { tagClass = 'konvoke'; tagLabel = '📋 KONVOKE'; }
+    else if (c.randevou && isToday(c.randevou)) { tagClass = 'randevou'; tagLabel = '📅 RDV JODI A'; }
+
+    const badgeColor = tagClass === 'koupe' ? '#d9635f' : tagClass === 'konvoke' ? '#e8943d' : tagClass === 'randevou' ? '#5b8def' : '#9b6dd4';
+    const rdvStr = c.randevou ? `RDV: ${new Date(c.randevou).toLocaleDateString('fr-HT')} · ` : '';
+
+    return `<div class="action-item" onclick="openSheet('${c.id}')">
+      <div class="action-badge" style="background:${badgeColor};"></div>
+      <div class="action-info">
+        <div class="action-name">${escapeHtml(c.non)}</div>
+        <div class="action-meta">${rdvStr}${c.sektè} · ${c.kòd || 'SANS-CODE'}</div>
+        ${c.doleances ? `<div style="font-size:10px;color:var(--danger);margin-top:2px;">⚠️ ${escapeHtml(c.doleances.slice(0,50))}</div>` : ''}
+      </div>
+      <div class="action-right">
+        <span class="action-tag ${tagClass}">${tagLabel}</span>
+        ${c.lat ? '<div style="margin-top:4px;">📍</div>' : ''}
+      </div>
+    </div>`;
+  }).join('');
 }
 
 // ─── REPORTS GENERATOR ────────────────────────────────────────────────────────
